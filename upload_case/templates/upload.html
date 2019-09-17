@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% block content %}
+<body>
+<form action="" method="post" enctype="multipart/form-data">
+    <p>设置测试项目名称：<input type="text" name="pro_name"/><label style="color: gray">说明：填写项目名称后会自动创建项目目录</label></p>
+    <p>测试用例上传：<input type="file" name="case_file"/></p>
+    <p>配置文件上传：<input type="file" name="config_file"/></p>
+
+    <p><input type="submit" value="submit"/></p>
+    <p><a href="/static/case/1.jpg" target="_blank">测试报告下载地址</a></p>
+</form>
+</body>
+{% endblock content %}
+</html>
