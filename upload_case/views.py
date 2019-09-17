@@ -1,15 +1,18 @@
+import datetime
 import json
 
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
 import os
-
+from pathlib import Path
 
 
 
 def index(request):
     baseDir = os.path.dirname(os.path.abspath(__name__))
-    report_path = ""
+    show_path = ""
+    file_down = ""
+    pro_rep_all_path = []
     if request.method == "POST":
         pro_name = request.POST.get("pro_name","")
         caseFile = request.FILES.get('case_file', None)  # 获取上传的文件，如果没有文件，则默认为None
@@ -28,12 +31,18 @@ def index(request):
             f.write(json.dumps(deal_file_path,ensure_ascii=False,indent=4).encode("utf-8")) #字典转成json,字典转换成字符串 加上ensure_ascii=False以后，可以识别中文， indent=4是间隔4个空格显示
         from upload_case import case_test_common
         report_path = case_test_common.main()
+        show_path = report_path[report_path.index("/static"):] #显示单个测试报告路径
+        file_down = '/file_download?report_path={}'.format(report_path)
+        show_all_path = report_path[:report_path.index("/report")]  # 显示项目下所有测试报告路径
+        pro_rep_all_path = get_all_path(show_all_path)
 
     else:
         pass
 
     content = {
-        'report_path':report_path,
+        'report_path':show_path,
+        'file_down':file_down,
+        'pro_rep_all_path':pro_rep_all_path,
     }
     return render_to_response("upload.html",content)
 
@@ -70,7 +79,7 @@ def pro_dir_deal(pro_name,**fileDict):
     try:
 
         if pro_name:
-            pro_dir = os.path.join(baseDir, "InterfaceTest/project_tree/{}".format(pro_name))
+            pro_dir = os.path.join(baseDir, "InterfaceTest/static/project_tree/{}".format(pro_name))
             if not os.path.exists(pro_dir):
                 os.makedirs(pro_dir)
                 os.makedirs(os.path.join(pro_dir, "config"))
@@ -97,4 +106,50 @@ def pro_dir_deal(pro_name,**fileDict):
     except Exception as e :
         pass
     return deal_file_path
+
+
+
+def file_down(request,file_path=None):
+    file_path = request.GET.get("report_path")
+    p = Path(file_path)
+    report_name = p.name
+    file=open(file_path,'rb')
+    response =HttpResponse(file)
+    response['Content-Type']='application/octet-stream'
+    response['Content-Disposition']='attachment;filename={}'.format(report_name)
+    return response
+
+
+
+def get_all_path(root_path,file_list=[],dir_list=[]):
+    '''
+    查询指定目录下所有文件
+    :param request:
+    :param root_path: 指定路径
+    :return: 所有文件路径列表
+    '''
+
+    #获取该目录下所有的文件名称和目录名称
+    dir_or_files = os.listdir(root_path)
+
+
+    for dir_file in dir_or_files:
+        file_opera = []
+        #获取目录或者文件的路径
+        dir_file_path = os.path.join(root_path,dir_file)
+        #判断该路径为文件还是路径
+        if os.path.isdir(dir_file_path):
+            dir_list.append(dir_file_path)
+        else:
+            p = Path(dir_file_path)
+            report_name = p.name
+            show_path = dir_file_path[dir_file_path.index("/static"):]  # 显示单个测试报告路径
+            file_down = '/file_download?report_path={}'.format(dir_file_path)
+            file_opera.append(report_name)
+            file_opera.append(show_path)
+            file_opera.append(file_down)
+        file_list.append(file_opera)
+    return file_list
+
+
 

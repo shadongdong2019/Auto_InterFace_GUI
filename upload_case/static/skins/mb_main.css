@@ -1,0 +1,11 @@
+@charset "utf-8";
+body{overflow-x: hidden; overflow-y: hidden}
+.main_set{margin-left: 6.25%; float: left; width: 30px; height: 30px}
+.main_person{margin-right: 6.25%; float: right; height: 30px}
+.main_ad{width: 100%; margin-top: 1.76%}
+.swipe-wrap li{float: left; width: 33.1%; border-right: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5; cursor: pointer; background-color: #fff}
+.swipe-wrap li:nth-child(3n){border-right: 0px}
+.swipe-wrap li img{width: 100%}
+.main_page{text-align: center; padding-top: 1.56%}
+.main_page_curcle{width: 12px; height: 12px; display: inline-block; background: #096191; border-radius: 12px}
+.main_four_mach{position: absolute!important;}

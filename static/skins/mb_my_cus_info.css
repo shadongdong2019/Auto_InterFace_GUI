@@ -1,0 +1,16 @@
+@charset "utf-8";
+.my_cus_nav{width: 90.6%; margin: 0px auto; display:box; display:-webkit-box; /* Safari and Chrome */}
+.my_cus_nav li{width: 32%; padding-top: 2.66%; padding-bottom: 2.66%; font-size: 100%; color: #1373a3; background: #fff; border: 2px solid #1373a3; border-left: 0px; box-flex:1.0; -webkit-box-flex:1.0; /* Safari and Chrome */}
+.my_cus_nav li:first-child{border-left: 2px solid #1373a3;  border-top-left-radius: 10px; border-bottom-left-radius: 10px}
+.my_cus_nav li:last-child{border-bottom-right-radius: 10px; border-top-right-radius: 10px}
+.my_cus_nav_body{width: 78.1%; margin: 0px auto; margin-top: 6.87%!important; font-size: 100%; color: #000; font-family: simhei}
+.my_cus_nav_body div{margin-top: 2.55%}
+.my_cus_nav_body div:first-child{margin-top: 0px}
+.my_cus_body_color{color: #a8a8a8}
+.my_cus_nav_body input[type=button], .my_cus_nav_body input[type=submit]{width: 100%; color: #fff; font-size: 85%; background: #0b6fa1!important; text-align: center; border: 0px; padding-top: 2.2%; padding-bottom: 2.2%}
+.my_cus_nav_body span, .my_cus_nav_body label{display: inline-block!important; width: 35%; text-align: right; font-weight: normal; font-size: 100%!important; margin: 0px!important;}
+.my_cus_nav_body p{width: 100%; text-align: center; color: #f00}
+textarea{display: block; width: 100%; margin-top: 2.55%; font-size: 75%;color: #000; font-family: simhei}
+.my_cus_nav_body input[type=text]{border: 1px solid #d9d9d9}
+.info_seq{width: 100%; border-top: 1px dashed #bfbfbf}
+.cus_submit{width: 100%; color: #fff; font-size: 85%; background: #0b6fa1; text-align: center; border: 0px; padding-top: 2.2%; padding-bottom: 2.2%}

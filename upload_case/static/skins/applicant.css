@@ -1,0 +1,61 @@
+@charset "utf-8";
+.main_list_whiteline{width: 100%; height: 1px; background-color: #fff; position: fixed}
+.main_list_search_pane{width: 100%; height: 48px; background-color: #fefcee;}
+.main_list_magnifier{margin-top: 12px; margin-left: 20px; display: block; cursor: pointer; float: left}
+.date1{height: 24px; float: left; background-color: #fefefe; margin-top: 12px; line-height: 24px; font-family: Arial; font-size: 12px; color: #515151; cursor: pointer;margin-top: 0px; margin-bottom: 12px}
+.main_list_search_habit{height: 26px; margin-top: 12px; margin-left: 2px; background-color: #096191; float: left; cursor: pointer; text-align: center; line-height: 26px; color: #fff; font-size: 12px; font-family: "宋体"; padding-left: 15px; padding-right: 15px;}
+.main_list_search_word{font-family: "宋体"; font-size: 12px; color: #020202; float: left; line-height: 48px; margin-left: 10px; margin-right: 10px}
+.main_list_editor{height: 26px; float: left; cursor: pointer; background-color: #ffb532; margin-top: 12px; margin-left: 2px; text-align: center; line-height: 26px; color: #fff; font-size: 12px; padding-left: 15px; padding-right: 15px}
+.main_list_table_poi{width: 100%; border-spacing: 0px; background-color: #fff;margin-bottom: 43px; border-bottom: 1px solid #e0f2fc; border-spacing: 0px; font-family: SimSun}
+.main_list_tableline{width: 100%; height: 42px;}
+.main_list_tableline td, .main_list_tableline th{font-size: 12px; font-family: "宋体"; border-right: 1px solid #e7f0f6; text-align: center; border-top: 1px solid #e0f2fc; white-space: nowrap; padding: 0px 15px 0px 15px}
+.main_list_tableline th.head:first-child{position: fixed; padding: 0px; border-top: 0px; background-color: #f1f9fd}
+.main_list_tableline td:first-child{width: 60px; height: 42px; position: absolute; margin-top: 0px; line-height: 48px; padding: 0px; background-color: #fff}
+.main_list_tableline:last-child td:first-child{height: 41px}
+.main_list_page{position: fixed; width: 100%; height: 42px; bottom: 0px; background-color: #fff; z-index: 200}
+.main_list_pagenum{height: 20px; float: left; margin-left: 10px; line-height: 20px; color: #030303; cursor: pointer;}
+.main_list_pagenum select{height: 22px}
+.main_list_lastpage{float: left; margin-top: 7px; margin-left: 20px; cursor: pointer;}
+.main_last_pagecenter{width: 430px; margin: 0px auto; margin-top: 10px; font-size: 12px; color: #030303; font-family: "宋体"}
+.main_last_pagecenter p{margin-top: 3px}
+.main_list_tableline .head:first-child, .list-title .head:first-child{min-width: 60px; position: absolute; z-index: 90; line-height: 40px}
+.list-title .head:first-child{border-top: 0px; position: fixed; height: 45px}
+p.main_list_pagecount{float: left; margin-left: 15px; margin-top: 5px; display: block;}
+.main_list_orderpic{margin-left: 4px; vertical-align: middle; cursor: pointer; margin-top: -3px}
+.undate{}
+table:last-child{margin-bottom: 42px}
+table td{min-width: 60px}
+.main_list_nav_fixed{background-color: #fefcee; width: 100%; z-index: 100; padding-left: 1px; position: fixed}
+.main_list_linepoi{padding-top: 11px; clear: both; margin-bottom: 1px}
+.main_list_solidline{width: 100%; height: 1px; background-color: #e0f2fc; clear: both;}
+.main_list_tablehead{width: 100%; height: 46px;}
+.main_list_headtitle_fixed{height: 46px;}
+.list-title .head{float: left; font-size: 12px; font-family: "宋体"; border-right: 1px solid #e7f0f6; background-color: #f1f9fd; padding-top: 2px; white-space: nowrap; font-weight: bold; text-align: center; height: 43px; line-height: 42px; display: inline-block}
+.main_list_habit_btn{height: 24px; padding-left: 15px; padding-right: 15px; font-family: "宋体"; font-size: 12px; color: #096191; text-align: center; float: left; margin-top: 12px; line-height: 24px; border: 1px solid #146895; background-color: #fff; cursor: pointer; margin-left: 2px}
+.checkbox{margin-top: 7px; margin-left: 10px}
+.main_list_search_detail{border: 1px solid #146895; padding: 12px 15px 0px 15px; float: left; margin-left: 57px; clear: both; font-size: 12px; background-color: #fff; display: none}
+.main_list_search_detail p{float: left; line-height: 26px; margin-right: 10px}
+.tosearch{width: 52px; height: 26px; float: left; margin-left: 10px; background-color: #096191; color: #fff; font-size: 12px; text-align: center; line-height: 24px; cursor: pointer;}
+.tosearch:hover{border: 0px}
+.tocancel{width: 52px; height: 26px; float: left; margin-left: 10px; background-color: #feb534; color: #fff; font-size: 12px; text-align: center; line-height: 24px; cursor: pointer;}
+.main_list_seqline{position: absolute; height: 1px; background-color: #fff; margin-left: -15px; margin-top: 2px; display: none}
+.shouqi{position: absolute; right: 20px; cursor: pointer;}
+.main_list_errtext{margin-top: 10px; margin-left: 50px; margin-bottom: 30px; font-size: 14px; color: red; height: 10px;}
+.main_list_prompt_bg{height: 100%; width: 100%; position: fixed; top: 0px; z-index: 2000; overflow: hidden}
+.main_list_prompt_box{background-color: #fff; padding-bottom: 0px; position: absolute; margin: 0 auto; margin-top: 220px; left: 35%; width: 450px;}
+.main_list_box_title{width: 100%; height: 36px; background-color: #096191; cursor: move;}
+.main_list_box_title span{color: #fff; font-family: "宋体"; font-size: 14px; font-weight: bold; line-height: 36px; margin-left: 20px}
+.main_list_box_title img{margin-right: 12px; cursor: pointer;}
+.main_list_box_text{text-align: center; margin-bottom: 70px;}
+.main_list_box_outline{height: 149px; background-color: #fff; padding-top: 85px; border: 3px solid #dcdcdc;}
+.main_list_box_btn{margin-bottom: 25px; float: right; margin-right: 30px}
+.main_list_img_reverse{margin-right: -16px}
+.main_list_search_box{margin-left: 45px}
+
+.card1{min-width: 199px; height: 87px; border: 3px solid #dcdcdc; position: absolute; margin-top: -50px; background-color: #fff; padding-top: 12px; padding-left: 15px; padding-right: 15px; text-align: left; line-height:normal; color: #010101; margin-left: 80px; z-index: 50000}
+.card1 p{white-space: 10px; display: block; float: left; line-height: 15px; font-size: 12px}
+.card1 div{clear: both}
+.fl_img{float: left; margin-top: 2px; margin-right: 10px;}
+.divpad{padding-top: 5px}
+.call {width: 27px;height: 15px;text-align: center;line-height: 15px;color: #fff;background-color: #3c7d19;float: right;margin-top: -16px;margin-right: 88px;cursor: pointer;font-size: 12px;}
+.order{vertical-align: middle;margin-left: 5px;}

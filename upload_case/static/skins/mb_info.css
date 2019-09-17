@@ -1,0 +1,8 @@
+@charset "utf-8";
+.mb_info_box{width: 85.625%; margin: 0px auto; margin-top: 10.78%}
+.encyclopedia{display: inline-block; vertical-align: middle}
+.mb_info_name{display: inline-block; vertical-align: middle; margin-left: 5.31%; width: 77%}
+.mb_profession{color: #a8a8a8}
+.mb_info_text{color: #010101; margin-left: 1.4%; white-space: normal; word-wrap: break-word}
+.mb_info_box li{margin-top: 3.08%;}
+.mb_info_box li:first-child{margin-top: 0px;}

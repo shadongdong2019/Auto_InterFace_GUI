@@ -1,0 +1,8 @@
+﻿@charset "utf-8";
+body,img, input, p, ul, li, iframe, a{margin: 0px; border: 0px; padding: 0px;}
+.delete_text{width: 373px; margin: 0px auto; margin-top: 30%; padding-left: 60px; padding-right: 60px}
+.delete_error{float: left;}
+.delete_title{float: left; margin-top: 3px; margin-left: 16px}
+.delete_p{font-size: 12px; font-family: "宋体"; color: #9fa0a0; margin-top: 12px; margin-bottom: 10px}
+.delete_title a{text-decoration: none; font-size: 12px; color: #0a6292}
+.delete_title a img{margin-right: 5px}

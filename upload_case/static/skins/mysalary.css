@@ -1,0 +1,103 @@
+body, a, nav, h3, ul, p {
+  padding: 0px;
+  margin: 0px; }
+
+a {
+  text-decoration: none; }
+
+li {
+  list-style-type: none; }
+
+select {
+  width: 75px;
+  height: 22px;
+  margin-left: 10px; }
+
+.my_salary_nav {
+  font-size: 14px;
+  color: #fff;
+  background: #096191;
+  width: 100%;
+  height: 50px;
+  line-height: 50px; }
+
+.my_salary_nav a {
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 14px;
+  color: #fff;
+  background: #096191;
+  border-right-width: 1px;
+  border-right-color: #3a80a7;
+  border-right-style: solid;
+  height: 50px;
+  display: inline-block;
+  float: left; }
+  .my_salary_nav a:hover {
+    background: #3394c9; }
+
+button {
+  border: 0px; }
+
+.my_salary_select {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background-color: #fefcee;
+  background-image: url("/images/fangdajing2.png");
+  background-repeat: no-repeat;
+  background-position: 20px;
+  text-indent: 60px;
+  font-size: 12px;
+  color: #030303; }
+
+article .my_salary_main li {
+  width: 328px;
+  height: 40px;
+  line-height: 40px; }
+  article .my_salary_main li h3, article .my_salary_main li p {
+    float: left;
+    font-size: 12px;
+    color: #030303;
+    font-weight: normal;
+    text-align: center;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #dff2fd;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: #dff2fd;
+    cursor: pointer; }
+  article .my_salary_main li h3 {
+    width: 207px; }
+  article .my_salary_main li p {
+    width: 119px; }
+  article .my_salary_main li:hover h3, article .my_salary_main li:hover p {
+    background: #ecf8fd; }
+
+.font_bold h3, .font_bold p {
+  font-weight: bold; }
+
+.my_salary_more {
+  background-image: url("/images/more.png");
+  background-repeat: no-repeat;
+  background-position: right top; }
+
+.my_salary_box {
+  border-style: solid;
+  border-width: 3px;
+  border-color: #dcdcdc;
+  position: absolute;
+  background: #fff; }
+  .my_salary_box li {
+    width: auto !important; }
+  .my_salary_box:hover p {
+    background: #fff !important; }
+  .my_salary_box p {
+    background: #fff !important;
+    border-right-width: 0px !important;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed !important;
+    border-bottom-color: #f2f2f2 !important; }
+
+/*# sourceMappingURL=mysalary.css.map */

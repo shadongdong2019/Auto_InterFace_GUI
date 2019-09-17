@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+{#    <script src="/static/script/jquery-1.10.2.js"></script>#}
+    <script href="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+
+    </script>
 </head>
 {% block content %}
 <body>
@@ -12,8 +18,38 @@
     <p>测试用例上传：<input type="file" name="case_file"/></p>
     <p>配置文件上传：<input type="file" name="config_file"/></p>
 
-    <p><input type="submit" value="submit"/></p>
-    <p><a href="/static/case/1.jpg" target="_blank">测试报告下载地址</a></p>
+    <p><input type="submit" value="执行测试"/></p>
+    <p><a href="{{ report_path }}" target="_blank">点击查看测试报告</a> <a href="{{ file_down }}" target="_blank">点击下载测试报告</a></p>
+    <p>查询日期：<input type="text" value="" id="date"/> <input type="button" value="查询" onclick="q()"/>
+        <script type="text/javascript">
+            function q() {
+                alert(2);
+                var date = document.getElementById("date").value;
+                alert(date);
+            }
+        </script>
+    </p>
+    <p>
+        {% if pro_rep_all_path %}
+            <a href="{{ file_down }}" target="_blank">点击查看用例/配置文件/测试报告</a></p>
+            <table border="1">
+            <tr>
+                <th>文件名称</th>
+                <th>点击查看</th>
+                <th>点击下载</th>
+                <th>点击发送至邮箱</th>
+            </tr>
+            {% for i in  pro_rep_all_path %}
+                <tr>
+                    <td>{{ i.0 }}</td>
+                    <td><a href="{{ i.1 }}" target="_blank">点击查看</a></td>
+                    <td><a href="{{ i.2 }}" target="_blank">点击下载</a></td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+    </p>
 </form>
 </body>
 {% endblock content %}

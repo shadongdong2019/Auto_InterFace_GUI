@@ -1,0 +1,42 @@
+@charset "utf-8";
+/*easyui列表表头和表体*/
+a{text-decoration: none}
+p{padding: 0px; margin: 0px}
+.panel-header{background: #056490!important; height: 40px}
+.panel-title{color: #fff; line-height: 40px; font-size: 14px; font-weight: normal; height: auto; margin-left: 23px}
+.datagrid-header-row, .datagrid-row{height: 40px; background: #fff}
+.datagrid-header, .datagrid-td-rownumber{background: #fff}
+.window{background: #fff}
+.pagination table{margin: 0px auto; float: none}
+.datagrid-cell-group{text-align: left}
+.search_list{height: 26px; background: #096191; color: #fff; cursor: pointer; float: left; padding: 0px 15px; line-height: 26px; margin-left: 5px}
+.datagrid-cell, .datagrid-cell-group, .datagrid-header-rownumber, .datagrid-cell-rownumber{height: auto}
+.window{padding: 0px}
+.window .window-body{border: 0px}
+.th_nav{float: left; border-right: 1px dotted #ccc; height: 40px; line-height: 40px; padding-left: 15px; padding-right: 15px; color: #067bbe}
+.th_nav:hover{background: #3394c9; color: #fff}
+.th_nav_selected{float: left; border-right: 1px dotted #ccc; height: 40px; line-height: 40px; padding-left: 15px; padding-right: 15px;background: #3394c9; color: #fff}
+.th_nav_unselected{float: left; border-right: 1px dotted #ccc; height: 40px; line-height: 40px; padding-left: 15px; padding-right: 15px; color: #989898}
+.datagrid-cell-group{padding: 0px}
+.search_list:hover{background-color: #3394c9}
+.habit_btn{height: 24px;padding-left: 15px;padding-right: 15px;font-family: "宋体";font-size: 12px;color: #096191;text-align: center;float: left;margin-top: 7px;line-height: 24px;border: 1px solid #146895;background-color: #fff;cursor: pointer;margin-left: 2px;}
+.search_habit{height: 26px;margin-top: 7px;margin-left: 2px;background-color: #096191;float: left;cursor: pointer;text-align: center;line-height: 26px;color: #fff;font-size: 12px;font-family: "宋体";padding-left: 15px;padding-right: 15px; border: 0px}
+.search_habit:hover{background-color: #3394c9; border: 0px}
+#yellow:after{clear: both}
+.main_list_search_detail {border: 1px solid #146895;padding: 12px 15px 0px 15px;float: left;margin-left: 44px;clear: both;font-size: 12px;background-color: #fff;}
+table td{min-width: 0px}
+.margint_0{margin-top: 0px}
+#yellow{background: #fefcee; background-image: url('/images/fangdajing2.png'); background-repeat: no-repeat; padding-left: 40px; background-position: 10px 10px; line-height: 39px}
+#yellow input[type=text]{height: 24px; width: 114px; border: 1px solid #dcdcdc}
+#yellow input[type=text]:hover{border: 1px solid #ababab}
+
+/*弹出框*/
+.edit_list_line input {float: none; vertical-align: middle}
+.panel-tool a{width: 32px; height: 32px;margin-top: -10px}
+.panel-tool-close{background: url("/images/winclo3.png");}
+.panel-tool-max{background: url("/images/tobig3.png");}
+.panel-tool-max:hover, .panel-tool-close:hover{background-color: #056490!important}
+.window .window-header{padding: 0px}
+.window .window-header .panel-icon, .window .window-header .panel-tool{margin-top: -5px}
+.edit_list_select{border: 0px; margin-left: 0px}
+input[type=number]{margin-left: 0px}

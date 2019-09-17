@@ -1,0 +1,12 @@
+@charset "utf-8";
+/*表单专用css*/
+
+/*用于提示的文字，宽度需要根据实时情况自行添加*/
+.prompt_word{color: #030303; font-size: 14px; text-align: right; margin-bottom: 25px;}
+/*与提示文字是否并列一行，需要视情况而定，并添加其他的style以补充*/
+.prompt_input{width: 123px; height: 24px; border: 1px solid #dcdcdc; margin-bottom: 25px;}
+.prompt_input:hover{background: #ababab}
+/*按钮样式已经确定，其位置与是否并列一行需要自行添加style代码使之并列*/
+.prompt_submit{border: 0px; min-width: 65px; padding-left: 15px; padding-right: 15px; color: #fff; font-size: 14px; text-align: center; line-height: 40px; height: 40px; background: #096191}
+.prompt_submit:hover{background: #3394c9}
+

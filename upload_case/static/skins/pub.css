@@ -1,0 +1,57 @@
+@charset "utf-8";
+body, img, input, p, ul, li, iframe, th, tr, td, table, label{margin: 0px; border: 0px; padding: 0px;}
+
+a{text-decoration: none}
+li{list-style-type:none}
+
+.display_b{display: block;}
+.display_n{display: none}
+.fl_l{float: left;}
+.fl_r{float: right;}
+
+.marginleft_10{margin-left: 10px}
+.marginleft_8{margin-left: 8px}
+.marginleft_6{margin-left: 6px}
+.marginleft_19{margin-left: 19px}
+.marginleft_28{margin-left: 28px}
+.marginleft_38{margin-left: 38px}
+.marginleft_40{margin-left: 40px}
+.marginleft_150{margin-left: 150px}
+.marginleft_304{margin-left: 304px;}
+.marginleft_re14{margin-left: -14px}
+.marginleft_re15{margin-left: -15px}
+
+.margintop_0{margin-top: 0px}
+.margintop_5{margin-top: 5px}
+.margintop_7{margin-top: 7px}
+.margintop_8{margin-top: 8px}
+.margintop_10{margin-top: 10px}
+.margintop_12{margin-top: 12px}
+.margintop_14{margin-top: 14px}
+.margintop_25{margin-top: 25px}
+.margintop_47{margin-top: 47px}
+
+.marginbottom_2{margin-bottom: 2px}
+.clear_b{clear: both}
+
+.ft_12{font-size: 12px}
+.ft_14{font-size: 14px}
+.cursor_p{cursor: pointer;}
+
+.paddingleft_0{padding-left: 0px}
+.paddingright_0{padding-right: 0px!important;}
+.font_arial{font-family: Arial}
+.blue_name{color: #047cbb; cursor: pointer; border-spacing: 0px;}
+.function_button{width: 60px; height: 60px; background-color: #073046; text-align: center; float: left; cursor: pointer}
+/*导航键*/
+.navclass{width: 100%; height: 50px; overflow: hidden; background-color: #fff}
+.main_list_nav{padding-left: 21px; padding-right: 21px; height: 50px; line-height: 50px; float: left; color: #067bbe; font-family: "宋体"; font-size: 14px; border-right: 1px solid #ececec; cursor: pointer; display: block;}
+.main_list_nav:hover{background-color: #3394c9; color: #fff}
+.main_list_nav_selected{padding-left: 21px; padding-right: 21px; height: 50px; line-height: 50px; float: left; color: #fff; font-family: "宋体"; font-size: 14px; border-right: 1px solid #ececec; cursor: pointer; display: block; background-color: #3394c9;}
+.main_list_nav_unable{padding-left: 21px; padding-right: 21px; height: 50px; line-height: 50px; float: left; color: #989898; font-family: "宋体"; font-size: 14px; border-right: 1px solid #ececec; cursor: pointer; display: block;disabled:true;}
+.main_list_nav_poi{z-index: 1000; width: 100%; height: 50px; position: fixed; border-bottom: 1px solid #e0f2fc; background-color: #fff}
+.p_text{line-height: 24px; margin-left: 15px; font-size: 14px}
+/*控制文本位置,使用前确定style属性中没有控制相应文本代码（如：text-align: left）*/
+.text_left{text-align: left!important;}/*文本居左*/
+.text_right{text-align: right!important;}/*文本居右*/
+.text_center{text-align: center!important;}/*文本居中*/

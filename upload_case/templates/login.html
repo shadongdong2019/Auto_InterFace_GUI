@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>登录</title>
+        <script src="/static/script/jquery-1.10.2.js"></script>
+        <script src="/static/script/bootstrap.min.js"></script>
+{#        <script type="text/javascript" src="/static/script/easyui/jquery.easyui.min.js"></script>#}
+{#        <script type="text/javascript" src="/static/script/ca_commons.js"></script>#}
+{#        <script type="text/javascript" src="/static/script/lists.js"></script>#}
+
+        <link href="/static/skins/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap-glyphicons/1.0/css/bootstrap-glyphicons.css">
+
+        <style>
+            body{
+                background-color: #7f7f7f;
+                height: 100%;
+                width: 100%;
+            }
+            .ss{
+                max-width: 400px;
+                height: auto;
+            }
+        </style>
+
+         <script type="text/javascript">
+         //回车事件
+          $(document).keydown(function(e){
+              console.log(e.keyCode)
+              if(e.keyCode==13)
+              {
+                  $("#login").click();
+              }
+          })
+
+
+/*
+          $('#login').keydown(function(e){
+            if(e.keyCode==13){
+               $('#login').click(); //处理事件
+            }
+            });
+  */
+             $(document).ready(function(){
+              $('#myModal').modal('show');
+
+          //用户名或密码驗证
+              $("#login").click(function(){
+               //验证用户名和密码文本框是否为空
+                    var user = $('#id_username');  //用户名
+                    var psw=$('#id_password');    //密码
+                    var Opsw = $('#txOpsw');  //原密码
+                    var Npsw=$('#txNpsw');    //新密码
+                    var Rpsw=$('#txRpsw');    //确认密码
+               //     var error=$("#error");        //用户名密码错语提示
+                    Opsw.tooltip();
+                    Npsw.tooltip();
+                    Rpsw.tooltip();
+                    user.tooltip();
+                    psw.tooltip();
+
+
+                     if( user.val()==''){
+                        user.tooltip('show');
+                        user.parent().addClass('has-error').remove('has-success');
+                        user.siblings('span').addClass('glyphicon-remove').removeClass('sr-only glyphicon-ok');
+                        return false;
+
+                    }else{
+                        user.parent().addClass('has-success').removeClass('has-error');
+                        user.siblings('span').addClass('glyphicon-ok').removeClass('sr-only glyphicon-remove');
+                    }
+
+                    if( user.val()!='' && psw.val()==''){
+                        psw.tooltip('show');
+                        psw.parent().addClass('has-error').remove('has-success');
+                        psw.siblings('span').addClass('glyphicon-remove').removeClass('sr-only glyphicon-ok');
+                        return false;
+
+                    }else{
+                        psw.parent().addClass('has-success').removeClass('has-error');
+                        psw.siblings('span').addClass('glyphicon-ok').removeClass('sr-only glyphicon-remove');
+                    }
+
+
+
+
+
+
+                //验证用户名或密码错误
+                if(user.val()!='' && psw.val()!='')
+                {
+                    var username=user.val();
+                    var password=psw.val();
+
+                    $.ajax({
+                        url:"/login/",
+                        type:"POST",
+                        dataType:"text",
+                        data:{username:username,password:password},
+                        success:function(data){
+                            if(data=='ok')
+                            {
+                                user.parent().addClass('has-success').removeClass('has-error');
+                                user.siblings('span').addClass('glyphicon-ok').removeClass('sr-only glyphicon-remove');
+                                psw.parent().addClass('has-success').removeClass('has-error');
+                                psw.siblings('span').addClass('glyphicon-ok').removeClass('sr-only glyphicon-remove');
+                                $("#usererror").hide()
+                                $("#pswerror").hide()
+                                window.location.href='/cases/'
+                            }else if(data=='errorpsw')
+                            {
+                                $("#usererror").hide()
+                                $("#pswerror").show()
+                                psw.parent().addClass('has-error').remove('has-success');
+                                psw.siblings('span').addClass('glyphicon-remove').removeClass('sr-only glyphicon-ok');
+                                psw.focus();
+                            }else if(data=='erroruser')
+                            {
+                                 $("#pswerror").hide()
+                                $("#usererror").show()
+                                user.parent().addClass('has-error').remove('has-success');
+                                user.siblings('span').addClass('glyphicon-remove').removeClass('sr-only glyphicon-ok');
+                                user.focus();
+                            }
+                        }
+                    })
+                }
+
+                })
+             });
+
+  //  $("#btnDel001").click(function(){
+ //       $(".right").load('login.html')
+ //   });
+
+
+        </script>
+</head>
+
+<body>
+<form action="" method="post" id="loginform">
+<!--模态框（modal）-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog ss">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-primary" id="myModalLabel">登录</h4>
+            </div>
+        <div class="modal-body">
+            <fieldset>
+                <div class="form-group  has-feedback">
+                    <label for="username">用户名</label>
+                    <p class="error" id="usererror"  style="float: right;color: red" hidden="hidden">用户名不存在！</p>
+                    <input type="text" id="id_username"  name="username" class="form-control" placeholder="User name" data-toggle="tooltip"
+                           data-placement="top" title='请输入用户名' value="">
+                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                </div>
+                <div class="form-group  has-feedback">
+                    <label for="password">密码</label>
+                    <p class="error" id="pswerror"  style="float: right;color: red" hidden="hidden">密码错误！</p>
+                    <input type="password" id="id_password" name="password" class="form-control" placeholder="Password" data-toggle="tooltip"
+                           data-placement="top" title="请输入密码" value="">
+                   <span class="glyphicon  form-control-feedback sr-only" aria-hidden="true"></span>
+                </div>
+            </fieldset>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-info"  id="login">登录</button>
+            <button type="reset" class="btn btn-info"  id="reset" >重置</button>
+
+        </div>
+        </div>
+    </div>
+</div>
+</form>
+<script>
+
+
+</script>
+
+</body>
+</html>

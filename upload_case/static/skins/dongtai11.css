@@ -1,0 +1,83 @@
+@charset: 'utf-8';
+body,img, input, p, ul, li, iframe{margin: 0px; border: 0px; padding: 0px;}
+html,body{-webkit-text-size-adjust:none;}  
+body{overflow-x: hidden; border: 17px solid #484848; height: 100%;}
+a{text-decoration: none}
+li{list-style-type:none}
+h2{width: 486px; margin: 0 auto; font-family: Microsoft YaHei; font-size: 20px; font-weight: bold; margin-top: 80px;}
+.func{width: 100%; height: 50px; margin-top: 50px; border-bottom: 1px solid #dcdcdc; border-top: 1px solid #dcdcdc; margin-bottom: 76px; line-height: 50px; font-family: SimSun; font-size: 12px; color: #707070; text-align: center}
+.func .name{color: #047cbb; margin-left: 12px; cursor: pointer}
+.func .date{margin-left: 18px;}
+.func .time{margin-left: 13px;}
+.func .lengthdate{margin-left: 121px;}
+.leftbtn{width: 54px; height: 50px; float: left; background-color: #dcdcdc; line-height: 60px; text-align: center; cursor: pointer;}
+.rightbtn{width: 54px; height: 50px; float: right; background-color: #dcdcdc; line-height: 60px; text-align: center; cursor: pointer}
+.guangbo{width: 54px; height: 43px; float: right; background-color: #181818; line-height: 55px; text-align: center; cursor: pointer; padding-top: 7px}
+.guangboborder{border-left: 1px solid #d2d2d2}
+.bg_w{background-color: #fff}
+.bg_b{background-color: #000}
+.author{float: left; line-height: 50px; font-family: SimSun; font-size: 12px; color: #707070; margin: 0 auto; width: 470px;}
+.author .name{color: #047cbb; margin-left: 12px;}
+.author .date{margin-left: 18px;}
+.author .time{margin-left: 13px;}
+.bianji{max-width: 1000px; margin: 0 auto; margin-top: 73px; clear: both; margin-bottom: 85px;}
+.btnposition{width: 30px; position: fixed; top: 39%; right: 28px; }
+.totop{width: 30px; height: 30px; background-color: #dcdcdc; border-radius: 30px; text-align: center; line-height: 30px; cursor: pointer}
+.totopa{width: 30px; height: 30px; display: block}
+.totop img{margin-top: 5px}
+.pinglun{width: 30px; height: 30px; background-color: #dcdcdc; border-radius: 30px; text-align: center; line-height: 30px; cursor: pointer}
+.pinglun img{margin-top: 7px}
+.seq{margin-top: 12px;}
+.seqline{width: 100%; height: 1px; background-color: #dcdcdc; margin-bottom: 74px;}
+.bottomdiv{width: 646px; margin: 0 auto;}
+.bottomdiv1{width: 593px; margin: 0 auto; margin-bottom: 50px}
+.duihuaimg{float: left;}
+.pinglunspan{float: left; margin-left: 12px; font-family: Microsoft YaHei; font-size: 19px; display: block; margin-top: 4px; font-weight: bold}
+.fabiaodiv{width: 100%; clear: both; padding-top: 13px;}
+.fabiaodiv textarea{width: 590px; height: 87px; max-height: 87px; max-width: 100%; border: 1px solid #020101; padding-top: 24px; padding-left: 27px; padding-right: 27px; line-height: 20px; font-family: SimSun; font-size: 12px;}
+.fabiaobtn{width: 95px; height: 40px; float: right; line-height: 40px; text-align: center; font-family: SimSun; font-size: 14px; background-color: #010101; color: #fff; margin-top: 11px; cursor: pointer}
+.liuyan{padding-top: 68px; clear: both}
+.liuyan p{text-align: right; font-family: SimSun; font-size: 12px; color: #696868}
+.liuyan p img.smallhead{float: right; margin-right: 30px; margin-left: 11px}
+.liuyan p img.smallhead1{float: left; margin-right: 14px; margin-left: 27px; margin-top: -2px;}
+.jiao{width: 646px; text-align: right; margin-top: 4px; height: 11px; padding-right: 28px;}
+.jiao img{position: relative; margin-top: 3px; display: block; float: right; margin-right: 31px}
+.jiao1{width: 646px; text-align: left; margin-top: 4px; height: 11px;}
+.jiao1 img{position: relative; margin-top: 3px; display: block; float: left; margin-left: 28px}
+.liuyanban{width: 623px; padding-top: 23px; padding-bottom: 23px; font-family: SimSun; font-size: 12px; line-height: 20px; border: 1px solid #dddddd; border-radius: 7px; padding-left: 21px;}
+.liuyan li{margin-bottom: 37px;}
+.liuyan li p span{margin-left: 13px;}
+.namecolor{color: #047cbb}
+.liuyan p.checked{text-align: left}
+.liuyanbancolor{background-color: #e9e9e9}
+.xiangxia{margin-top: 56px; width: 100%; text-align: center; clear: both; margin-bottom: 63px;}
+.xiangxia img{cursor: pointer}
+.pingluncolor{background-color: #040404}
+.author .lengthdate{margin-left: 121px;}
+.display_n{display: none}
+.inf{font-size: 12px; margin-left: 23px; margin-top: 10px; display: block; float: left; color: #707070; margin-right: 8px;}
+.percent{font-size: 12px; color: #047cbb; margin-top: 10px; display: block; float: left}
+.rizhidiv{clear: both; padding-top: 37px; padding-left: 138px; font-size: 12px}
+.rizhidiv p{line-height: 28px;}
+.rizhidiv span{ white-space: 12px;}
+.blue{color: #047cbb; white-space: 13px; cursor: pointer}
+.rizhili{margin-top: 43px;}
+.arial{font-family: Arial}
+.card{width: 199px; height: 87px; border: 3px solid #dcdcdc; position: absolute; margin-top: 65px; margin-left: -60px; background-color: #fff; padding-top: 12px; padding-left: 15px; text-align: left; line-height:normal; color: #010101; display: none}
+.carddiv{width: 211px; height: 102px; margin: 0px auto; margin-top: -30px;}
+.fl_img{float: left; margin-top: 2px; margin-right: 10px}
+.card p{white-space: 10px; display: block; float: left; line-height: 15px; font-size: 12px}
+.card div{clear: both}
+.divpad{padding-top: 5px}
+.call{width: 27px; height: 15px; text-align: center; line-height: 15px; color: #fff; background-color: #3c7d19; float: right; margin-top: -16px; margin-right: 88px; cursor: pointer; font-size: 12px}
+.fl_l{float: left}
+.seqname{margin-left: 12px;}
+.from{position: absolute; margin-top: 65px;}
+.fromdiv{width: 467px; margin: 0px auto; font-size: 12px; color: #707070}
+.fromdiv .name{color: #047cbb; margin-left: 12px; cursor: pointer}
+.fromdiv .date{margin-left: 18px;}
+.fromdiv .time{margin-left: 13px;}
+.fromdiv .lengthdate{margin-left: 101px;}
+.card1{width: 199px; height: 87px; border: 3px solid #dcdcdc; position: absolute; margin-top: 65px; margin-left: -60px; background-color: #fff; padding-top: 12px; padding-left: 15px; text-align: left; line-height:normal; color: #010101; display: none}
+.card1 p{white-space: 10px; display: block; float: left; line-height: 15px; font-size: 12px}
+.card1 div{clear: both}

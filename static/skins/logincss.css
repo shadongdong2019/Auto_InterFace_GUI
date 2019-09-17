@@ -1,0 +1,35 @@
+@charset "utf-8";
+body{background-color: #fff}
+input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
+input{border: 0px;}
+input:hover{border: 0px;}
+.login_text_poi{width: 968px; margin: 0 auto; margin-top: 266px}
+.login_logo{margin: 0 auto; width: 199px;}
+.login_account{width: 291px; height: 40px; border: 1px solid #cee0e9; float: left; margin-top: 13px;}
+.login_text{width: 60px; height: 40px; float: left; font-size: 14px; font-family: SimSun; line-height: 40px; text-align: right; color: #0a6292; padding-right: 10px}
+.login_input_box{width: 175px; height: 38px; line-height: 38px; font-size: 14px; float: left; font-family: Arial; background-color: #fff}
+.login_input_btn{width: 44px; height: 32px; background-color: #e6eff4; text-align: center; float: right; padding-top: 8px; cursor: pointer}
+.login_pwd_box{width: 291px; height: 40px; float: left; border: 1px solid #cee0e9; margin-left: 12px; margin-top: 13px;}
+.login_loginbtn{width: 80px; height: 42px; float: left; background-color: #0a6292; line-height: 40px; text-align: center; margin-left: 12px; margin-top: 13px; cursor: pointer; font-family: SimSun; font-size: 14px; color: #fff}
+.login_sign{width: 50px; height: 42px; color: #fff; line-height: 40px; text-align: center; background-color: #328f08; float: left; margin-top: 13px; margin-left: 12px; font-family: SimSun; font-size: 14px; cursor: pointer}
+input.login_sign:hover{background-color: #3cab0a}
+.login_blank{height: 45px;}
+.login_lock{height: 36px; float: left;}
+.login_bubble{padding-left: 15px; padding-right: 15px; height: 30px; background-color: #000; color: #fff; font-family: SimSun; font-size: 12px; line-height: 30px; text-align: center; border-radius: 5px; position: absolute; margin-top: -52px; display: none;}
+.login_bubble img{position: absolute; margin-top: 29px; margin-left: -72px}
+.login_bubble img.zhanghaopwd{position: absolute; margin-top: 29px; margin-left: -30px}
+.login_identify{width: 130px; height: 40px; float: left; margin-top: 13px; margin-left: 12px;}
+.login_identify_word{width: 60px; height: 40px; backgrund-color: #0a6292; color: #fff; text-align: center; line-height: 40px; float: left; cursor: pointer; font-family: Arial; font-size: 14px; border: 1px solid #b8d2df; border-right: 0px}
+.login_identify_input{width: 66px; height: 40px; border: 1px solid #b8d2df; float: left; }
+img.login_sign_bubble{margin-top: 30px; margin-left: -62px; position: absolute;}
+.login_submit{margin-left: 0px; margin-top: 0px; outline:none; border:none;}
+.mess{color: red; font-size: 12px; margin-left: 50px; height: 14px;}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+@charset "utf-8";
+.input{padding: 0px; margin: 0px;}
+.plug_check{width: 13px; height: 13px; border: 1px solid #4f7c93; cursor: pointer}
+.plug_data{padding-left: 25px; padding-right: 25px;}
+.plug_blank{width: 45px; margin: 0 auto; color: #096191}
+.list-title{position: fixed; background-color: #f1f9fd; z-index: 10;}
+.list-title div{padding: 0px 15px 0px 15px}

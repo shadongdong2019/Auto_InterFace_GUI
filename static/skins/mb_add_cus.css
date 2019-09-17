@@ -1,0 +1,7 @@
+@charset "utf-8";
+.mb_error{color: #f00; font-size: 75%}
+.mb_add_prompt{font-size: 100%; color: #adadad; text-align: left; margin-bottom: 1.76%}
+.mb_add_box{width: 73.75%; margin: 0px auto; padding-top: 7.04%}
+.mb_add_box input{width: 93%; height: 6.16%; font-size: 100%; padding-top: 1.76%; padding-bottom: 1.76%; border: 1px solid #d9d9d9; text-indent: 3.13%; color: #000; font-family: simhei; margin-bottom: 3.52%}
+.mb_add_box input[type=text]:hover{border: 1px solid #85b7d0}
+.mb_add_sub{background: #0b6fa1; color: #fff!important; width: 100%!important; text-align: center; font-size: 100%;padding-top: 2.11%; padding-bottom: 2.11%; margin: 0px auto }

@@ -1,0 +1,16 @@
+@charset: 'utf-8';
+a, li, body, h3, h4, ul, td, input, h5, p, table{padding: 0px; margin: 0px;}
+a{text-decoration: none}
+li{list-style-type: none}
+.work_title{width: 100%; height: 50px; background: #096191; line-height: 50px; font-size: 14px; color: #fff; font-family: SimSun}
+.work_title a{width: 69px; height: 50px; background: #096191; border-right: 1px solid #5ca9d4; display: block; text-align: center; color: #fff; float: left;}
+.work_chose{background: #3394c9!important}
+.work_box{margin-top: 0px; margin-left: 100px; margin-right: 100px}
+h4{font-size: 14px; color: #030303; font-weight: normal;}
+.work_echarts{width: 100%; height: 400px; border: 1px solid #e0f2fc; margin-top: 12px; margin-bottom: 30px}
+.work_box table{margin-top: 30px; width: 800px; border: 1px solid #e0f2fc; border-collapse: collapse}
+.work_box table th{font-size: 12px; color: #000; height: 38px; line-height: 38px; border-bottom: 1px solid #e0f2fc; border-right: 1px solid #e0f2fc}
+.work_box table td{text-align: center; font-size: 12px; color: #333; height: 38px; line-height: 38px; border-bottom: 1px solid #e0f2fc; border-right: 1px solid #e0f2fc}
+.work_box table td:nth-child(3){text-align: left; text-indent: 15px}
+.work_red{color: #e1031d!important}
+.work_change{width: 53px; height: 24px; line-height: 24px; display: inline-block; color: #fff; text-align: center; background: #096191; cursor: pointer;}

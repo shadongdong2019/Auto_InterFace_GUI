@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from django.urls import path
+from django.urls import path, re_path
 from django.views.static import serve
 
 from Auto_InterFace_GUI import settings
@@ -9,6 +9,7 @@ import upload_case
 app_name = 'upload_case'
 urlpatterns = [
     path('',views.index),
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+    path('index/',views.index),
+    re_path('^file_download', views.file_down, name="file_down")
+
 ]

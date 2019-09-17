@@ -1,0 +1,22 @@
+@charset "utf-8";
+a{text-decoration:none!important;}
+body{font-weight: normal}
+.list_back{position: absolute; left: 6.25%; margin-top: 0.3%; height: 30px}
+.list_search{background-color: #f1f1f1; border-bottom: 1px solid #b2b2b2; border-top: 1px solid #b2b2b2; padding-top: 1.76%; padding-bottom: 1.76%; margin-top: 2.2%; text-align: center;}
+.list_search_box{width: 87.5%; border: 1px solid #b2b2b2; border-radius: 60px; margin: 0px auto; background: #fff; padding-bottom: 1.58%; padding-top: 1.58%}
+.list_search_box form{height: 100%}
+.list_search_box form input{width: 100%; height: 90%; border: 0px; background: rgba(255, 255, 255, 0); outline: none; text-indent: 5.5%; font-size: 100%; min-height: 0px;}
+.list_search img{position: absolute; margin-top: 3.5%; right: 12%; cursor: pointer;}
+.list_iframe{border: 0px; width: 100%; height: 100%}
+.list_li_box{width: 87.5%; margin: 0px auto;}
+.list_li_box a{font-weight: normal}
+.list_li_box p{line-height: normal; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width: 90%!important; color: #000!important;}
+.list_text li{padding-top: 2.64%!important; padding-bottom: 2.64%!important; border-bottom: 1px solid #e5e5e5; font-weight: normal}
+.mb_list_name{color: #a8a8a8; font-size: 100%; display: inline-block;}
+.mb_list_phone{color: #0b6fa1; margin-left: 5.16%}
+.mb_list_addr{color: #000; font-size: 100%; margin-top: 1.7%}
+.list_li_box img{position: absolute; right: 6.25%; margin-top: 5.5%}
+.list_li_box_span{width: 33.3%; display: inline-block; text-align: left; color: #000; font-size: 100%}
+
+.list_dep_text{width: 100%;}
+.list_dep_text span{width: 33.3%; display: inline-block; color: #000; font-family: simhei}

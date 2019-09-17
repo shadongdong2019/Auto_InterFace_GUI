@@ -1,0 +1,16 @@
+@charset "utf-8";
+a, li, body, h3, h4, ul, td, input{padding: 0px; margin: 0px;}
+td{border-right: 1px solid #999; border-bottom: 1px solid #999; font-size: 12px; height: 30px; line-height: 30px; text-align: center; white-space:nowrap;}
+td:nth-child(odd){width: 80px; text-align: center;}
+tr{border: 1px solid #999;}
+input{border: 0px; outline: none;}
+table{border-collapse: collapse}
+input[type="checkbox"]{margin: 0px; display: inline-block; vertical-align: middle;}
+.data{width: 68px!important}
+.phone{width: 100px!important}
+.company{width: 173px!important}
+.input_wid{width: 754px!important;}
+.input_wid td input{width: 100%}
+textarea{width: 754px; height: 105px;}
+h3{font-size: 14px; margin-top: 10px; margin-bottom: 10px}
+.street{width: 60px; border-bottom: 1px solid #999}

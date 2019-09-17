@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title></title>
+
+    <script src="/static/script/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="/static/script/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/script/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/script/ca_commons.js"></script>
+    <script type="text/javascript" src="/static/script/lists.js"></script>
+    <script type="text/javascript" src="/static/script/validation/jquery.validate.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/script/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/script/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="/static/script/easyui/demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="/static/skins/applicant.css">
+    <link rel="stylesheet" type="text/css" href="/static/skins/easyui_list.css">
+    <link href="/skins/bootstrap.css" rel="stylesheet">    <!--必须放到http的上面，放到url下面报错-->
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap-glyphicons/1.0/css/bootstrap-glyphicons.css">
+    <script src="/static/script/bootstrap.min.js"></script>
+
+
+    <style>
+        body{
+            height: 2100px;
+        }
+        .rev{
+            position: relative;
+        }
+        #nav{
+            z-index: 10;
+            min-width: 80%;
+            /*margin: 0 auto;*/
+        }
+        .jumbotron{
+            z-index: 999;
+            width: 100%;
+            height: 170;
+            /*display: none;*/
+            opacity: 0.9;
+            background-image: url('/images/57ss.jpg');
+        }
+        .table-responsive table td{
+            max-width: 130px;
+        }
+        .mg_tp{
+            margin-top:10px;
+        }
+        textarea{
+            resize: none;
+        }
+        table td:hover{
+            background-color: #d9edf7;
+        }
+
+    /*编辑计划*/
+        body{
+            height: 100%;
+            width: 100%;
+        }
+        .ss{
+            max-width: 400px;
+            height: auto;
+        }
+        .mg_tp{
+            margin-top:5px;
+        }
+        textarea{
+            resize: none;
+        }
+
+        .modal-body ul{
+            list-style: none;
+        }
+        .lists-group{
+            padding-left: 0;
+            clear: both;
+            overflow: hidden;
+            border-width: 1px 0 0 1px;
+            border-color: #ddd;
+            border-style: solid;
+            display: inline-block;
+        }
+        .a{
+            border-radius: 4px;
+            margin-left: -40px;
+        }
+        .magin_top{
+            margin-top: -5px;
+        }
+        .down{
+            border-bottom: 1px solid #ddd;
+        }
+        .lists-group-item{
+            position: relative;
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            width: 110px;
+            text-align: center;
+            background-color: #fff;
+            float: left;
+            border-right: 1px solid #ddd;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        //新建用户
+        function newUser(){
+            $.ajax({
+                type:'POST',
+                url:'/newuser/',
+                dataType:'text',
+                data:$("#form_newUser").serialize(),
+                error:function(){
+                    alert('添加失败')
+                },
+                success:function(data){
+                    if(data='OK')
+                    {
+                        alert("添加成功")
+                        $("#newUserReset").trigger("click")
+                        $("#close_newUser").trigger("click")
+                    }
+                }
+
+            })
+
+        }
+
+
+        function newProject(){
+            $.ajax({
+                type:'POST',
+                url:'/newproject/',
+                dataType:'text',
+                data:$("#form_newProject").serialize(),
+                error:function(){
+                    alert("新建项目失败")
+                },
+                success:function(data){
+                    if(data='OK')
+                    {
+                        alert("新建项目成功！")
+                        $("#newProReset").trigger("click")
+                        $("#close_newProject").trigger("click")
+                    }
+                }
+
+            });
+        }
+
+        function newModule(){
+             $.ajax({
+                type:'POST',
+                url:'/newmodule/',
+                dataType:'text',
+                data:$("#form_newModule").serialize(),
+                error:function(){
+                    alert("新建项目失败")
+                },
+                success:function(data){
+                    if(data='OK')
+                    {
+                        alert("新建项目成功！")
+                        $("#newModReset").trigger("click")
+                        $("#close_newModule").trigger("click")
+                    }
+                }
+
+            });
+        }
+
+        function newOpera(){
+             $.ajax({
+                type:'POST',
+                url:'/newopera/',
+                dataType:'text',
+                data:$("#form_newOpera").serialize(),
+                error:function(){
+                    alert("新建操作类型失败")
+                },
+                success:function(data){
+                    if(data='OK')
+                    {
+                        alert("新建操作类型成功！")
+                        $("#newOpeReset").trigger("click")
+                        $("#close_newOpera").trigger("click")
+                    }
+                }
+
+            });
+        }
+
+        function newTestType(){
+             $.ajax({
+                type:'POST',
+                url:'/newtesttype/',
+                dataType:'text',
+                data:$("#form_newTestType").serialize(),
+                error:function(){
+                    alert("新建测试类型失败")
+                },
+                success:function(data){
+                    if(data='OK')
+                    {
+                        alert("新建测试类型成功！")
+                        $("#newTestTypeReset").trigger("click")
+                        $("#close_newTestType").trigger("click")
+                    }
+                }
+
+            });
+        }
+
+        function newOperaDetails(){
+             $.ajax({
+                type:'POST',
+                url:'/newoperadetails/',
+                dataType:'text',
+                data:$("#form_newOperaDetails").serialize(),
+                error:function(){
+                    alert("新建操作类型测试项失败")
+                },
+                success:function(data){
+                    if(data='OK')
+                    {
+                        alert("新建操作类型测试项成功！")
+                        $("#newOperaDetailsReset").trigger("click")
+                        $("#close_newOperaDetails").trigger("click")
+                    }
+                }
+
+            });
+        }
+        function reFresh(){
+          //  alert(123)
+        }
+
+        //退出操作
+        function logout()
+        {
+            window.location.href='/logout/'
+        }
+
+    </script>
+</head>
+
+
+
+<body>
+<!--------------------------------------------------------新建用户begin--------------------------------------------------------------------------->
+<!--模态框（modal）-->
+    <div class="modal fade" id="myModal_01" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog ss">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-info" id="myModalLabel">新建用户</h2>
+                </div>
+                <form action=""  method="post"  id="form_newUser" name="form_newUser">
+                    <div class="modal-body">
+                        <fieldset>
+                            <div class="form-group has-feedback">
+                                <label for="username_01">用户名：</label>
+                                <p class="error" id="usererror"  style="float: right;color: red" hidden="hidden">用户名已存在！</p>
+                                <input type="text" id="username_01" name="username_01" class="form-control" placeholder="请填写用户名" data-toggle="tooltip"
+                                        data-placement="top" title='请填写用户名' value="">
+                                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                            </div>
+                            <div class="form-group mg_tp has-feedback">
+                                <label for="password_01">密码：</label>
+                                <input type="password" id="password_01" name="password_01" class="form-control" placeholder="请填写密码" data-toggle="tooltip"
+                                        data-placement="top" title='请输入密码' value="" />
+                                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                            </div>
+                            <div class="form-group mg_tp has-feedback">
+                                <label for="realname_01">真实姓名：</label>
+                                <input type="text" id="realname_01" name="realname_01" class="form-control" placeholder="请填写真实姓名"  data-toggle="tooltip"
+                                        data-placement="top" title='请输入真实姓名' value=""/>
+                                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                            </div>
+                            <div class="form-group mg_tp">
+                                <label for="depart_01">部门：</label>
+                                <input type="text" id="depart_01" name="depart_01" class="form-control" placeholder="请填写部门"/>
+                            </div>
+                            <div class="form-group mg_tp">
+                                <label for="leader_01">上级领导：</label>
+                                <input type="text" id="leader_01" name="leader_01" class="form-control" placeholder="请填写上级领导"/>
+                            </div>
+                            <div class="form-group mg_tp">
+                                <label for="qx_01">用户权限名：</label>
+                                <select class="form-control" id="qx_01" name="qx_01">
+                                    <option value="1">普通用户</option>
+                                    <option value="0">管理员</option>
+                                </select>
+                            </div>
+                            <div class="form-group mg_tp">
+                                <label for="email_01">Email：</label>
+                                <input type="text" id="email_01" name="email_01" class="form-control" placeholder="请填写Email"/>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary"  id="btnnewUser" onclick="newUser()">保存</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="close_newUser">关闭</button>
+                        <button type="reset" class="btn btn-info" style="display: none" id="newUserReset">重置</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!---------------------------------------------新建用户end----------------------------------------------------------------------------->
+
+
+<!--------------------------------------------------------新建项目begin--------------------------------------------------------------------------->
+<!--模态框（modal）-->
+    <div class="modal fade" id="myModal_02" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog ss">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-info" id="myModalLabel">新建项目</h2>
+                </div>
+                <form action=""  method="post"  id="form_newProject" name="form_newProject">
+                    <div class="modal-body">
+                        <fieldset>
+                            <div class="form-group has-feedback">
+                                <label for="projectname_01">项目名称：</label>
+                                <p class="error" id="usererror"  style="float: right;color: red" hidden="hidden">用户名已存在！</p>
+                                <input type="text" id="projectname_01" name="projectname_01" class="form-control" placeholder="请填写项目名称" data-toggle="tooltip"
+                                        data-placement="top" title='请填写项目名称' value="">
+                                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                            </div>
+                            <div class="form-group mg_tp has-feedback">
+                                <label for="pfzrname_01">项目负责人：</label>
+                                <select class="form-control" id="pfzrname_01" name="pfzrname_01">
+                                    {% for user_list in us %}
+                                        <option value="{{ user_list.id }}">{{ user_list.realname }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group mg_tp has-feedback">
+                                <label for="projectdesc_01">项目描述：</label>
+                                <input type="text" id="projectdesc_01" name="projectdesc_01" class="form-control" placeholder="请填写项目描述"  data-toggle="tooltip"
+                                        data-placement="top" title='请填写项目描述' value=""/>
+                                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                            </div>
+
+                     </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary"  id="btnnewProject" onclick="newProject()">保存</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="close_newProject">关闭</button>
+                        <button type="reset" class="btn btn-info" style="display: none" id="newProReset">重置</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!---------------------------------------------新建项目end----------------------------------------------------------------------------->
+
+
+<!--------------------------------------------------------新建模块begin--------------------------------------------------------------------------->
+<!--模态框（modal）-->
+    <div class="modal fade" id="myModal_03" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog ss">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-info" id="myModalLabel">新建模块</h2>
+                </div>
+                <form action=""  method="post"  id="form_newModule" name="form_newModule">
+                    <div class="modal-body">
+                        <fieldset>
+                            <div class="form-group has-feedback">
+                                <label for="modulename_01">模块名称：</label>
+                                <p class="error" id="usererror"  style="float: right;color: red" hidden="hidden">用户名已存在！</p>
+                                <input type="text" id="modulename_01" name="modulename_01" class="form-control" placeholder="请填写模块名称" data-toggle="tooltip"
+                                        data-placement="top" title='请填写模块名称' value="">
+                                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                            </div>
+                            <div class="form-group mg_tp has-feedback">
+                                <label for="mfzrname_01">模块负责人：</label>
+                                <select class="form-control" id="mfzrname_01" name="mfzrname_01">
+                                    {% for user_list in us %}
+                                        <option value="{{ user_list.id }}">{{ user_list.realname }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group mg_tp has-feedback">
+                                <label for="parmodule_01">所属项目：</label>
+                                <select class="form-control" id="parmodule_01" name="parmodule_01">
+                                    {% for pro_list in pr %}
+                                        <option value="{{ pro_list.id }}">{{ pro_list.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group mg_tp has-feedback">
+                                <label for="parename_01">父级模块：</label>
+                                <select class="form-control" id="parename_01" name="parename_01">
+                                    <option value="">请选择父级模块</option>
+                                    {% if mo %}
+                                        <option value="0" {% if mo  %}selected{% endif %}>无</option>
+                                        {% for mo_list in mo %}
+                                            <option value="{{ mo_list.id }}"{% if mo_list.id   %}selected{% endif %}>{{ mo_list.name }}</option>
+                                        {% endfor %}
+                                    {% else %}
+                                        <option value="0" selected="selected">无</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="form-group mg_tp has-feedback">
+                                <label for="moduledesc_01">模块描述：</label>
+                                <input type="text" id="moduledesc_01" name="moduledesc_01" class="form-control" placeholder="请填写模块描述"  data-toggle="tooltip"
+                                        data-placement="top" title='请填写模块描述' value=""/>
+                                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary"  id="btnnewModule" onclick="newModule()">保存</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="close_newModule">关闭</button>
+                        <button type="reset" class="btn btn-info" style="display: none" id="newModReset">重置</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!---------------------------------------------新建模块end----------------------------------------------------------------------------->
+
+<!---------------------------------------------添加操作类型begin（增加、删除、修改、查询）--------------------------------------------------------------------------->
+<!--模态框（modal）-->
+    <div class="modal fade" id="myModal_04" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog ss">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-info" id="myModalLabel">新建操作类型</h2>
+                </div>
+                <form action=""  method="post"  id="form_newOpera" name="form_newOpera">
+                    <div class="modal-body">
+                        <fieldset>
+                            <div class="form-group has-feedback">
+                                <label for="modulename_01">操作类型名称：</label>
+                                <p class="error" id="usererror"  style="float: right;color: red" hidden="hidden">用户名已存在！</p>
+                                <input type="text" id="operaname_01" name="operaname_01" class="form-control" placeholder="请填写操作类型名称" data-toggle="tooltip"
+                                        data-placement="top" title='请填写操作类型名称' value="">
+                                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                            </div>
+                            <div class="form-group mg_tp has-feedback">
+                                <label for="operadesc_01">操作类型描述：</label>
+                                <input type="text" id="operadesc_01" name="operadesc_01" class="form-control" placeholder="请填写操作类型描述"  data-toggle="tooltip"
+                                        data-placement="top" title='请填写操作类型描述' value=""/>
+                                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary"  id="btnnewOpera" onclick="newOpera()">保存</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="close_newOpera">关闭</button>
+                        <button type="reset" class="btn btn-info" style="display: none" id="newOpeReset">重置</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!---------------------------------------------添加操作类型end----------------------------------------------------------------------------->
+
+<!---------------------------------------------添加测试类型begin--------------------------------------------------------------------------->
+<!--模态框（modal）-->
+    <div class="modal fade" id="myModal_05" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog ss">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-info" id="myModalLabel">添加测试类型</h2>
+                </div>
+                <form action=""  method="post"  id="form_newTestType" name="form_newTestType">
+                    <div class="modal-body">
+                        <fieldset>
+                            <div class="form-group has-feedback">
+                                <label for="testtypename_01">测试类型名称：</label>
+                                <p class="error" id="usererror"  style="float: right;color: red" hidden="hidden">用户名已存在！</p>
+                                <input type="text" id="testtypename_01" name="testtypename_01" class="form-control" placeholder="请填写测试类型名称" data-toggle="tooltip"
+                                        data-placement="top" title='请填写测试类型名称' value="">
+                                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                            </div>
+                            <div class="form-group mg_tp has-feedback">
+                                <label for="testtypedesc_01">测试类型描述：</label>
+                                <input type="text" id="testtypedesc_01" name="testtypedesc_01" class="form-control" placeholder="请填写测试类型描述"  data-toggle="tooltip"
+                                        data-placement="top" title='请填写测试类型描述' value=""/>
+                                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary"  id="btnnewOpera" onclick="newTestType()">保存</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="close_newTestType">关闭</button>
+                        <button type="reset" class="btn btn-info" style="display: none" id="newTestTypeReset">重置</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!---------------------------------------------添加测试类型end----------------------------------------------------------------------------->
+
+<!---------------------------------------------添加测试类型测试项begin--------------------------------------------------------------------------->
+<!--模态框（modal）-->
+    <div class="modal fade" id="myModal_06" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog ss">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-info" id="myModalLabel">添加操作类型测试域</h2>
+                </div>
+                <form action=""  method="post"  id="form_newOperaDetails" name="form_newOperaDetails">
+                    <div class="modal-body">
+                        <fieldset>
+                            <div class="form-group has-feedback">
+                                <label for="operadetailname_01">操作项类型测试项名称：</label>
+                                <p class="error" id="operadetailname_01"  style="float: right;color: red" hidden="hidden">用户名已存在！</p>
+                                <input type="text" id="operadetailname_01"valu name="operadetailname_01" class="form-control" placeholder="请填写操作类型测试项名称" data-toggle="tooltip"
+                                        data-placement="top" title='请填写操作类型测试项名称' e="">
+                                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                            </div>
+                            <div class="form-group mg_tp has-feedback">
+                                <label for="paretextname_01">父级测试项：</label>
+                                <select class="form-control" id="paretextname_01" name="paretextname_01">
+                                    {% if od %}
+                                        <option value="-1">无</option>
+                                        {% for od_list in od %}
+                                            <option value="{{ od_list.id }}">{{ od_list.name }}</option>
+                                        {% endfor %}
+                                    {% else %}
+                                        <option value="0">无</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="form-group mg_tp has-feedback">
+                                <label for="operadetaildesc_01">操作类型测试项描述：</label>
+                                <input type="text" id="operadetaildesc_01" name="operadetaildesc_01" class="form-control" placeholder="请填写操作类型测试项描述"  data-toggle="tooltip"
+                                        data-placement="top" title='请填写操作类型测试项描述' value=""/>
+                                <span class="glyphicon form-control-feedback sr-only" aria-hidden="true"></span>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary"  id="btnnewOpera" onclick="newOperaDetails()">保存</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="close_newOperaDetails">关闭</button>
+                        <button type="reset" class="btn btn-info" style="display: none" id="newOperaDetailsReset">重置</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!---------------------------------------------添加测试类型测试end----------------------------------------------------------------------------->
+
+
+<!--------------------------------------------导航控件begin---------------------------------------------------------------------------->
+	<div class="panel-body">
+			<div class="form-inline pull-right" >
+				<div class="form-group">
+				   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal_01" id="newUser">
+					   新建用户</button>
+				</div>
+ 				<div class="form-group">
+				   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal_05" id="newTestType">
+					   添加测试类型</button>
+				</div>
+				<div class="form-group">
+				   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal_02" id="newProject">
+					   新建项目</button>
+				</div>
+				<div class="form-group">
+				   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal_03" id="newModule">
+					   新建模块</button>
+				</div>
+				<div class="form-group">
+				   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal_04" id="newOpera">
+					   新建操作类型</button>
+				</div>
+ 				<div class="form-group">
+				   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal_06" id="newOperaDetails">
+					   新建操作类型测试项</button>
+				</div>
+				<div class="form-group">
+                   <button class="btn btn-primary"  onclick="logout();">退出</button>
+				</div>
+			</div>
+	</div>
+<!--------------------------------------------导航控件end----------------------------------------------------------------------->
+
+
+</body>
+</html>

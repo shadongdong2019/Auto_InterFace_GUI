@@ -1,0 +1,35 @@
+@charset "utf-8";
+body{background-color: #fff}
+.popwin{width: 557px; margin: 0px auto}
+.add_div{position: absolute; top: 50px; font-size: 12px}
+.add_title{width: 557px; height: 36px; background-color: #096191; color: #fff; font-weight: bold;}
+.add_title span{color: #fff; font-family: "宋体"; font-size: 14px; font-weight: bold; line-height: 36px; margin-left: 20px;}
+.add_close{float: right; margin-top: 13px; margin-right: 12px; cursor: pointer}
+.add_text{width: 551px; border: 3px solid #e7e7e7; padding-top: 50px; padding-bottom: 50px}
+.add_text_title{font-family: "宋体"; font-size: 14px; margin-left: 71px;}
+.add_text_type{display: block; line-height: 24px; margin-left: 71px; font-family: "宋体"; font-size: 14px; float: left; font-size: 12px}
+.add_qudao{height: 26px; padding-top: 15px; clear: both;}
+.select2-results li.display_n{display: none;}
+.add_qudao_list{width: 88px; height: 24px; float: left; font-size: 12px; border: 1px solid #dcdcdc; margin-left: 15px}
+.add_radiodiv{float: left; margin-left: 15px;}
+.add_radiodiv span{font-size: 12px; margin-left: 5px; margin-right: 10px; float: left; margin-top: 8px;}
+.add_radiodiv input{margin-top: 8px; float: left;}
+.add_wuzhi{margin-top: 10px}
+.add_margin_l14{margin-left: 12px;}
+.add_long_input{border: 1px solid #dcdcdc; width: 114px; height: 22px; margin-left: 15px; margin-top: 1px}
+.add_short_input{border: 1px solid #dcdcdc; width: 74px; height: 22px; margin-left: -4px; margin-top: 1px}
+.add_count{margin-top: 8px; margin-left: 131px; height: 26px}
+.add_btn{width: 77px; height: 24px; background-color: #096191; color: #fff; font-size: 12px; text-align: center; line-height: 24px; margin-left: 15px; cursor: pointer;}
+.add_kuohao{margin-left: 47px}
+.add_choice_depart{width: 202px; text-align: center;}
+.add_choice_job{width: 106px; text-align: center; margin-left: 5px}
+.add_textalign{padding-left: 56px}
+.add_textalign1{padding-left: 10px}
+.add_zhaopin{width: 136px; text-align: center; margin-left: 5px}
+.add_timeinput{width: 320px; height: 98px; margin-left: 15px; max-width: 320px; max-height: 98px; resize: none;}
+.add_height{height: 104px;}
+.add_btn_div{width: 200px; height: 40px; margin: 0px auto; margin-top: 30px}
+.add_submit{width: 95px; height: 40px; background-color: #096191; color: #fff; text-align: center; line-height: 40px; font-size: 14px; float: left; cursor: pointer;}
+.add_cancel{width: 95px; height: 40px; background-color: #096191; color: #fff; text-align: center; line-height: 40px; font-size: 14px; margin-left: 10px; float: left; cursor: pointer;}
+.add_margin_l15{margin-left: 15px}
+.add_marginleft_10{margin-left: 10px}

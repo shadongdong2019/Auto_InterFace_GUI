@@ -23,7 +23,8 @@ from InterfaceTest.python_excel.get_data.dependCase import DependCase
 from InterfaceTest.python_excel.utils.operation_json import OperationJson
 
 mylog = logging.getLogger(__file__)
-run_config ="/home/ma/PycharmProjects/Auto_InterFace_GUI/static/write_config/run.json" #上传文件后写入的配置文件路径
+baseDir = os.path.dirname(os.path.abspath(__name__))
+run_config =os.path.join(baseDir,'static/write_config/run.json')#上传文件后写入的配置文件路径
 ope_json = OperationJson(run_config)
 pro_config = ope_json.get_data_for_key("configFile")#获取项目配置文件路径
 pro_case = ope_json.get_data_for_key("caseFile")#获取项目测试用例文件路径
@@ -136,36 +137,14 @@ class CaseRun(unittest.TestCase):
 
         self.assertTrue(is_pass,"测试用例执行未通过")
 
-# if __name__ == "__main__":
-#     reportpath = option_dict["report_path"]
-#     cr =CaseRun()
-#     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-#     run_file = sys.argv[0]
-#     run_file_name = os.path.basename(os.path.splitext(run_file)[0])
-#     rand_str = ''.join(random.sample((string.ascii_letters + string.digits), 5))
-#     report_name = run_file_name+datetime.datetime.now().strftime('%Y%m%d%H%M%S')+'.html'
-#     data_str = datetime.datetime.now().strftime('%Y%m%d')
-#     report_path = os.path.join("{}{}_zs/".format(reportpath,data_str),report_name)
-#     path = os.path.join("{}{}_zs/".format(reportpath,data_str))
-#     if not os.path.exists(path):
-#         os.makedirs(path)
-#     fp = open(report_path,'wb')
-#     suite = unittest.TestLoader().loadTestsFromTestCase(CaseRun)
-#     title = '版权服务2.0生产环境接口测试报告（https）'
-#     description = "{0}接口-主流程测试用例-主要验证所有参数合法参数{0}成功及必填参数非法数据{0}失败".format(option_dict.get("interface_name",""))
-#     runner = HTMLTestRunner.HTMLTestRunner(stream=fp,title=title,description=description,verbosity=2)
-#     runner.run(suite)
-
-
 def main():
 
     cr =CaseRun()
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     run_file = sys.argv[0]
     run_file_name = os.path.basename(os.path.splitext(run_file)[0])
     rand_str = ''.join(random.sample((string.ascii_letters + string.digits), 5))
-    report_name = run_file_name+datetime.datetime.now().strftime('%Y%m%d%H%M%S')+'.html'
     data_str = datetime.datetime.now().strftime('%Y%m%d')
+    report_name = run_file_name+datetime.datetime.now().strftime('%Y%m%d%H%M%S')+'.html'
     report_path = os.path.join("{}/{}/".format(reportpath,data_str),report_name)
     path = os.path.join("{}/{}/".format(reportpath,data_str))
     if not os.path.exists(path):

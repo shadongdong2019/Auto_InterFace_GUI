@@ -1,0 +1,156 @@
+$title_heg: 50px;
+$padding_len: 20px;
+$nav_hover: #3394c9;
+$button_bg_color: #096191!default;
+$select_width: 75px;
+$general: 22px;
+$spacing: 10px;
+$all: 100%;
+$yellow: #fefcee;
+$img_url: "images/";
+$text_poi: 60px;
+$li_heg: 40px;
+@mixin btn_font{
+	font-size: 14px;
+	color: #fff;
+	background: $button_bg_color;
+}
+@mixin font{
+	font-size: 12px;
+	color: #030303;
+}
+@mixin border{
+	style: solid;
+	width: 1px;
+	color: #dff2fd;
+}
+body, a, nav, h3, ul, p{
+	padding: 0px;
+	margin: 0px;
+}
+a{
+	text-decoration: none;
+}
+li{
+	list-style-type:none;
+}
+select{
+	width: $select_width;
+	height: $general;
+	margin-left: $spacing;
+}
+.my_salary_nav{
+	@include btn_font;
+	width: $all;
+	height: $title_heg;
+	line-height: $title_heg;
+}
+.my_salary_nav a{
+	padding-left: $padding_len;
+	padding-right: $padding_len;
+	@include btn_font;
+	border: {
+		right: {
+			width: 1px;
+			color: #3a80a7;
+			style: solid
+		}
+	}
+	height: $title_heg;
+	display: inline-block;
+	float: left;
+	&:hover {
+		background: $nav_hover
+	}
+}
+button{border: 0px;}
+.my_salary_select{
+	width: $all;
+	height: $title_heg;
+	line-height: $title_heg;
+	background: {
+		color: $yellow;
+		image: url("#{$img_url}fangdajing2.png");
+		repeat: no-repeat;
+		position: 20px
+	}
+	text-indent: $text_poi;
+	@include font
+}
+article{
+	.my_salary_main{
+		li{
+			width: 328px;
+			height: $li_heg;
+			line-height: $li_heg;
+			h3, p{
+				float: left;
+				@include font;
+				font-weight: normal;
+				text-align: center;
+				border: {
+					bottom:{
+						@include border;
+					}
+					right:{
+						@include border;
+					}
+				}
+				cursor: pointer;
+			}
+			h3{
+				width: 207px;
+			}
+			p{
+				width: 119px;
+			}
+			&:hover{
+				h3, p{
+					background: #ecf8fd;
+				}
+			}
+		}
+	}
+}
+.font_bold{
+	h3, p{
+		font-weight: bold;
+	}
+}
+.my_salary_more{
+	background:{
+		image: url("#{$img_url}more.png");
+		repeat: no-repeat;
+		position: right top;
+	}
+}
+.my_salary_box{
+	border:{
+		style: solid;
+		width: 3px;
+		color: #dcdcdc;
+	}
+	li{
+		width: auto!important;
+	}
+	position: absolute;
+	background: #fff;
+	&:hover{
+		p{
+			background: #fff!important;
+		}
+	}
+	p{
+		background: #fff!important;
+		border:{
+			right: {
+				width: 0px!important;
+			}
+			bottom: {
+				width: 1px; 
+				style: dashed!important;
+				color: #f2f2f2!important;
+			}
+		}
+	}
+}

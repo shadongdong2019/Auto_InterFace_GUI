@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic Draggable - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#dd').draggable({
+			handle:'#title'
+		});	
+	})
+
+	</script>
+</head>
+<body>
+<div id="dd" class="easyui-draggable" data-options="handle:'#title'" style="width:100px;height:100px;">
+    <div id="title" style="background:#ccc;">title</div>
+</div>
+</body>
+</html>

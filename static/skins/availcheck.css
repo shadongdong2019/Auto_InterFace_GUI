@@ -1,0 +1,63 @@
+@charset "utf-8";
+body{background-color: #fff!important}
+.avail_title{width: 100%; height: 50px; background-color: #096191; text-indent: 20px; line-height: 50px; font-size: 14px; color: #fff; font-family: simsum}
+.avail_search{width: 100%; height: 50px; margin-top: 1px; background-color: #fefcee; line-height: 45px; border-top: 1px solid #cee9f8; text-indent: 20px; border-bottom: 1px solid #cee9f8}
+.avail_search img{cursor: pointer; margin-right: 11px;}
+.text_indent_0{text-indent: 0px}
+.avail_select{margin-right: 10px; text-indent: 0px}
+.avail_search_btn{width: 53px; height: 24px; line-height: 24px; text-align: center; color: #fff; font-size: 12px; font-family: simsum; cursor: pointer; background-color: #096191; text-indent: 0px; display: inline-block; font-weight: normal; vertical-align: middle;}
+.avail_detail_box{margin-left: 57px; margin-top: 55px; min-width: 1359px}
+.avail_detail{width: 745px; border: 1px solid #fdeadf; float: left;}
+.avail_detail th{height: 40px; padding: 1px 0px; border-right: 1px solid #fdeadf;}
+.avail_detail tr th p{height: 38px; background-color: #fdf5f1; font-size: 12px; font-family: simsum; margin: 0px; display: inline-block; line-height: 38px; text-indent: 25px; width: 100%;}
+.avail_detail tr th p img{float: right; margin-right: 15px; margin-top: 13px; cursor: pointer;}
+.avail_detail tr{border-top: 1px solid #fdeadf}
+.avail_detail tr td{border-right: 1px solid #fdeadf; font-size: 12px; line-height: 38px; padding: 0px; height: 38px; color: #020202}
+.avail_detail tr td:nth-child(odd){width: 97px; text-align: center;}
+.avail_detail tr td:nth-child(even){width: 227px; text-align: left;}
+.avail_detail tr td:nth-child(even) input{width: 227px; height: 36px; border: none;  text-indent: 25px; line-height: 36px; vertical-align: middle; outline:none}
+.avail_detail tr td:nth-child(4){width: 319px; text-align: left;}
+.avail_detail tr td:nth-child(4) input{width: 319px; border: 0px;}
+.word_spacing_22{word-spacing: 22px}
+.word_spacing_3{word-spacing: 3px}
+.avail_compare{width: 280px; float: left; margin-left: 4px; border: 1px solid #eee;}
+.avail_compare th{height: 40px; padding: 1px 0px; border-right: 1px solid #eee;}
+.avail_compare tr th p{height: 38px; background-color: #f7f7f7; font-size: 12px; font-family: simsum; margin: 0px; display: inline-block; line-height: 38px; text-indent: 34px; width: 100%;}
+.avail_compare tr{border-top: 1px solid #eee;}
+.avail_compare tr td{font-size: 12px; line-height: 36px; height: 36px; color: #020202; text-indent: 34px; padding: 1px 0px;}
+.avail_compare tr td:last-child img{cursor: pointer;}
+.avail_compare tr td p{margin: 0px; cursor: pointer;}
+.avail_compare tr td p:hover{background-color: #f7f7f7}
+.avail_compare tr td img{margin-left: 10px}
+.avail_compare tr td img:first-child{margin-left: 2px}
+.avail_compare tr td span{margin-left: 11px; display: inline-block; text-indent: 0px; word-spacing: 5px}
+.avail_compare tr td span div{width: 25px; height: 19px; border: 1px solid #b1b1b1; display: inline-block; vertical-align: middle;}
+#avail_input input{width: 23px; height: 17px; border: 0px; display: none}
+#avail_input span{margin-left: 0px; line-height: 19px; text-align: center; float: left; width: 25px; display: inline-block;}
+.clear_b{clear: both;}
+.avail_list{width: 1030px; margin-top: 3px; border: 1px solid #e2e2e2; margin-bottom: 30px}
+.avail_list th{height: 40px; padding: 1px 0px; border-right: 1px solid #eee;}
+.avail_list tr{border-top: 1px solid #ededed; font-size: 12px; color: #000; text-indent: 25px; word-spacing: 14px}
+.avail_list tr:first-child{text-indent: 0px;}
+.avail_list tr th p{height: 38px; background-color: #f7f7f7; font-size: 12px; font-family: simsum; margin: 0px; display: inline-block; line-height: 38px; text-indent: 34px; width: 100%;}
+.avail_list tr td:first-child{width: 97px; border-right: 1px solid #ededed; line-height: 38px; text-align: center; text-indent: 0px}
+.avail_list tr td input[type="radio"]{display: inline; vertical-align: middle; margin: 0px; margin-left: 25px}
+.avail_list tr td input[type="radio"]:first-child{margin-left: 0px}
+.avail_list tr td textarea{width: 595px; height: 47px; border: 1px solid #c2c2c2; margin-top: 14px; margin-bottom: 14px; max-width: 595px; min-width: 595px; min-height: 47px; max-height: 47px; resize: none;}
+.vertical_align_top{vertical-align: top;}
+.avail_btn_box{width: 200px; margin: 0px auto; height: 40px; margin-bottom: 72px;} 
+.avail_btn{width: 95px; height: 40px; float: left; border: 0px; background-color: #096191; color: #fff}
+.fl_r{float: right;}
+.avail_search_btn:hover, .avail_btn:hover{background-color: #3394c9}
+.display_n{display: none;}
+.avail_inf{width: 317px; border: 1px solid #ceeaf8; float: left; margin-left: 4px}
+.avail_inf th{height: 40px; padding: 1px 0px;}
+.avail_inf tr{border-top: 1px solid #ceeaf8; font-size: 12px; color: #000; text-indent: 25px; word-spacing: 14px; height: 39px}
+.avail_inf tr:first-child{text-indent: 0px;}
+.avail_inf tr th p{height: 38px; background-color: #f1f9fc; font-size: 12px; font-family: simsum; margin: 0px; display: inline-block; line-height: 38px; text-indent: 34px; width: 100%;}
+.avail_inf tr td{font-size: 12px; line-height: 36px; height: 36px; color: #020202; text-indent: 34px; padding: 1px 0px;}
+.avail_inf tr td p{margin: 0px; cursor: pointer;}
+.avail_turn{font-family: Arail;}
+.avail_inf tr th p img{float: right; margin-right: 15px; margin-top: 13px; cursor: pointer;}
+.avail_search_input{line-height: 24px; display: inline-block; margin-bottom: 0px!important; vertical-align: middle; margin-left: 34px; font-weight: normal; font-size: 12px}
+.margin_left_10{margin-left: 10px} 

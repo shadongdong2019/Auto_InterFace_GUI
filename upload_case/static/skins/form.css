@@ -1,0 +1,58 @@
+@charset "utf-8";
+body, img, input, p, ul, li, iframe, th, tr, td, table{margin: 0px; border: 0px; padding: 0px;}
+body{background-color: #fff}
+.input_text{width: 123px; height: 24px; border: 1px solid #dbdbdb; margin-bottom: 12px}
+.input_page{width: 30px; height: 20px; border: 1px solid #b4b6b7; margin-left: 8px; line-height: 20px; color: #030303; cursor: pointer; text-align: center; font-family: Arial;}
+.input_submit{min-width: 65px; height: 40px; color: #fff; background-color: #096191;font-size: 14px; line-height: 40px; text-align: center; cursor: pointer; border: 0px; padding-left: 15px; padding-right: 15px}
+button.input_submit, input.input_submit{min-width: 95px}
+.input_submit:hover{border: 0px}
+.check{width: 12px; height: 12px; border: 1px solid #4f7c91; cursor: pointer; line-height: 12px;}
+.check img{margin-top: 1px}
+.fl_l{float: left;}
+.fl_r{float: right;}
+.font_arial{font-family: Arial}
+.textarea_poi{width: 320px; height: 98px; margin-left: 15px; max-width: 320px; max-height: 98px; resize: none; border: 1px solid #dbdbdb}
+.textarea_poi:hover{border: 1px solid #ababab}
+input[type=number]{width: 123px; height: 24px; margin-left: 15px}
+input, input[type=number]{border: 1px solid #dbdbdb}
+input:hover,  input[type=number]:hover{border: 1px solid #ababab}
+input[type=radio]{width: 12px!important; height: 12px!important; vertical-align: middle;}
+.vertical_middle{vertical-align: middle}
+.display_n{display: none;}
+.display_inline{display: inline-block}
+.border_0{border: 0px;}
+.clear_b{clear: both}
+.poi_center{margin: 0px auto}
+select{height: 26px}
+.setbtn {
+    width: auto;
+    padding: 0px 15px 0px 15px;
+    height: 26px;
+    line-height: 25px;
+    margin-top: 2px;
+    font-size: 12px;
+    display: block;
+    background-color: #096191;
+    color: #fff;
+}
+.setbtn:hover{background-color: #3394c9}
+.regular-checkbox {display: none;}
+
+.regular-checkbox + label{
+    cursor:pointer;
+    background-color: #ffffff;
+    border: 1px solid #096191;
+    padding: 6px;
+    display: inline-block;
+    position: relative;
+}
+.regular-checkbox:checked + label {
+    background-image: url('/images/duihao.png');
+    background-position: center; background-repeat: no-repeat;
+}
+.regular-checkbox:indeterminate + label {
+    background-image: url('/images/unchecked.jpg');
+    background-position: center; background-repeat: no-repeat;
+}
+.main_list_pagenum . select2-container  a{width: 26px}
+.fl_n{float: none}

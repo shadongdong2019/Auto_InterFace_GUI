@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="jquery-1.10.2.js" ></script>
+    <script src="bootstrap.min.js" ></script>
+    <style>
+        body{
+            height: 2100px;
+        }
+        .rev{
+            position: relative;
+        }
+        #nav{
+            z-index: 10;
+            min-width: 80%;
+            /*margin: 0 auto;*/
+        }
+        .jumbotron{
+            z-index: 999;
+            width: 100%;
+            /*display: none;*/
+            opacity: 0.9;
+            background-image: url('57ss.jpg');
+        }
+        /*.panel-heading_bg{*/
+        /*background-image: url('57ss.jpg');*/
+        /*}*/
+        .table-responsive table td{
+            max-width: 130px;
+        }
+        .mg_tp{
+            margin-top:10px;
+        }
+        textarea{
+            resize: none;
+        }
+        table td:hover{
+            background-color: #d9edf7;
+        }
+    </style>
+</head>
+<body>
+<div class="container rev">
+    <div class="jumbotron">
+        <h1>每日计划</h1>
+        <p>日事日毕，日清日高</p>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-lg-3">
+            <div class="panel-group">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapseOne">
+                                <strong>当前登录人</strong>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <h5>当前登录人：<span>李玉潇</span></h5>
+                            <div class="text-right">
+                                <button class="btn btn-primary">修改密码</button>
+                                <button class="btn btn-primary">退出</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <!--data-parent="#accordion所有菜单指定同一个父元素-->
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                <strong>新建计划</strong>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                                <div class="input-group">
+                                    <span id="basic-addon1">计划内容：</span>
+                                    <textarea class="form-control" placeholder="计划的内容" aria-describedby="basic-addon1"></textarea>
+                                </div>
+                            <div class="input-group mg_tp">
+                                <span >计划完成时间：</span>
+                                <input type="date" class="form-control" placeholder="计划完成时间" aria-describedby="basic-addon2">
+                            </div>
+                            <div class="text-right mg_tp">
+                                <button class="btn btn-primary">保存</button>
+                                <button class="btn btn-primary">返回列表</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapsethree">
+                                <strong>编辑计划</strong>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapsethree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="input-group">
+                                <span id="basic-addon3">ID：</span>
+                                <input type="text" class="form-control" placeholder="计划的内容" disabled/>
+                            </div>
+                            <div class="input-group mg_tp">
+                                <span >计划内容：</span>
+                            <textarea class="form-control" placeholder="计划的内容"></textarea>
+                            </div>
+                            <div class="input-group mg_tp">
+                                <span >完成内容：</span>
+                                <textarea class="form-control" placeholder="计划的内容"></textarea>
+                            </div>
+                            <div class="input-group mg_tp">
+                                <span >计划完成时间：</span>
+                                <input type="data" class="form-control" placeholder="计划的内容"/>
+                            </div>
+                            <div class="input-group mg_tp">
+                                <span >计划完成状态：</span>
+                                <input type="text" class="form-control" placeholder="计划的内容"/>
+                            </div>
+                            <div class="text-right mg_tp">
+                                <button class="btn btn-primary">保存</button>
+                                <button class="btn btn-primary">返回列表</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapsefour">
+                                <strong>编辑计划</strong>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapsefour" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            内容二
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-lg-9">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h2 class="panel-title">
+                        <a data-toggle="collapse" href="#collapsefive">
+                            <strong>每日计划</strong>
+                        </a>
+                    </h2>
+                </div>
+                <div id="collapsefive" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <!--<table class="table table-striped" style="font-size: 12px">-->
+                                <!--<thead>-->
+                                <!--<tr>-->
+                                    <!--<th>#</th>-->
+                                    <!--<th>添加人</th>-->
+                                    <!--<th>计划内容</th>-->
+                                    <!--<th>完成内容</th>-->
+                                    <!--<th>计划完成时间</th>-->
+                                    <!--<th>计划完成状态</th>-->
+                                    <!--<th>添加时间</th>-->
+                                <!--</tr>-->
+                                <!--</thead>-->
+                                <!--<tbody>-->
+                                <!--<tr>-->
+                                    <!--<td><input type="checkbox"/></td>-->
+                                    <!--<td>马敬</td>-->
+                                    <!--<td>R2-人力资源-学习平台功能测试： 模块：讲师等级管理、培训讲师管理</td>-->
+                                    <!--<td>内容</td>-->
+                                    <!--<td>2015-07-09</td>-->
+                                    <!--<td>未完成</td>-->
+                                    <!--<td>2015-07-09 11:26:12</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td><input type="checkbox"/></td>-->
+                                    <!--<td>马敬</td>-->
+                                    <!--<td>R2-人力资源-学习平台功能测试： 模块：讲师等级管理、培训讲师管理</td>-->
+                                    <!--<td>R2-人力资源-学习平台功能测试： 模块：讲师等级管理、培训讲师管理</td>-->
+                                    <!--<td>2015-07-09</td>-->
+                                    <!--<td>未完成</td>-->
+                                    <!--<td>2015-07-09 11:26:12</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td><input type="checkbox"/></td>-->
+                                    <!--<td>马敬</td>-->
+                                    <!--<td>R2-人力资源-学习平台功能测试： 模块：讲师等级管理、培训讲师管理</td>-->
+                                    <!--<td>内容</td>-->
+                                    <!--<td>2015-07-09</td>-->
+                                    <!--<td>未完成</td>-->
+                                    <!--<td>2015-07-09 11:26:12</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td><input type="checkbox"/></td>-->
+                                    <!--<td>马敬</td>-->
+                                    <!--<td>R2-人力资源-学习平台功能测试： 模块：讲师等级管理、培训讲师管理</td>-->
+                                    <!--<td>内容</td>-->
+                                    <!--<td>2015-07-09</td>-->
+                                    <!--<td>未完成</td>-->
+                                    <!--<td>2015-07-09 11:26:12</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td><input type="checkbox"/></td>-->
+                                    <!--<td>马敬</td>-->
+                                    <!--<td>R2-人力资源-学习平台功能测试： 模块：讲师等级管理、培训讲师管理</td>-->
+                                    <!--<td>内容</td>-->
+                                    <!--<td>2015-07-09</td>-->
+                                    <!--<td>未完成</td>-->
+                                    <!--<td>2015-07-09 11:26:12</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td><input type="checkbox"/></td>-->
+                                    <!--<td>马敬</td>-->
+                                    <!--<td>R2-人力资源-学习平台功能测试： 模块：讲师等级管理、培训讲师管理</td>-->
+                                    <!--<td>内容</td>-->
+                                    <!--<td>2015-07-09</td>-->
+                                    <!--<td>未完成</td>-->
+                                    <!--<td>2015-07-09 11:26:12</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td><input type="checkbox"/></td>-->
+                                    <!--<td>马敬</td>-->
+                                    <!--<td>R2-人力资源-学习平台功能测试： 模块：讲师等级管理、培训讲师管理</td>-->
+                                    <!--<td>内容</td>-->
+                                    <!--<td>2015-07-09</td>-->
+                                    <!--<td>未完成</td>-->
+                                    <!--<td>2015-07-09 11:26:12</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td><input type="checkbox"/></td>-->
+                                    <!--<td>马敬</td>-->
+                                    <!--<td>R2-人力资源-学习平台功能测试： 模块：讲师等级管理、培训讲师管理</td>-->
+                                    <!--<td>内容</td>-->
+                                    <!--<td>2015-07-09</td>-->
+                                    <!--<td>未完成</td>-->
+                                    <!--<td>2015-07-09 11:26:12</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td><input type="checkbox"/></td>-->
+                                    <!--<td>马敬</td>-->
+                                    <!--<td>R2-人力资源-学习平台功能测试： 模块：讲师等级管理、培训讲师管理</td>-->
+                                    <!--<td>内容</td>-->
+                                    <!--<td>2015-07-09</td>-->
+                                    <!--<td>未完成</td>-->
+                                    <!--<td>2015-07-09 11:26:12</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td><input type="checkbox"/></td>-->
+                                    <!--<td>马敬</td>-->
+                                    <!--<td>R2-人力资源-学习平台功能测试： 模块：讲师等级管理、培训讲师管理</td>-->
+                                    <!--<td>内容</td>-->
+                                    <!--<td>2015-07-09</td>-->
+                                    <!--<td>未完成</td>-->
+                                    <!--<td>2015-07-09 11:26:12</td>-->
+                                <!--</tr>-->
+                                <!--</tbody>-->
+                            <!--</table>-->
+                            <table class="table" id="table" allowCellWrap="true">
+                                <div style="border: solid 2px #bce8f1;">
+                                </div>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+        $(document).ready(function(){
+            $('tbody tr:even').css('background','#ccc');
+            $('#table').datagrid({
+                width: 1000,
+                height: "auto",
+                pageSize: 10,
+                pageList: [10, 20, 50, 100],
+
+                //url 需要修改
+                //url: "/sub2/list/",
+                url: "/apps/gtd/plans/list/",
+                method: 'post',
+                idField: 'id',
+                striped: true,
+                //   rownumbers:true,
+                //       checkOnSelect :false,
+                queryParams:{
+                    order:'-id'
+                },
+                loadMsg: '正在加载数据，请稍等...',
+                fitColumns: true,
+                singleSelect: false,
+                nowrap: false,
+                pagination: true,
+
+                columns: [[
+                    { title: 'ID', field: 'id', checkbox: true },
+
+                    //    { title: 'ID', field: 'id' },
+                    //    { title: '用户ID', field: 'user_id'},
+                    //    { title: 'ID', field: 'id', width: 50 },
+
+                    { title: '添加人', field: 'user_realname', width: 30 },
+
+                    { title: '计划标题', field: 'plan_title', width: 80 },
+
+                    { title: '计划内容', field: 'plan_content',width:300},
+
+                    { title: '计划完成时间', field: 'plan_date', width: 50 },
+
+                    { title: '计划完成状态', field: 'comp_state', width: 50, align:'center'},
+
+                    { title: '添加时间', field: 'add_time', width: 50 }
+                ]],
+                loadFilter: function (data) {
+
+                    choiceDict = data.choiceDict
+                    qsDict = data.rows;
+
+
+                    for(var fields in qsDict){
+                        for(var fid in qsDict[fields]){
+                            choice = choiceDict[fid];
+                            if (choice != null && (choice[qsDict[fields][fid]] != '')){
+                                qsDict[fields][fid] = choice[qsDict[fields][fid]];
+
+                            }
+                        }
+                    }
+
+                    return data
+                },
+                onBeforeLoad: function (param) {
+
+                },
+                onLoadSuccess: function (data) {
+                    if(data.qx!=0)
+                    {
+                        $("#newuser").hide()
+                        $("#userlist").hide()
+                        $("#dellist").hide()
+                    }
+
+                    userid = data.userid;
+                    realname=data.realname;
+                    $("#loginrealname").html(realname)  //显示登录真实姓名
+
+                    qsDict = data.rows;
+                    curtime=new Date()
+                    curt=ww3(curtime)  //获取当前时间并格式化为只有年月日格工
+
+
+
+
+                    for(var index in qsDict){
+                        fields = qsDict[index];
+                        retime=fields.plan_date  //获取后台返回的完成时间
+                        addti=fields.add_time   //获取后台返回的添加时间
+                        bijiao(curt,retime,addti)//调用比较函数
+                        if(fields.user_id != userid || bijiao(curt,retime,addti)){
+                            id = fields.id;
+                            checkList = $("input[name='id']");
+                            $("input[name='id']").each(function(){
+                                if (this.value == id ){
+                                    //   this.disabled = true;
+                                    this.remove();
+
+                                }
+
+                            });
+                        }
+
+                    }
+                },
+                onLoadError: function () {
+                },
+                //单击一个单元格事件
+                onClickCell: function (rowIndex, field, value) {
+                },
+                //点击行事件
+                onClickRow: function (rowIndex, rowData) {
+                    $(this).datagrid('unselectRow', rowIndex);
+                }
+            });
+        });
+</script>
+</body>
+</html>

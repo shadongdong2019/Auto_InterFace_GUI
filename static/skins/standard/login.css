@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #34373c;
+    height: 100%;
+    width: 100%;
+}
+.box{
+    margin-top:20%;
+    margin-right: auto;
+    margin-left: auto;
+    width: 300px;
+    position: relative;
+}
+.input_box{
+    border-radius: 5px;
+    background-color: #1a1e21;
+    height: 80px;
+    width: 264px;
+    padding-left: 15px;
+}
+#username,#password{
+    height: 30px;
+    width: 223px;
+    background-color: #1a1e21;
+    border: none;
+    color: #fff;
+    outline: medium none;
+    margin-top: 5px;
+}
+#password{
+    border-top: 3px solid #34373c;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #6c707c;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #6c707c;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #6c707c;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #6c707c;
+}
+.btn{
+    height: 48px;
+    width: 48px;
+    border-radius: 24px;
+    background-color: #34373c;
+    position: absolute;
+    top: 15px;
+    right: 0;
+}
+.btn button{
+    display: block;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    background-color: #1d1e22;
+    border: none;
+    margin: 6px auto;
+    cursor: pointer;
+    outline: none;
+    transition:transform 2s;
+    -moz-transition:transform 2s; /* Firefox 4 */
+    -webkit-transition:transform 2s; /* Safari and Chrome */
+    -o-transition:transform 2s; /* Opera */
+}
+.btn button:hover{
+    transform:rotate(360deg);
+    -ms-transform:rotate(360deg); 	/* IE 9 */
+    -moz-transform:rotate(360deg); 	/* Firefox */
+    -webkit-transform:rotate(360deg); /* Safari ºÍ Chrome */
+    -o-transform:rotate(360deg);
+}
+.btn button:hover .arrow-right{
+    border-left: 16px solid green;
+}
+.arrow-right {
+    width:0;
+    height:0;
+    border-top:8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 16px solid #464d53;
+    margin-left: 12px;
+}

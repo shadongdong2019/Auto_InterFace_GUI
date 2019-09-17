@@ -22,7 +22,7 @@ from Auto_InterFace_GUI import settings
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path('index/', include('upload_case.urls')),
-    # url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    # url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+    path('', include('upload_case.urls')),
+    path('pro/', include('InterfaceTest.urls')),
+    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]
