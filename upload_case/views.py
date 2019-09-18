@@ -12,20 +12,37 @@ def index(request):
     baseDir = os.path.dirname(os.path.abspath(__name__))
     show_path = ""
     file_down = ""
-    pro_rep_all_path = []
+    report_path = ""
+    pro_name = ""
+    caseFile = ""
+    configFile = ""
     if request.method == "POST":
         pro_name = request.POST.get("pro_name","")
-        caseFile = request.FILES.get('case_file', None)  # 获取上传的文件，如果没有文件，则默认为None
-        configFile = request.FILES.get('config_file', None)  # 获取上传的文件，如果没有文件，则默认为None
-        if not caseFile:
-            return HttpResponse("no files for upload!")
-        if not configFile:
-            return HttpResponse("no files for upload!")
-        fileDict = {
-            "caseFile":caseFile,
-            "configFile":configFile,
-        }
-        deal_file_path = pro_dir_deal(pro_name,**fileDict)  #返回测试用例文件路径，配置文件路径
+        caseFile = request.FILES.get('case_file', '')  # 获取上传的文件，如果没有文件，则默认为''
+        configFile = request.FILES.get('config_file', '')  # 获取上传的文件，如果没有文件，则默认为''
+        case_file_path = os.path.join(baseDir,"InterfaceTest/static/project_tree/{}/case_file/{}".format(pro_name,caseFile))
+        config_file_path = os.path.join(baseDir,"InterfaceTest/static/project_tree/{}/config/{}".format(pro_name, configFile))
+        deal_file_path ={}
+        if not caseFile and not os.path.isfile(case_file_path): #get_dir_file
+            if get_dir_file(case_file_path):
+                case_file_path = case_file_path+get_dir_file(case_file_path)[0]
+                deal_file_path["caseFile"] = case_file_path
+            else:
+                return HttpResponse("no files for upload!")
+        if not configFile and not os.path.isfile(config_file_path):
+            if get_dir_file(config_file_path):
+                config_file_path = config_file_path+get_dir_file(config_file_path)[0]
+                deal_file_path["configFile"] = config_file_path
+            else:
+                return HttpResponse("no files for upload!")
+        deal_file_path["report_path"] = os.path.join(baseDir,"InterfaceTest/static/project_tree/{}/report/".format(pro_name))
+        if caseFile or  configFile:
+            fileDict = {
+                "caseFile":caseFile,
+                "configFile":configFile,
+            }
+            deal_file_path = pro_dir_deal(pro_name,**fileDict)  #返回测试用例文件路径，配置文件路径
+
         write_config_path = os.path.join(baseDir,"static/write_config/run.json") #写入配置文件
         with open(write_config_path,"wb") as f:
             f.write(json.dumps(deal_file_path,ensure_ascii=False,indent=4).encode("utf-8")) #字典转成json,字典转换成字符串 加上ensure_ascii=False以后，可以识别中文， indent=4是间隔4个空格显示
@@ -33,16 +50,21 @@ def index(request):
         report_path = case_test_common.main()
         show_path = report_path[report_path.index("/static"):] #显示单个测试报告路径
         file_down = '/file_download?report_path={}'.format(report_path)
-        show_all_path = report_path[:report_path.index("/report")]  # 显示项目下所有测试报告路径
-        pro_rep_all_path = get_all_path(show_all_path)
+        #show_all_path = report_path[:report_path.index("/report")]  # 显示项目下所有测试报告路径
+
 
     else:
         pass
 
     content = {
-        'report_path':show_path,
+        'show_path':show_path,
         'file_down':file_down,
-        'pro_rep_all_path':pro_rep_all_path,
+        'report_path':report_path,
+        'pro_name':pro_name,
+        'caseFile':caseFile,
+        'configFile':configFile
+
+
     }
     return render_to_response("upload.html",content)
 
@@ -121,7 +143,7 @@ def file_down(request,file_path=None):
 
 
 
-def get_all_path(root_path,file_list=[],dir_list=[]):
+def get_all_path(request,root_path='',file_list=[],dir_list=[]):
     '''
     查询指定目录下所有文件
     :param request:
@@ -131,7 +153,8 @@ def get_all_path(root_path,file_list=[],dir_list=[]):
 
     #获取该目录下所有的文件名称和目录名称
     dir_or_files = os.listdir(root_path)
-
+    query_date = request.GET.get("date")
+    report_path = request.GET.get("report_path")
 
     for dir_file in dir_or_files:
         file_opera = []
@@ -152,4 +175,11 @@ def get_all_path(root_path,file_list=[],dir_list=[]):
     return file_list
 
 
-
+def get_dir_file(path,type="files"):
+    for root, dirs, files in os.walk(path):
+        if type == "root":
+            return root  # 当前目录路径
+        elif type == "dirs":
+            return dirs  # 当前路径下所有子目录
+        else:
+            return files # 当前路径下所有非目录子文件

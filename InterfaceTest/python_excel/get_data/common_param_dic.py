@@ -226,5 +226,7 @@ class CommonParamDict:
         return s
 
 if __name__ == "__main__":
-    pass
-
+    cpd = CommonParamDict()
+    value_list = ["201907200200055052","YLZ3XCEE4J21N0YHQNEW","07d9372cbc00f53a0966992fe474d628"]
+    key ="YLZ3XCEE4J21N0YHQNEW"
+    print(cpd.make_salt(value_list,key))

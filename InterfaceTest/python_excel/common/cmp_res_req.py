@@ -19,7 +19,7 @@ class CmpReqRes:
         self.kwargs = kwargs
         self.option_dict = self.kwargs.get("option_dict", {}) #获取配置文件字典
         self.inter_run = InterfaceRun()
-        database_type = self.kwargs("database_type")
+        database_type = self.kwargs.get("database_type")
         if str(database_type).lower() == "es":
             self.conne = ElasticObj(**self.kwargs)
         elif str(database_type).lower() == "mysql":
@@ -59,7 +59,8 @@ class CmpReqRes:
             if '"success":true' in expect and res.json().get("success") == True:
                 verify_data = {
                     "serialNo":serialNo,
-                    "req":req,
+                    "req":req,#请求数据
+                    "res":res.json(),#响数数据
                     "expCallbackFlag":expCallbackFlag,
                     "no_verify_data_list":no_verify_data_list,
                     "is_verify_database":is_verify_database,
@@ -93,33 +94,52 @@ class CmpReqRes:
 
         #不需要验证字段列表
         no_verify_filed = self.kwargs.get("no_verify_filed",[])
-        res_json = self.conne.get_data()
-        database_str_hd = None
+        compare_para_data = self.kwargs.get("compare_para_data",{})
+        database_str_hd = ''
         database_str = None
         database_flag = False
         expCallbackFlag = kwargs.get("expCallbackFlag", None)
-        #url = self.kwargs.get("verify_url", None)
         req = kwargs.get("req", None)
-
+        res = kwargs.get("res", None)
         try:
             expCF_dict = json.loads(expCallbackFlag)
             expCF_value = expCF_dict.get("callbackFlag")
         except Exception as e:
             expCF_value = expCallbackFlag
-        try:
-            #json_obj = self.inter_run.main_request("get", url).json()
-            res = jsonpath(res_json, "$.._source")[0]
-            req_keys = req.keys()
 
+
+
+        try:
+
+            req_keys = req.keys()
+            # 获取数据库查询数据
+            # 参数名与数据库名对应列表
+            query_filed = self.kwargs.get("query_filed", {})
+            if not query_filed:
+                query_data_list = self.kwargs.get("query_data_list", [])
+                if query_data_list:
+                    for query_data in query_data_list:
+                        if str(query_data[1]).lower() == 'req':
+                            query_filed[query_data[0]] = req.get(query_data[2])
+                        else:
+                            query_filed[query_data[0]] = res.get(query_data[2])
+
+
+            database_json = self.conne.get_data(query_con=query_filed)[0]
+            database = jsonpath(database_json, "$.._source")[0]
             callbackurl_flag = False
             if is_verify_database:
                 for key in req_keys:
-                    if req.get(key) == str(res.get(key)) and req.get(key) not in no_verify_filed:
+                    if key in compare_para_data.keys():
+                        data_key = compare_para_data.get(key)
+                    else:
+                        data_key = key
+                    if req.get(key) == str(database.get(data_key)) and req.get(key) not in no_verify_filed:
                         database_flag = True
-                        database_str = "数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）"
+                        database_str = "数据库存储验证结果：一致（接口请求参数请求值与数据库存储值一致）"
                     else:
                         error_str = "请求参数<{0}={1}>,数据库存储参数<{0}={2}>".format(key, req.get(key), str(res.get(key)))
-                        database_str = "数据库存储验证结果：不一致（申请接口参数请求值与数据库存储值不一致,具体不一致原因：{}）".format(error_str)
+                        database_str = "数据库存储验证结果：不一致（接口请求参数请求值与数据库存储值不一致,具体不一致原因：{}）".format(error_str)
                         database_flag = False
                         break
             else:

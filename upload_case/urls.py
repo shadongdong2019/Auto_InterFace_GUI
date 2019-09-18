@@ -10,6 +10,6 @@ app_name = 'upload_case'
 urlpatterns = [
     path('',views.index),
     path('index/',views.index),
-    re_path('^file_download', views.file_down, name="file_down")
-
+    re_path('^file_download', views.file_down, name="file_down"),
+    re_path('^getallpath', views.get_all_path, name="get_all_path")
 ]

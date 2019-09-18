@@ -36,7 +36,7 @@ class ElasticObj:
         '''
         print(self.es.cat.indices())
 
-    def deal_config_query(self,res=None):
+    def deal_config_query(self,res=None,query_con=None,query_filed=None):
         '''
         处理配置名件中的查询条件
         键值对，值为“”表示需获取响应结果中的数据
@@ -46,7 +46,11 @@ class ElasticObj:
         '''
 
         query_res = []
-        query_filed = self.kwargs.get("query_filed","")
+        if not query_filed:
+            if query_con:
+                query_filed = query_con
+            else:
+                query_filed = self.kwargs.get("query_filed","")
         for key in query_filed.keys():
             bool = {}
             must = {}
@@ -68,19 +72,18 @@ class ElasticObj:
         return query_res
 
 
-    def get_data(self,query=None,index=None):
+    def get_data(self,query=None,index=None,query_con=None,query_filed=None):
         '''
         根据查询条件获取返回结果
         :param query: 查询条件
         :param index: 索引名称
+        :param query_con: 查询条件，在验证页传入
         :return: 返回查询结果及查询条数
         '''
-        # query = [
-        #                 {"match": {"serialNo": 368400630043389952}},
-        #                 {"match": {"is_result": 1}}
-        #             ]
-        if not query:
-            query = self.deal_config_query()
+        if  query_con:
+            query = self.deal_config_query(query_con=query_con)
+        elif query_filed:
+            query = self.deal_config_query(query_filed=query_filed)
         if index:
             self.index_name = index
         # 查找具体数据
@@ -99,7 +102,7 @@ class ElasticObj:
         print(json.dumps(res,sort_keys=True, indent=4, separators=(',', ': '), ensure_ascii=False))  # 请求总结果
         total = res['hits']['total'] #查询总条数
         print(total)
-        return res_json,total
+        return res,total
 
 
     def get_data_dsl(self):
@@ -119,9 +122,12 @@ class ElasticObj:
 
 if __name__ == "__main__":
     ope_cfg = OperationCFG(
-        "/home/ma/PycharmProjects/AutoTest_python/InterfaceTest/project_tree/TSA-IPPS-JC/config/caseRun.cfg",
+        "/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/static/project_tree/TSA-IPPS-QZ/config/caseRun.cfg",
         "my_case_file")
     option_dict = ope_cfg.get_config_dict()
     obj =ElasticObj(**option_dict)
-    obj.get_data()
-    #obj.get_data_dsl()
+    query_filed = {"eSerialNo":"07d9372cbc00f53a0966992fe474d628"}
+    a,b = obj.get_data(query_filed=query_filed)
+    # print(a)
+    # print(b)
+#
