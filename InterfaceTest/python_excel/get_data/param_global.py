@@ -30,10 +30,13 @@ class ParamGlobal:
         nb_param_list = []      #非必传参数列表
         b_param_list = []       #必传参数列表
         param_file_list = []    #参数类型为文件类型列表
+        success_list = []
         try:
             if param_name_list:
                 self.param_name_list = param_name_list
+
             for param_name in self.param_name_list[0]:
+
                 p_zh_name = str(param_name).split("-")[0] #参数中文名
                 p_en_name = str(param_name).split("-")[1] #参数英文名
                 p_len = str(param_name).split("-")[2] #参数最大长度
@@ -55,8 +58,10 @@ class ParamGlobal:
                     nb_param_list.append(p_en_name)
                 if p_type.lower() == "file":
                     param_file_list.append(p_en_name)
+                success_list.append(param_name)
         except Exception as e :
             log.error("处理接口请求参数名出现异常，异常原因：{}".format(e))
+        #print(success_list)
         return param_zh_name_list,param_en_name_list,param_len_dict,param_value_type,no_param_list,yes_param_list,b_param_list,nb_param_list,param_file_list
 
     def get_param_zh_name_list(self,param_name_list=None):

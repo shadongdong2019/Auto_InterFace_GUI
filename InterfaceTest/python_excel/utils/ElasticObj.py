@@ -126,7 +126,7 @@ if __name__ == "__main__":
         "my_case_file")
     option_dict = ope_cfg.get_config_dict()
     obj =ElasticObj(**option_dict)
-    query_filed = {"eSerialNo":"07d9372cbc00f53a0966992fe474d628"}
+    query_filed = {"eSerialNo":"3b4414660b44615449f1b4fcbca04f31"}
     a,b = obj.get_data(query_filed=query_filed)
     # print(a)
     # print(b)

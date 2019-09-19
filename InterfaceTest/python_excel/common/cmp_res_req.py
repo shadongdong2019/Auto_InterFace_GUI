@@ -55,8 +55,10 @@ class CmpReqRes:
         expect_res_verify = False
         database_verify_res["database_flag"] = False
         database_verify_res["callbackurl_flag"] = False
+        expect_is_database = False  #定义一个变量记录预期结果如果是true，可以进行数据库验证，如要是false请求失败，不进行数据库验证
         try:
             if '"success":true' in expect and res.json().get("success") == True:
+                expect_is_database = True
                 verify_data = {
                     "serialNo":serialNo,
                     "req":req,#请求数据
@@ -66,7 +68,7 @@ class CmpReqRes:
                     "is_verify_database":is_verify_database,
                     "is_verify_callbackurl":is_verify_callbackurl
                 }
-                if  is_verify_database or  is_verify_callbackurl:
+                if  (expect_is_database and is_verify_database) or  is_verify_callbackurl:
                     #验证数据库中的值是否正确
                     database_verify_res = self.verify_database(**verify_data)
             expect_res_verify = self.expect_res_ispass(expect,res)
@@ -74,6 +76,7 @@ class CmpReqRes:
             log.error("测试用例预期结果与实际结果对比方法出现异常，异常原因：{}".format(e))
             flag = None
         verify_res["expect_res_verify"]=expect_res_verify
+        verify_res["expect_is_database"] = expect_is_database
         verify_res.update(database_verify_res)
         return verify_res
 
@@ -115,17 +118,18 @@ class CmpReqRes:
             # 获取数据库查询数据
             # 参数名与数据库名对应列表
             query_filed = self.kwargs.get("query_filed", {})
+            query_filed_dict = {}
             if not query_filed:
                 query_data_list = self.kwargs.get("query_data_list", [])
                 if query_data_list:
                     for query_data in query_data_list:
                         if str(query_data[1]).lower() == 'req':
-                            query_filed[query_data[0]] = req.get(query_data[2])
+                            query_filed_dict[query_data[0]] = req.get(query_data[2])
                         else:
-                            query_filed[query_data[0]] = res.get(query_data[2])
+                            query_filed_dict[query_data[0]] = res.get(query_data[2])
 
 
-            database_json = self.conne.get_data(query_con=query_filed)[0]
+            database_json = self.conne.get_data(query_con=query_filed_dict)[0]
             database = jsonpath(database_json, "$.._source")[0]
             callbackurl_flag = False
             if is_verify_database:
@@ -147,13 +151,13 @@ class CmpReqRes:
 
             if is_verify_callbackurl:
                 if expCF_value != None:
-                    if expCF_value == res.get("callbackFlag"):
+                    if expCF_value == database.get("callbackFlag"):
                         callbackurl_flag = True
                         database_str_hd = "数据库回调状态值与预期状态值一致：回调成功"
                     else:
                         callbackurl_flag = False
                         database_str_hd = "回调结果与预期不一致：回调失败,预期回调结果callbackFlag={}，实际数据库存储callbackFlag={}".format(
-                            expCF_value, res.get("callbackFlag"))
+                            expCF_value, database.get("callbackFlag"))
                 else:
                     callbackurl_flag = True
             else:

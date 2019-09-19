@@ -1,0 +1,30 @@
+2019-09-19 17:14:45,226 [INFO] [/home/ma/PycharmProjects/Auto_InterFace_GUI/venv/lib/python3.6/site-packages/elasticsearch/connection/base.py] [log_request_success ][elasticsearch:121]- GET http://39.107.66.190:9200/evidence/_search [status:200 request:0.048s]
+2019-09-19 17:14:45,393 [INFO] [/home/ma/PycharmProjects/Auto_InterFace_GUI/venv/lib/python3.6/site-packages/elasticsearch/connection/base.py] [log_request_success ][elasticsearch:121]- GET http://39.107.66.190:9200/evidence/_search [status:200 request:0.046s]
+2019-09-19 17:28:11,239 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/param_global.py] [deal_param_name_tuple ][__file__:63]- 处理接口请求参数名出现异常，异常原因：list index out of range
+2019-09-19 17:28:15,007 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/utils/operation_excel.py] [get_row_col_list ][__file__:161]- 操作EXCEL表类获取值对应的行号出现异常，异常原因：list index out of range
+2019-09-19 17:28:15,007 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/param_global.py] [deal_param_name_tuple ][__file__:63]- 处理接口请求参数名出现异常，异常原因：list index out of range
+2019-09-19 17:28:15,007 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/param_global.py] [deal_param_name_tuple ][__file__:63]- 处理接口请求参数名出现异常，异常原因：list index out of range
+2019-09-19 17:28:15,007 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py] [get_param_name_value ][/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py:116]- 接口参数处理类处理参数名与参数值方法异常，异常原因：object of type 'NoneType' has no len()
+2019-09-19 17:30:19,506 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py] [encry ][/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py:134]- 接口参数处理类将文件转为文件流方法异常，异常原因：[Errno 2] No such file or directory: '../hz_file/xzhx.jpg'
+2019-09-19 17:30:19,506 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py] [deal_param ][/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py:84]- 接口参数处理类处理后的参数数据方法异常，异常原因：'NoneType' object is not iterable
+2019-09-19 17:30:19,586 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/venv/lib/python3.6/site-packages/django/utils/log.py] [log_response ][django.request:228]- Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/ma/PycharmProjects/Auto_InterFace_GUI/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/ma/PycharmProjects/Auto_InterFace_GUI/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/ma/PycharmProjects/Auto_InterFace_GUI/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ma/PycharmProjects/Auto_InterFace_GUI/upload_case/views.py", line 49, in index
+    from upload_case import case_test_common
+  File "/home/ma/PycharmProjects/Auto_InterFace_GUI/upload_case/case_test_common.py", line 52, in <module>
+    class CaseRun(unittest.TestCase):
+  File "/home/ma/PycharmProjects/Auto_InterFace_GUI/upload_case/case_test_common.py", line 70, in CaseRun
+    @ddt.data(*data_http)
+TypeError: data() argument after * must be an iterable, not NoneType
+2019-09-19 17:32:52,154 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py] [encry ][/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py:134]- 接口参数处理类将文件转为文件流方法异常，异常原因：[Errno 2] No such file or directory: '../hz_file/xzhx.jpg'
+2019-09-19 17:35:56,317 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py] [encry ][/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py:134]- 接口参数处理类将文件转为文件流方法异常，异常原因：[Errno 2] No such file or directory: '../hz_file/xzhx.jpg'
+2019-09-19 17:38:52,057 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py] [encry ][/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py:134]- 接口参数处理类将文件转为文件流方法异常，异常原因：[Errno 2] No such file or directory: '../hz_file/xzhx.jpg'
+2019-09-19 18:13:45,080 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/utils/operation_excel.py] [get_sheet ][__file__:38]- 操作EXCEL表类获取sheet页内容异常，异常原因：not well-formed (invalid token): line 2, column 12004098
+2019-09-19 18:13:45,080 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/utils/operation_excel.py] [get_row_col_list ][__file__:161]- 操作EXCEL表类获取值对应的行号出现异常，异常原因：'NoneType' object has no attribute 'row_values'
+2019-09-19 18:13:45,080 [ERROR] [/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py] [get_param_name_value ][/home/ma/PycharmProjects/Auto_InterFace_GUI/InterfaceTest/python_excel/get_data/common_param_dic.py:116]- 接口参数处理类处理参数名与参数值方法异常，异常原因：object of type 'NoneType' has no len()

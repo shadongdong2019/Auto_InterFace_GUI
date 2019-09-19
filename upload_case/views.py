@@ -35,7 +35,7 @@ def index(request):
                 deal_file_path["configFile"] = config_file_path
             else:
                 return HttpResponse("no files for upload!")
-        deal_file_path["report_path"] = os.path.join(baseDir,"InterfaceTest/static/project_tree/{}/report/".format(pro_name))
+        deal_file_path["report_path"] = os.path.join(baseDir,"InterfaceTest/static/project_tree/{}/report".format(pro_name))
         if caseFile or  configFile:
             fileDict = {
                 "caseFile":caseFile,

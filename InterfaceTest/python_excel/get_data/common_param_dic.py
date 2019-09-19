@@ -59,7 +59,7 @@ class CommonParamDict:
                     salt_N = False
                     for key in list(param_dict.keys()):
                         try:
-                            key_value = eval(param_dict.get(key))
+                            key_value = param_dict.get(key)
                         except Exception as e :
                             key_value = param_dict.get(key)
                         if not key_value and key not in no_param :
@@ -227,6 +227,10 @@ class CommonParamDict:
 
 if __name__ == "__main__":
     cpd = CommonParamDict()
-    value_list = ["201907200200055052","YLZ3XCEE4J21N0YHQNEW","07d9372cbc00f53a0966992fe474d628"]
-    key ="YLZ3XCEE4J21N0YHQNEW"
+    value_list = ["201907200200058182201907200200058182","SJ2P5TW43R0ZLCR6V556","086c9e0f81e7074a2947489f19750945"]
+    #value_list = ["201907200200058182","SJ2P5TW43R0ZLCR6V556","366564097107701760","李明","http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&aid=11709685210548302577","http://39.107.66.190:9992/v2/api/confirm/callback"]
+    key ="SJ2P5TW43R0ZLCR6V556"
+    #key = "YLZ3XCEE4J21N0YHQNEW"
     print(cpd.make_salt(value_list,key))
+    print(len("3b4414660b44615449f1b4fcbca04f313b4414660b44615449f1b4fcbca04f31"))
+    print("0"*20)

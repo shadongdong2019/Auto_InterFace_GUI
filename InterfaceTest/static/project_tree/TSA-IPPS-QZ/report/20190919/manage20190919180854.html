@@ -189,9 +189,9 @@ function showOutput(id, name) {
 
 <div class='heading'>
 <h1>版权服务2.0生产环境接口测试报告（https）</h1>
-<p class='attribute'><strong>Start Time:</strong> 2019-09-18 18:06:29</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:00.380912</p>
-<p class='attribute'><strong>Status:</strong> Pass 1 Failure 1</p>
+<p class='attribute'><strong>Start Time:</strong> 2019-09-19 18:08:54</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:00.254195</p>
+<p class='attribute'><strong>Status:</strong> Pass 2</p>
 
 <p class='description'>取证接口-主流程测试用例-主要验证所有参数合法参数取证成功及必填参数非法数据取证失败</p>
 </div>
@@ -221,11 +221,11 @@ function showOutput(id, name) {
     <td>View</td>
 </tr>
 
-<tr class='failClass'>
+<tr class='passClass'>
     <td>upload_case.case_test_common.CaseRun</td>
     <td>2</td>
-    <td>1</td>
-    <td>1</td>
+    <td>2</td>
+    <td>0</td>
     <td>0</td>
     <td><a href="javascript:showClassDetail('c1',2)">Detail</a></td>
 </tr>
@@ -262,53 +262,10 @@ pt1.1: '取证接口用例执行详情如下：'
 '******************************************************************************'
 '取证接口响应返回数据共&lt;0&gt;条'
 ("取证接口响应结果={'msg': '请求成功', 'salt': "
- "'ccbb8da1cdd1d3e85fe32035bf784e6aYLZ3XCEE4J21N0YHQNEW', 'success': True, "
- "'resultCode': '0204000', 'evidenceNo': '37de523ce45b984e0687ebd8011f5957'}")
-'取证接口响应耗时：0.14176201820373535'
-{
-    "_shards": {
-        "failed": 0,
-        "skipped": 0,
-        "successful": 5,
-        "total": 5
-    },
-    "hits": {
-        "hits": [
-            {
-                "_id": "371760975415881728",
-                "_index": "evidence",
-                "_score": 0.0,
-                "_source": {
-                    "applyName": "李明001",
-                    "callbackFlag": false,
-                    "callbackUrl": "http://39.107.66.190:9992/v2/api/confirm/callback",
-                    "createTime": null,
-                    "downloadUrl": null,
-                    "eCode": "N0000",
-                    "eMessage": "成功",
-                    "eSerialNo": "37de523ce45b984e0687ebd8011f5957",
-                    "eSign": "drjh1iDX+7ywzfHmJUlb6ziRIUyd1cPl8WUuT6rk+t6v6Uh3/yLI4uxpgWU6+e/2uA/NJYr42x6vgm5WlWPBDvs7I4R77RTNLcQENXudBFFINpsiXkXxvwSR0rbuQiPevQAyCrFgsBRGSafuMXZLlfdmhINIXWtnZDDSjGk1px0=",
-                    "id": 371760975415881728,
-                    "method": "grab",
-                    "partnerID": "201907200200055052",
-                    "partnerKey": "YLZ3XCEE4J21N0YHQNEW",
-                    "salt": "1ec11125c5e3a0eb4ea3bb31592e08ffYLZ3XCEE4J21N0YHQNEW",
-                    "serialNo": "366633883330162688",
-                    "updateTime": null,
-                    "url": "http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577"
-                },
-                "_type": "evidence"
-            }
-        ],
-        "max_score": 0.0,
-        "total": 1
-    },
-    "timed_out": false,
-    "took": 0
-}
-1
-'取证接口响应结果验证耗时：0.05338263511657715'
-数据库数据验证结果：数据库存储验证结果：一致（接口请求参数请求值与数据库存储值一致）
+ "'d086af81e78c799e13de9bcc872db4d8YLZ3XCEE4J21N0YHQNEW', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'd5e6ca3209f8b824aa3692b8501b4ad2'}")
+'取证接口响应耗时：0.1430954933166504'
+'取证接口响应结果验证耗时：0.00014972686767578125'
 
 
         </pre>
@@ -318,22 +275,22 @@ pt1.1: '取证接口用例执行详情如下：'
     </td>
 </tr>
 
-<tr id='ft1.2' class='none'>
-    <td class='failCase'><div class='testcase'>test_apply_http_2</div></td>
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_2</div></td>
     <td colspan='5' align='center'>
 
     <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
-        fail</a>
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        pass</a>
 
-    <div id='div_ft1.2' class="popup_window">
+    <div id='div_pt1.2' class="popup_window">
         <div style='text-align: right; color:red;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none' " >
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
            [x]</a>
         </div>
         <pre>
         
-ft1.2: '取证接口用例执行详情如下：'
+pt1.2: '取证接口用例执行详情如下：'
 '取证接口执行测试用例编号：[BQ_QZ_002]'
 '取证接口测试目的：请求成功-回调成功-证书生成成功'
 '取证接口用例描述：必传参数-全部正确传入(2)-更换用户信息'
@@ -342,67 +299,18 @@ ft1.2: '取证接口用例执行详情如下：'
 '取证接口预期回调状态值={"callbackFlag":true}'
 '******************************************************************************'
 ('请求参数={"partnerID": "201907200200058182", "partnerKey": '
- '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyName": '
- '"！@#～%#￥……%……&amp;%……×&amp;（（——）——+，。", "url": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366633883330162688", "applyName": "李明", '
+ '"url": '
  '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
  '"callbackUrl": "http://39.107.66.190:9992/v2/api/confirm/callback", "salt": '
- '"899c346365fe9155dbdc52a7b11732bbSJ2P5TW43R0ZLCR6V556"}')
+ '"028f70165febb46171985961f8cce00aSJ2P5TW43R0ZLCR6V556"}')
 '******************************************************************************'
 '取证接口响应返回数据共&lt;0&gt;条'
 ("取证接口响应结果={'msg': '请求成功', 'salt': "
- "'a8afb1ba4c19d7d4aba3af7777c6655dSJ2P5TW43R0ZLCR6V556', 'success': True, "
- "'resultCode': '0204000', 'evidenceNo': '28cd1a79ecbf82b154950b04d66bbea2'}")
-'取证接口响应耗时：0.10795140266418457'
-{
-    "_shards": {
-        "failed": 0,
-        "skipped": 0,
-        "successful": 5,
-        "total": 5
-    },
-    "hits": {
-        "hits": [
-            {
-                "_id": "371760975415881728",
-                "_index": "evidence",
-                "_score": 0.0,
-                "_source": {
-                    "applyName": "李明001",
-                    "callbackFlag": false,
-                    "callbackUrl": "http://39.107.66.190:9992/v2/api/confirm/callback",
-                    "createTime": null,
-                    "downloadUrl": null,
-                    "eCode": "N0000",
-                    "eMessage": "成功",
-                    "eSerialNo": "37de523ce45b984e0687ebd8011f5957",
-                    "eSign": "drjh1iDX+7ywzfHmJUlb6ziRIUyd1cPl8WUuT6rk+t6v6Uh3/yLI4uxpgWU6+e/2uA/NJYr42x6vgm5WlWPBDvs7I4R77RTNLcQENXudBFFINpsiXkXxvwSR0rbuQiPevQAyCrFgsBRGSafuMXZLlfdmhINIXWtnZDDSjGk1px0=",
-                    "id": 371760975415881728,
-                    "method": "grab",
-                    "partnerID": "201907200200055052",
-                    "partnerKey": "YLZ3XCEE4J21N0YHQNEW",
-                    "salt": "1ec11125c5e3a0eb4ea3bb31592e08ffYLZ3XCEE4J21N0YHQNEW",
-                    "serialNo": "366633883330162688",
-                    "updateTime": null,
-                    "url": "http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577"
-                },
-                "_type": "evidence"
-            }
-        ],
-        "max_score": 0.0,
-        "total": 1
-    },
-    "timed_out": false,
-    "took": 0
-}
-1
-'取证接口响应结果验证耗时：0.04851174354553223'
-数据库数据验证结果：数据库存储验证结果：不一致（接口请求参数请求值与数据库存储值不一致,具体不一致原因：请求参数&lt;partnerID=201907200200058182&gt;,数据库存储参数&lt;partnerID=None&gt;）
-Traceback (most recent call last):
-  File "/home/ma/PycharmProjects/Auto_InterFace_GUI/venv/lib/python3.6/site-packages/ddt.py", line 145, in wrapper
-    return func(self, *args, **kwargs)
-  File "/home/ma/PycharmProjects/Auto_InterFace_GUI/upload_case/case_test_common.py", line 138, in test_apply_http
-    self.assertTrue(is_pass,"测试用例执行未通过")
-AssertionError: False is not true : 测试用例执行未通过
+ "'d750f604457be8d4420d19fbded16a02SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '8fe87d28c38aadedcc58df835e30314d'}")
+'取证接口响应耗时：0.10759329795837402'
+'取证接口响应结果验证耗时：7.009506225585938e-05'
 
 
         </pre>
@@ -415,8 +323,8 @@ AssertionError: False is not true : 测试用例执行未通过
 <tr id='total_row'>
     <td>Total</td>
     <td>2</td>
-    <td>1</td>
-    <td>1</td>
+    <td>2</td>
+    <td>0</td>
     <td>0</td>
     <td>&nbsp;</td>
 </tr>
