@@ -142,16 +142,16 @@ class CommonParamDict:
         is_download = False
         try:
             file_stream = kwargs.get("file_stream","") #获取文件流
-            file_flag = kwargs.get("file_stream","") #获取文件标识，用于显示在文件名最前面，如serialNo码
+            file_flag = kwargs.get("file_flag","") #获取文件标识，用于显示在文件名最前面，如serialNo码
             file_type = kwargs.get("file_type","pdf") #获取文件后缀类型 如：jpg/pdf
             download_path = kwargs.get("download_path","../download/") #获取下载文件存入路径
             file_str = base64.b64decode(file_stream) #把文件流进行base64解码
             data_str =datetime.datetime.now().strftime('%Y%m%d') #将当前时间转为字符串
             #rand_str = ''.join(random.sample((string.ascii_letters + string.digits),5)) #5位随机数（数字+字母）
-            file_name = "{}_{}_{}.{}".format(file_flag,data_str,file_type) #生成文件名：文件标识+当前时间字符串+文件后缀
+            file_name = "{}_{}.{}".format(file_flag,data_str,file_type) #生成文件名：文件标识+当前时间字符串+文件后缀
             if not os.path.exists(download_path): #判断文件存储路径是否存在
                 os.makedirs(download_path) #如果不存在就在创建对应路径
-            file_name = download_path+"{}".format(file_name) #存储路径+文件全称
+            file_name = download_path+"/{}".format(file_name) #存储路径+文件全称
             file = open(file_name, "wb") #以二进制读的方式打开文件
             file.write(file_str)#写入文件流解码后的内容
             file.close() #关闭文件
@@ -227,7 +227,7 @@ class CommonParamDict:
 
 if __name__ == "__main__":
     cpd = CommonParamDict()
-    value_list = ["201907200200058182201907200200058182","SJ2P5TW43R0ZLCR6V556","086c9e0f81e7074a2947489f19750945"]
+    value_list = ["201907200200058182201907200200058182","SJ2P5TW43R0ZLCR6V556","c972c004b26fa31f4a9e829e4f6322f7"]
     #value_list = ["201907200200058182","SJ2P5TW43R0ZLCR6V556","366564097107701760","李明","http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&aid=11709685210548302577","http://39.107.66.190:9992/v2/api/confirm/callback"]
     key ="SJ2P5TW43R0ZLCR6V556"
     #key = "YLZ3XCEE4J21N0YHQNEW"

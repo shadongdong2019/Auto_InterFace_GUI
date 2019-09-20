@@ -9,7 +9,7 @@ from InterfaceTest.python_excel.utils.ElasticObj import ElasticObj
 from InterfaceTest.python_excel.utils.MongodbObj import MongodbObj
 from InterfaceTest.python_excel.utils.MysqlObj import MysqlObj
 from InterfaceTest.python_excel.utils.OracleObj import OracleObj
-
+from InterfaceTest.python_excel.get_data.common_param_dic import  CommonParamDict
 log = logging.getLogger(__file__)
 class CmpReqRes:
     '''
@@ -19,6 +19,7 @@ class CmpReqRes:
         self.kwargs = kwargs
         self.option_dict = self.kwargs.get("option_dict", {}) #获取配置文件字典
         self.inter_run = InterfaceRun()
+        self.cpd = CommonParamDict()
         database_type = self.kwargs.get("database_type")
         if str(database_type).lower() == "es":
             self.conne = ElasticObj(**self.kwargs)
@@ -39,10 +40,13 @@ class CmpReqRes:
         :return:True-代表测试通过，False-代表测试未通过
         '''
         # 是否需要验证数据库存入的数据
-        is_verify_database =self.kwargs.get("is_verify_database","False")
+        is_verify_database =self.kwargs.get("is_verify_database",False)
 
         # 是否需要验证回调状态数据
-        is_verify_callbackurl = self.kwargs.get("is_verify_callbackurl", "False")
+        is_verify_callbackurl = self.kwargs.get("is_verify_callbackurl", False)
+        # 是否需要验证下载文件
+        is_download_verify = self.kwargs.get("is_download_verify", {})
+        is_downlaod_v = is_download_verify.get("is_downlaod_v",False)
 
         expect = kwargs.get("expect",None)
         res = kwargs.get("res",None)
@@ -56,6 +60,7 @@ class CmpReqRes:
         database_verify_res["database_flag"] = False
         database_verify_res["callbackurl_flag"] = False
         expect_is_database = False  #定义一个变量记录预期结果如果是true，可以进行数据库验证，如要是false请求失败，不进行数据库验证
+        is_download = False
         try:
             if '"success":true' in expect and res.json().get("success") == True:
                 expect_is_database = True
@@ -71,6 +76,15 @@ class CmpReqRes:
                 if  (expect_is_database and is_verify_database) or  is_verify_callbackurl:
                     #验证数据库中的值是否正确
                     database_verify_res = self.verify_database(**verify_data)
+                if is_downlaod_v :
+                    downlaod_dict = {
+                        "file_stream":res.json().get("fileData"), # 获取文件流
+                        "file_flag":res.json().get("evidenceNo"),# 获取文件标识，用于显示在文件名最前面，如serialNo码
+                        "file_type":"pdf", # 获取文件后缀类型 如：jpg/pdf
+                        "download_path":self.kwargs.get("downlaod_path"),# 获取下载文件存入路径
+                    }
+                    is_download = self.cpd.decry(**downlaod_dict)
+
             expect_res_verify = self.expect_res_ispass(expect,res)
         except Exception as e:
             log.error("测试用例预期结果与实际结果对比方法出现异常，异常原因：{}".format(e))
@@ -124,6 +138,7 @@ class CmpReqRes:
                 if query_data_list:
                     for query_data in query_data_list:
                         if str(query_data[1]).lower() == 'req':
+                            database = jsonpath(req, )[0]
                             query_filed_dict[query_data[0]] = req.get(query_data[2])
                         else:
                             query_filed_dict[query_data[0]] = res.get(query_data[2])

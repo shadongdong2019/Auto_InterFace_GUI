@@ -76,7 +76,7 @@ class CaseRun(unittest.TestCase):
         '''
         pp = pprint.PrettyPrinter(indent=4)
 
-        #获取请求接口不传入参数列表
+        #获取请求不传入参数列表
         no_request_list = cpd.param.get_param_no_request_list()
         no_request_dict = {} #存放不参数请求的参数
         #深拷贝参数字典
@@ -102,19 +102,19 @@ class CaseRun(unittest.TestCase):
             res = ori_res.json()
         except Exception as e:
             res = ori_res.text
-        pp.pprint("{}接口用例执行详情如下：".format(option_dict.get("interface_name","")))
-        pp.pprint("{}接口执行测试用例编号：[{}]".format(option_dict.get("interface_name",""),no_request_dict["CaseID"]))
-        pp.pprint("{}接口测试目的：{}".format(option_dict.get("interface_name",""),no_request_dict["TestTarget"]))
-        pp.pprint("{}接口用例描述：{}".format(option_dict.get("interface_name",""),no_request_dict["CaseDesc"]))
-        pp.pprint("{}接口地址：{}".format(option_dict.get("interface_name",""),url))
-        pp.pprint("{}接口预期接口返回值={}".format(option_dict.get("interface_name",""),no_request_dict["ExpectValue"]))
-        pp.pprint("{}接口预期回调状态值={}".format(option_dict.get("interface_name",""),no_request_dict["ExpCallbackFlag"]))
+        pp.pprint("{}用例执行详情如下：".format(option_dict.get("interface_name","")))
+        pp.pprint("{}执行测试用例编号：[{}]".format(option_dict.get("interface_name",""),no_request_dict["CaseID"]))
+        pp.pprint("{}测试目的：{}".format(option_dict.get("interface_name",""),no_request_dict["TestTarget"]))
+        pp.pprint("{}用例描述：{}".format(option_dict.get("interface_name",""),no_request_dict["CaseDesc"]))
+        pp.pprint("{}地址：{}".format(option_dict.get("interface_name",""),url))
+        pp.pprint("{}预期返回值={}".format(option_dict.get("interface_name",""),no_request_dict["ExpectValue"]))
+        pp.pprint("{}预期回调状态值={}".format(option_dict.get("interface_name",""),no_request_dict["ExpCallbackFlag"]))
         pp.pprint("******************************************************************************")
         pp.pprint("请求参数={}".format(json.dumps(req_data_dict, ensure_ascii=False)))
         pp.pprint("******************************************************************************")
-        pp.pprint("{}接口响应返回数据共<{}>条".format(option_dict.get("interface_name",""),len(res.get("data",""))))
-        pp.pprint("{}接口响应结果={}".format(option_dict.get("interface_name",""),res))
-        pp.pprint("{}接口响应耗时：{}".format(option_dict.get("interface_name",""),hs))
+        pp.pprint("{}响应返回数据共<{}>条".format(option_dict.get("interface_name",""),len(res.get("data",""))))
+        pp.pprint("{}响应结果={}".format(option_dict.get("interface_name",""),res))
+        pp.pprint("{}响应耗时：{}".format(option_dict.get("interface_name",""),hs))
 
 
         kargs = {
@@ -131,7 +131,7 @@ class CaseRun(unittest.TestCase):
         verify_res = self.crr.verify_is_pass(**kargs)
         end =time.time()
         hs = end -start
-        pp.pprint("{}接口响应结果验证耗时：{}".format(option_dict.get("interface_name",""),hs))
+        pp.pprint("{}响应结果验证耗时：{}".format(option_dict.get("interface_name",""),hs))
 
         is_pass = self.cp.case_is_pass(**verify_res)
 
@@ -151,8 +151,8 @@ def main():
         os.makedirs(path)
     fp = open(report_path,'wb')
     suite = unittest.TestLoader().loadTestsFromTestCase(CaseRun)
-    title = '版权服务2.0生产环境接口测试报告（https）'
-    description = "{0}接口-主流程测试用例-主要验证所有参数合法参数{0}成功及必填参数非法数据{0}失败".format(option_dict.get("interface_name",""))
+    title = '{}-{}-{}测试报告（{}）'.format(option_dict.get("project_name"),option_dict.get("run_environment"),option_dict.get("interface_name"),option_dict.get("call_method"))
+    description = "{0}-测试用例-验证合法参数请求成功及非法参数请求失败".format(option_dict.get("interface_name",""))
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp,title=title,description=description,verbosity=2)
     runner.run(suite)
     return report_path
