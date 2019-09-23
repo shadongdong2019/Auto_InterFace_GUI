@@ -47,7 +47,7 @@ class CmpReqRes:
         # 是否需要验证下载文件
         is_download_verify = self.kwargs.get("is_download_verify", {})
         is_downlaod_v = is_download_verify.get("is_downlaod_v",False)
-
+        no_request_dict = kwargs.get("no_request_dict",{})
         expect = kwargs.get("expect",None)
         res = kwargs.get("res",None)
         req = kwargs.get("req",None)
@@ -78,6 +78,7 @@ class CmpReqRes:
                     database_verify_res = self.verify_database(**verify_data)
                 if is_downlaod_v :
                     downlaod_dict = {
+                        "CaseID": no_request_dict.get("CaseID"),  # 获取下载文件存入路径
                         "file_stream":res.json().get("fileData"), # 获取文件流
                         "file_flag":res.json().get("evidenceNo"),# 获取文件标识，用于显示在文件名最前面，如serialNo码
                         "file_type":"pdf", # 获取文件后缀类型 如：jpg/pdf

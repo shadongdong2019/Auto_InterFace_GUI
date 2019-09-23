@@ -20,6 +20,7 @@ import logging
 from InterfaceTest.python_excel.utils.operation_cfg import OperationCFG
 from InterfaceTest.python_excel.get_data.common_param_dic import CommonParamDict
 from InterfaceTest.python_excel.get_data.dependCase import DependCase
+from InterfaceTest.python_excel.utils.operation_excel import OperationExcel
 from InterfaceTest.python_excel.utils.operation_json import OperationJson
 
 mylog = logging.getLogger(__file__)
@@ -60,7 +61,7 @@ class CaseRun(unittest.TestCase):
     def setUp(self):
         self.interface_run = InterfaceRun()
         self.deal_res_data = DealResData()
-        #self.op_excel = OperationExcel(**option_dict)
+        self.op_excel = OperationExcel(**option_dict)
         self.method_req = "post"
         self.crr = CmpReqRes(**option_dict)
         self.cp = CaseIsPass(**option_dict)
@@ -98,6 +99,7 @@ class CaseRun(unittest.TestCase):
         ori_res = self.interface_run.main_request(self.method_req, url, req_data_dict)
         req_e_time = time.time()
         hs = req_e_time -req_s_time
+        row_num = self.op_excel.get_row_num_for_value(no_request_dict.get("CaseID"))
         try:
             res = ori_res.json()
         except Exception as e:
@@ -118,6 +120,7 @@ class CaseRun(unittest.TestCase):
 
 
         kargs = {
+                 "no_request_dict":no_request_dict,
                  "option_dict":option_dict,
                  "expect":no_request_dict["ExpectValue"],
                  "res":ori_res,
@@ -134,7 +137,11 @@ class CaseRun(unittest.TestCase):
         pp.pprint("{}响应结果验证耗时：{}".format(option_dict.get("interface_name",""),hs))
 
         is_pass = self.cp.case_is_pass(**verify_res)
-
+        try:
+            evidenceNo = res.get("evidenceNo")
+        except:
+            evidenceNo = ""
+        self.op_excel.writer_data(row_num, 15, evidenceNo)
         self.assertTrue(is_pass,"测试用例执行未通过")
 
 def main():

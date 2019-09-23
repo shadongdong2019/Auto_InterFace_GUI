@@ -1,0 +1,3291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>社区-生产环境-取证接口测试报告（http）</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>社区-生产环境-取证接口测试报告（http）</h1>
+<p class='attribute'><strong>Start Time:</strong> 2019-09-23 19:01:16</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:13.900653</p>
+<p class='attribute'><strong>Status:</strong> Pass 69</p>
+
+<p class='description'>取证接口-测试用例-验证合法参数请求成功及非法参数请求失败</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='passClass'>
+    <td>upload_case.case_test_common.CaseRun</td>
+    <td>69</td>
+    <td>69</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',69)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_01</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_001]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-全部正确传入(1)'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "373565041842335744", "applyName": '
+ '"李明001", "url": "https://cmsuiv3.aheading.com/Article/ArticleRead/3410959", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"41fb83f2f618150c9d5beb279f5e3847YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'a104aab7fc047b7552ec8754df31e28dYLZ3XCEE4J21N0YHQNEW', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'e12307bf4038d37b6dd4d660c15983f3'}")
+'取证接口响应耗时：0.18126487731933594'
+'取证接口响应结果验证耗时：4.0531158447265625e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_02</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        pass</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.2: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_002]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-全部正确传入(2)-更换用户信息'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "https://cmsuiv3.aheading.com/Article/ArticleRead/3411402", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"875a5bba7019cdd1af83ff97797d5e7aSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'53419afe6b7e0bc07384bc888de89abfSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '24b63eca58f3ec93811a884d16171512'}")
+'取证接口响应耗时：0.15197110176086426'
+'取证接口响应结果验证耗时：0.0001513957977294922'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_03</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        pass</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.3: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_003]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-全部正确传入(2)-更换用户信息'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": '
+ '"！@#～%#￥……%……&amp;%……×&amp;（（——）——+，。", "url": '
+ '"https://news.wisesz.cc/web/news/regular/320500/1145375?palau_header=0", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"17e1f01ecec064b1666fddc1bcd3e07fSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'53939a3eecd6037c473ad95f30108586SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '7c2fd24c54af4d3156337b9ac64c8a34'}")
+'取证接口响应耗时：0.12322735786437988'
+'取证接口响应结果验证耗时：0.00014352798461914062'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_04</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
+        pass</a>
+
+    <div id='div_pt1.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.4: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_004]'
+'取证接口测试目的：请求成功-回调失败'
+'取证接口用例描述：必传参数-callbackUrl为 null-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": " null", "salt": '
+ '"7ec3724dfc5beea73888c9f27cfbb7c3SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'358e1cc908fc36032da200ec65d21842SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '45d49e4d22e2483c8f081d5c2d77ef18'}")
+'取证接口响应耗时：0.1293635368347168'
+'取证接口响应结果验证耗时：4.982948303222656e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_05</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        pass</a>
+
+    <div id='div_pt1.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.5: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_005]'
+'取证接口测试目的：请求成功-回调失败'
+'取证接口用例描述：必传参数-callbackUrl为 true-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": " true", "salt": '
+ '"63aa6b94ce742d509846d045f1e477f4SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'34abc2450d8115d3d134144e08f782c5SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '81c0bca8b75b83752b3f83750463654f'}")
+'取证接口响应耗时：0.11299347877502441'
+'取证接口响应结果验证耗时：3.790855407714844e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_06</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.6')" >
+        pass</a>
+
+    <div id='div_pt1.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.6: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_006]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-applyName-64位数字-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": '
+ '"1101111978021712341101111978021711011119780217123411011119780217", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"c41ac60e1b7f4d8ab2f3cd656afebd6eSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'2a54d8e2b179d5c2d20cf2e1df243938SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '4c96b1e88ebc716fd403ef5f39d93dde'}")
+'取证接口响应耗时：0.11822915077209473'
+'取证接口响应结果验证耗时：0.00015211105346679688'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_07</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.7')" >
+        pass</a>
+
+    <div id='div_pt1.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.7: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_007]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-applyName-64位字符-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": '
+ '"ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"0f35a6495106a5e5aeaf2b48d634d42bSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'7d81027c897a7bda0e3e824672ec5176SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'fa6c51b9fd3cce35d777aa7c3d403730'}")
+'取证接口响应耗时：0.11723160743713379'
+'取证接口响应结果验证耗时：0.0001404285430908203'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_08</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.8')" >
+        pass</a>
+
+    <div id='div_pt1.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.8: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_008]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-applyName-64位汉字-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": '
+ '"李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"4aa84db44e8459fcf602923e913e4fcaSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'405fef163a625887b0e8d8268b92d485SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'a67a94950a76995bf9a0799d00394349'}")
+'取证接口响应耗时：0.12044405937194824'
+'取证接口响应结果验证耗时：0.00014543533325195312'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_09</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.9')" >
+        pass</a>
+
+    <div id='div_pt1.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.9: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_009]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-url-256位-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm&amp;s=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"90e4728f74898c9ed8ad3e9092cbcfd7SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'dd087a612b06696c0526bebf925d6172SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'afb66b22b6c9a62f5ab428d8bf862d50'}")
+'取证接口响应耗时：0.1453390121459961'
+'取证接口响应结果验证耗时：3.528594970703125e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_10</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.10')" >
+        pass</a>
+
+    <div id='div_pt1.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.10: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_010]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-callbackUrl-256个字符-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback?id=12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf123", '
+ '"salt": "cb155d560f77cb94711f62fe3949d6eeSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'b05f3aded9d0cf0e5a2eae95656bc7b8SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '3deb840a7cbd61a32a3ab4597962366a'}")
+'取证接口响应耗时：0.11866307258605957'
+'取证接口响应结果验证耗时：0.00017547607421875'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_11</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.11')" >
+        pass</a>
+
+    <div id='div_pt1.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.11: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_011]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-url错误无法打开-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my398.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback?id=12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf123", '
+ '"salt": "18bda96d47a1a58f7dd824778d272333SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'10b27c73e7ebcdd36bb290f0eb0c6627SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'ea25efaba195cc12f2434e1ec6445bfd'}")
+'取证接口响应耗时：0.11473560333251953'
+'取证接口响应结果验证耗时：0.00015425682067871094'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_12</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.12')" >
+        pass</a>
+
+    <div id='div_pt1.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.12: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_012]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID/partnerKey正确，但不是同一个账户的信息-其它参数正确传入(1)'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"a112d33d61fcc34ff9fc49fca8d6df72YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.06339311599731445'
+'取证接口响应结果验证耗时：0.00010824203491210938'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_13</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.13')" >
+        pass</a>
+
+    <div id='div_pt1.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.13: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_013]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID/partnerKey正确，但不是同一个账户的信息-其它参数正确传入(2)'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"3ba4efd4ef1d859fbf5f09cfd01819e4SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.06290411949157715'
+'取证接口响应结果验证耗时：2.47955322265625e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_14</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.14')" >
+        pass</a>
+
+    <div id='div_pt1.14' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.14: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_014]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID错误首位加0-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "0201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"62173e294f11fe56dec6543f417af943SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.06608939170837402'
+'取证接口响应结果验证耗时：0.00018072128295898438'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_15</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.15')" >
+        pass</a>
+
+    <div id='div_pt1.15' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.15: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_015]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID错误末位加0-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "2019072002000581820", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"5628e6905b8b3c4581f246413ef3ec1eSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.059659719467163086'
+'取证接口响应结果验证耗时：2.5987625122070312e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_16</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.16')" >
+        pass</a>
+
+    <div id='div_pt1.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.16: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_016]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID错误-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "2019072002000581821", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"2099568e5ca419042b348cd459e77ddbSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.06567621231079102'
+'取证接口响应结果验证耗时：9.369850158691406e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_17</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.17')" >
+        pass</a>
+
+    <div id='div_pt1.17' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.17').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.17: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_017]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey错误首位加0-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"0SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": '
+ '"李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"5628e6905b8b3c4581f246413ef3ec1e0SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001b0SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.06452178955078125'
+'取证接口响应结果验证耗时：4.482269287109375e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_18</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.18')" >
+        pass</a>
+
+    <div id='div_pt1.18' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.18: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_018]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey错误末位加0-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V5560", "serialNo": "373565078622187520", "applyName": '
+ '"李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"6c4c3e257cd20d337574430e65bcfba2SJ2P5TW43R0ZLCR6V5560"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V5560', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.06527471542358398'
+'取证接口响应结果验证耗时：4.9591064453125e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.19' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_19</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.19')" >
+        pass</a>
+
+    <div id='div_pt1.19' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.19').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.19: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_019]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey错误-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556s", "serialNo": "373565078622187520", "applyName": '
+ '"李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"6be09f3fec53c048aeea86da466801e5SJ2P5TW43R0ZLCR6V556s"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556s', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.05987286567687988'
+'取证接口响应结果验证耗时：3.7670135498046875e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.20' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_20</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.20')" >
+        pass</a>
+
+    <div id='div_pt1.20' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.20: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_020]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-serialNo错误-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701761", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"9ff85d28a7a0267ecb7323eb9435c8daSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'7bea9077877406eec7dee511e47eac02SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '5517dbd4cbb9b8946414dc815ba67e93'}")
+'取证接口响应耗时：0.1142120361328125'
+'取证接口响应结果验证耗时：0.00014352798461914062'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.21' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_21</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.21')" >
+        pass</a>
+
+    <div id='div_pt1.21' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.21').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.21: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_021]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-partnerID/partnerKey正确-serialNo正确-但serialNo不是partnerID申请的证书-其它参数正确传入(1)'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366583757303721984", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"9580602c935c749080d9678956f46422SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'50c93401d0a45dbb14614cc618bd5bf6SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '919cc88b39dcf942bbf19d5cdffb8410'}")
+'取证接口响应耗时：0.11449623107910156'
+'取证接口响应结果验证耗时：0.00014781951904296875'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.22' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_22</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.22')" >
+        pass</a>
+
+    <div id='div_pt1.22' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.22').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.22: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_022]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-partnerID/partnerKey正确-serialNo正确-但serialNo不是partnerID申请的证书-其它参数正确传入(2)'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"4bd0bc209dee326a85ec27f434934a8fYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'df854004512accfd6cc35835a741d6a7YLZ3XCEE4J21N0YHQNEW', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'f369d241ca9a994a70bb0fe768804a9e'}")
+'取证接口响应耗时：0.1182403564453125'
+'取证接口响应结果验证耗时：0.0001354217529296875'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.23' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_23</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.23')" >
+        pass</a>
+
+    <div id='div_pt1.23' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.23').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.23: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_023]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-url错误-基它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "373565041842335744", "applyName": "李明", '
+ '"url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=1170968521054830257", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"df8f57c67463d910ac312de1f847c342YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'98ae39da9f0663e450f924775cf02360YLZ3XCEE4J21N0YHQNEW', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'c8474b9b168a7e39fe629311852bded3'}")
+'取证接口响应耗时：0.11141777038574219'
+'取证接口响应结果验证耗时：4.792213439941406e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.24' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_24</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.24')" >
+        pass</a>
+
+    <div id='div_pt1.24' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.24').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.24: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_024]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "373565041842335744", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"s557cf73cd912c7d6adf2dc037117eccSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06401777267456055'
+'取证接口响应结果验证耗时：4.458427429199219e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.25' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_25</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.25')" >
+        pass</a>
+
+    <div id='div_pt1.25' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.25').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.25: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_025]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-首位加0-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "373565041842335744", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"079e58cb637a9554e42e81835e5972b9fYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.061333656311035156'
+'取证接口响应结果验证耗时：2.574920654296875e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.26' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_26</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.26')" >
+        pass</a>
+
+    <div id='div_pt1.26' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.26').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.26: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_026]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-末位加0-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "373565041842335744", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"79e58cb637a9554e42e81835e5972b9fYLZ3XCEE4J21N0YHQNEW0"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.05719733238220215'
+'取证接口响应结果验证耗时：2.5987625122070312e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.27' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_27</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.27')" >
+        pass</a>
+
+    <div id='div_pt1.27' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.27').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.27: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_027]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-52位字符-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "373565041842335744", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"0000000000000000000000000000000000000000000000000000"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.062499046325683594'
+'取证接口响应结果验证耗时：5.412101745605469e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.28' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_28</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.28')" >
+        pass</a>
+
+    <div id='div_pt1.28' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.28').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.28: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_028]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo长度为17位-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"serialNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "36656409710770176", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"a888c27305f6f70a76aa6bdef22a492bSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不合法', 'salt': "
+ "'58fd78ac41fe80817f18dc2c466323c2SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06361913681030273'
+'取证接口响应结果验证耗时：0.0003895759582519531'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.29' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_29</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.29')" >
+        pass</a>
+
+    <div id='div_pt1.29' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.29').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.29: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_029]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo长度为19位-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"serialNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "3735650786221875201", "applyName": '
+ '"李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"bee94c4d3dba201ab658a2768938b311SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不合法', 'salt': "
+ "'58fd78ac41fe80817f18dc2c466323c2SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.05933046340942383'
+'取证接口响应结果验证耗时：2.4557113647460938e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.30' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_30</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.30')" >
+        pass</a>
+
+    <div id='div_pt1.30' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.30').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.30: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_030]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyName长度65个字符-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"applyName参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": '
+ '"李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"cc13eae8337fe0417b9b71634ec2a132SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyName参数不合法', 'salt': "
+ "'7e7864f69f492846dbeb7919b97a7ddaSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06403708457946777'
+'取证接口响应结果验证耗时：2.8371810913085938e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.31' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_31</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.31')" >
+        pass</a>
+
+    <div id='div_pt1.31' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.31').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.31: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_031]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-url不传长度257个字符-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"url参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm&amp;s=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"50cda8e864f9e7354dc9e1d726d96cacSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'url参数不合法', 'salt': "
+ "'0a8cf2601e0428e36fdb98362d43d840SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06193137168884277'
+'取证接口响应结果验证耗时：3.075599670410156e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.32' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_32</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.32')" >
+        pass</a>
+
+    <div id='div_pt1.32' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.32').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.32: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_032]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-callbackUrl长度为257个字符-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"callbackUrl参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback?id=12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf1231", '
+ '"salt": "f8a1828f28d1ff3cabaf0f6fdd0523feSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'callbackUrl参数不合法', 'salt': "
+ "'6a6c6216b41f55c687d6e9ab112e4bc4SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06216859817504883'
+'取证接口响应结果验证耗时：0.00010132789611816406'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.33' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_33</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.33')" >
+        pass</a>
+
+    <div id='div_pt1.33' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.33').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.33: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_033]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-51个字符-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"557cf73cd912c7d6adf2dc037117eccSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.0633397102355957'
+'取证接口响应结果验证耗时：7.462501525878906e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.34' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_34</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.34')" >
+        pass</a>
+
+    <div id='div_pt1.34' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.34').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.34: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_034]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-51个字符-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"6557cf73cd912c7d6adf2dc037117eccSJ2P5TW43R0ZLCR6V55"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.061730146408081055'
+'取证接口响应结果验证耗时：2.4080276489257812e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.35' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_35</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.35')" >
+        pass</a>
+
+    <div id='div_pt1.35' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.35').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.35: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_035]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-53个字符首字符加s-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"s6557cf73cd912c7d6adf2dc037117eccSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06114006042480469'
+'取证接口响应结果验证耗时：3.504753112792969e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.36' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_36</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.36')" >
+        pass</a>
+
+    <div id='div_pt1.36' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.36').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.36: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_036]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-53个字符尾字符加s-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"6557cf73cd912c7d6adf2dc037117eccSJ2P5TW43R0ZLCR6V556s"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06101059913635254'
+'取证接口响应结果验证耗时：0.00010085105895996094'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.37' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_37</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.37')" >
+        pass</a>
+
+    <div id='div_pt1.37' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.37').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.37: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_037]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID不传-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerKey": "SJ2P5TW43R0ZLCR6V556", "serialNo": '
+ '"373565078622187520", "applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"478639651a27e1cad7f31574ffccf4afSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06456160545349121'
+'取证接口响应结果验证耗时：0.00010275840759277344'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.38' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_38</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.38')" >
+        pass</a>
+
+    <div id='div_pt1.38' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.38').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.38: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_038]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey不传-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"partnerKey参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "serialNo": "373565078622187520", '
+ '"applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"0991f5158db6009982307b6c3dffcec3"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'partnerKey参数不完全', 'salt': "
+ "'02b68f8e522b0494cd8ccf3fb35697c8null', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证接口响应耗时：0.06161975860595703'
+'取证接口响应结果验证耗时：2.9325485229492188e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.39' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_39</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.39')" >
+        pass</a>
+
+    <div id='div_pt1.39' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.39').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.39: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_039]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo不传-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"serialNo参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"3be9334a13fb12bade8c22eca4733d47SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不完全', 'salt': "
+ "'c5a4b0d3d63cfd6b6d62067670aa60c1SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06175994873046875'
+'取证接口响应结果验证耗时：2.5272369384765625e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.40' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_40</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.40')" >
+        pass</a>
+
+    <div id='div_pt1.40' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.40').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.40: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_040]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyName不传-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"applyName参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"597b23d842d6ddf74519a66e3d6ed387SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyName参数不完全', 'salt': "
+ "'599c4a9a89e675aac04a4f92ad30f48eSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06020021438598633'
+'取证接口响应结果验证耗时：0.00010466575622558594'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.41' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_41</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.41')" >
+        pass</a>
+
+    <div id='div_pt1.41' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.41').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.41: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_041]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-url不传-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"url参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"5debcb5c8659428e7c83d5fa1815f3f8SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'url参数不完全', 'salt': "
+ "'f3776b5322f668ab79302eb594708753SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.061797380447387695'
+'取证接口响应结果验证耗时：3.123283386230469e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.42' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_42</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.42')" >
+        pass</a>
+
+    <div id='div_pt1.42' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.42').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.42: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_042]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-callbackUrl不传-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"callbackUrl参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"salt": "153d56528e84ceaa1ac59c363927fbefSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'callbackUrl参数不完全', 'salt': "
+ "'0bcb723eb9d34c84fd85c6fbee8b4508SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06278252601623535'
+'取证接口响应结果验证耗时：3.2901763916015625e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.43' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_43</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.43')" >
+        pass</a>
+
+    <div id='div_pt1.43' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.43').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.43: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_043]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt不传-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"salt参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不完全', 'salt': "
+ "'01b2e5b758a080fce9b8ee45c3a05ceeSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.061748504638671875'
+'取证接口响应结果验证耗时：0.00010156631469726562'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.44' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_44</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.44')" >
+        pass</a>
+
+    <div id='div_pt1.44' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.44').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.44: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_044]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID为空-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerKey": "SJ2P5TW43R0ZLCR6V556", "serialNo": '
+ '"373565078622187520", "applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"p"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06535649299621582'
+'取证接口响应结果验证耗时：2.6464462280273438e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.45' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_45</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.45')" >
+        pass</a>
+
+    <div id='div_pt1.45' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.45').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.45: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_045]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey为空-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"partnerKey参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "serialNo": "373565078622187520", '
+ '"applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"0991f5158db6009982307b6c3dffcec3"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'partnerKey参数不完全', 'salt': "
+ "'02b68f8e522b0494cd8ccf3fb35697c8null', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证接口响应耗时：0.06003618240356445'
+'取证接口响应结果验证耗时：2.47955322265625e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.46' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_46</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.46')" >
+        pass</a>
+
+    <div id='div_pt1.46' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.46').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.46: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_046]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo为空-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"serialNo参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"3be9334a13fb12bade8c22eca4733d47SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不完全', 'salt': "
+ "'c5a4b0d3d63cfd6b6d62067670aa60c1SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.061524391174316406'
+'取证接口响应结果验证耗时：3.528594970703125e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.47' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_47</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.47')" >
+        pass</a>
+
+    <div id='div_pt1.47' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.47').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.47: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_047]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyName为空-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"applyName参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"597b23d842d6ddf74519a66e3d6ed387SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyName参数不完全', 'salt': "
+ "'599c4a9a89e675aac04a4f92ad30f48eSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06360697746276855'
+'取证接口响应结果验证耗时：0.0001220703125'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.48' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_48</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.48')" >
+        pass</a>
+
+    <div id='div_pt1.48' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.48').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.48: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_048]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-url为空-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"url参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"5debcb5c8659428e7c83d5fa1815f3f8SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'url参数不完全', 'salt': "
+ "'f3776b5322f668ab79302eb594708753SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06217241287231445'
+'取证接口响应结果验证耗时：9.465217590332031e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.49' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_49</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.49')" >
+        pass</a>
+
+    <div id='div_pt1.49' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.49').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.49: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_049]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-callbackUrl为空-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"callbackUrl参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"salt": "153d56528e84ceaa1ac59c363927fbefSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'callbackUrl参数不完全', 'salt': "
+ "'0bcb723eb9d34c84fd85c6fbee8b4508SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06017136573791504'
+'取证接口响应结果验证耗时：4.220008850097656e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.50' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_50</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.50')" >
+        pass</a>
+
+    <div id='div_pt1.50' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.50').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.50: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_050]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt为空-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"salt参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不完全', 'salt': "
+ "'01b2e5b758a080fce9b8ee45c3a05ceeSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.0648946762084961'
+'取证接口响应结果验证耗时：4.76837158203125e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.51' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_51</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.51')" >
+        pass</a>
+
+    <div id='div_pt1.51' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.51').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.51: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_051]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID为空格-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": " ", "partnerKey": "SJ2P5TW43R0ZLCR6V556", "serialNo": '
+ '"373565078622187520", "applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"1aa4c4dd71c59d3025d88c44ae9db8f4SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06009840965270996'
+'取证接口响应结果验证耗时：2.7894973754882812e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.52' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_52</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.52')" >
+        pass</a>
+
+    <div id='div_pt1.52' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.52').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.52: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_052]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey为空格-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"partnerKey参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": " ", "serialNo": '
+ '"373565078622187520", "applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"ede982299a410a5eee17a415146cc031 "}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'partnerKey参数不完全', 'salt': "
+ "'02b68f8e522b0494cd8ccf3fb35697c8 ', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证接口响应耗时：0.06403064727783203'
+'取证接口响应结果验证耗时：3.933906555175781e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.53' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_53</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.53')" >
+        pass</a>
+
+    <div id='div_pt1.53' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.53').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.53: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_053]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo为空格-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"serialNo参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": " ", "applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"0e7fdf5837599d1336593d33a622a791SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不完全', 'salt': "
+ "'c5a4b0d3d63cfd6b6d62067670aa60c1SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06128883361816406'
+'取证接口响应结果验证耗时：3.814697265625e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.54' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_54</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.54')" >
+        pass</a>
+
+    <div id='div_pt1.54' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.54').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.54: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_054]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyName为空格-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"applyName参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": " ", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"22cdb7046a87c1fdb8614e10b5c6ba50SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyName参数不完全', 'salt': "
+ "'599c4a9a89e675aac04a4f92ad30f48eSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06293106079101562'
+'取证接口响应结果验证耗时：2.8133392333984375e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.55' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_55</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.55')" >
+        pass</a>
+
+    <div id='div_pt1.55' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.55').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.55: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_055]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-url为空格-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"url参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": " ", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"9e340b433cc83aa9e19235aedbe85a44SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'url参数不完全', 'salt': "
+ "'f3776b5322f668ab79302eb594708753SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.05906081199645996'
+'取证接口响应结果验证耗时：2.6226043701171875e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.56' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_56</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.56')" >
+        pass</a>
+
+    <div id='div_pt1.56' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.56').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.56: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_056]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-callbackUrl为空格-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"callbackUrl参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": " ", "salt": '
+ '"233e2772f770e438aec8cf85136b995aSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'callbackUrl参数不完全', 'salt': "
+ "'0bcb723eb9d34c84fd85c6fbee8b4508SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06062197685241699'
+'取证接口响应结果验证耗时：2.574920654296875e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.57' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_57</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.57')" >
+        pass</a>
+
+    <div id='div_pt1.57' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.57').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.57: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_057]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt为空格-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"salt参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '" "}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不完全', 'salt': "
+ "'01b2e5b758a080fce9b8ee45c3a05ceeSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06365394592285156'
+'取证接口响应结果验证耗时：6.866455078125e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.58' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_58</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.58')" >
+        pass</a>
+
+    <div id='div_pt1.58' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.58').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.58: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_058]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID为 true-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": " true", "partnerKey": "SJ2P5TW43R0ZLCR6V556", '
+ '"serialNo": "373565078622187520", "applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"f5d78315674f69937d7360ad5f99f4e6SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.0602264404296875'
+'取证接口响应结果验证耗时：0.00010085105895996094'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.59' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_59</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.59')" >
+        pass</a>
+
+    <div id='div_pt1.59' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.59').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.59: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_059]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey为 true-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": " true", "serialNo": '
+ '"373565078622187520", "applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"27362c339022c18bd3be5ae210c0a9ed true"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': '09627fbb569d7ba3ee6a7d5a0514001b "
+ "true', 'success': False, 'resultCode': '0203001'}")
+'取证接口响应耗时：0.07089734077453613'
+'取证接口响应结果验证耗时：3.933906555175781e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.60' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_60</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.60')" >
+        pass</a>
+
+    <div id='div_pt1.60' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.60').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.60: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_060]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo为 true-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"serialNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": " true", "applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"d08c381ad48ef73b07b40f180988558cSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不合法', 'salt': "
+ "'58fd78ac41fe80817f18dc2c466323c2SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06651139259338379'
+'取证接口响应结果验证耗时：4.315376281738281e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.61' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_61</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.61')" >
+        pass</a>
+
+    <div id='div_pt1.61' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.61').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.61: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_061]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-applyname为 true-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": " '
+ 'true", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"7fe802743892c9d4f11a5379c054a2c2SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'d25c8f7d0070568d253694c2ef839a3eSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '261f23be5abfca8fc3010af9ce858f91'}")
+'取证接口响应耗时：0.13715147972106934'
+'取证接口响应结果验证耗时：3.7670135498046875e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.62' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_62</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.62')" >
+        pass</a>
+
+    <div id='div_pt1.62' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.62').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.62: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_062]'
+'取证接口测试目的：请求成功-回调成功-z抓取失败'
+'取证接口用例描述：必传参数-url为 true-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": " true", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"d34cbda818151f073adb062181473bd3SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'8e744f423b4c50a0ff4bd3a6d4c0eae1SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'adc1cd8506b76c545d8b7bdbe3c306ba'}")
+'取证接口响应耗时：0.1167442798614502'
+'取证接口响应结果验证耗时：0.00014853477478027344'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.63' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_63</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.63')" >
+        pass</a>
+
+    <div id='div_pt1.63' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.63').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.63: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_063]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt为 true-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '" true"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06909966468811035'
+'取证接口响应结果验证耗时：2.5272369384765625e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.64' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_64</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.64')" >
+        pass</a>
+
+    <div id='div_pt1.64' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.64').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.64: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_064]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID为 null-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": " null", "partnerKey": "SJ2P5TW43R0ZLCR6V556", '
+ '"serialNo": "373565078622187520", "applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"1f54bcb0e8d2f3529d043a294eec0ea7SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.06944632530212402'
+'取证接口响应结果验证耗时：6.151199340820312e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.65' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_65</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.65')" >
+        pass</a>
+
+    <div id='div_pt1.65' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.65').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.65: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_065]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey为 null-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": " null", "serialNo": '
+ '"373565078622187520", "applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"e871c70e9153cc5c4112478a12c0f3d8 null"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': '09627fbb569d7ba3ee6a7d5a0514001b "
+ "null', 'success': False, 'resultCode': '0203001'}")
+'取证接口响应耗时：0.06245827674865723'
+'取证接口响应结果验证耗时：5.221366882324219e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.66' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_66</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.66')" >
+        pass</a>
+
+    <div id='div_pt1.66' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.66').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.66: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_066]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo为 null-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"serialNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": " null", "applyName": "李明", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"55964716f1cd23393635bf94b85a1df7SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不合法', 'salt': "
+ "'58fd78ac41fe80817f18dc2c466323c2SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.057526350021362305'
+'取证接口响应结果验证耗时：2.4557113647460938e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.67' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_67</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.67')" >
+        pass</a>
+
+    <div id='div_pt1.67' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.67').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.67: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_067]'
+'取证接口测试目的：请求成功-回调成功-证据待确认'
+'取证接口用例描述：必传参数-applyName为 null-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": " '
+ 'null", "url": '
+ '"http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"68fa787ea57b5b5dc3aa2b218a5b7d28SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'030d9052d950dd9bd92eab41f4b9862cSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'cf735b68a8ecd3c39dbaabf0f8c83908'}")
+'取证接口响应耗时：0.11551713943481445'
+'取证接口响应结果验证耗时：9.679794311523438e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.68' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_68</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.68')" >
+        pass</a>
+
+    <div id='div_pt1.68' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.68').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.68: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_068]'
+'取证接口测试目的：请求成功-回调成功-抓取失败'
+'取证接口用例描述：必传参数-url为 null-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": " null", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"67abf833b9e2591e1f1e0838400fb8e1SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'8ceb0bdc4a98c848f3563beeafecc817SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '5abf9d9421c95914e4d8474466b6fc65'}")
+'取证接口响应耗时：0.12079739570617676'
+'取证接口响应结果验证耗时：0.0001685619354248047'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.69' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_69</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.69')" >
+        pass</a>
+
+    <div id='div_pt1.69' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.69').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.69: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_069]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt为 null-其它参数正确传入'
+'取证接口地址：http://ipps.tsa.cn/v2/api/evidence/opusEvidence'
+'取证接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "373565078622187520", "applyName": "李明", '
+ '"url": "http://news.my399.com/yw/content/2019-01/02/content_2351358.htm", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '" null"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.062323808670043945'
+'取证接口响应结果验证耗时：9.560585021972656e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>69</td>
+    <td>69</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>
