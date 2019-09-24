@@ -1,0 +1,3419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>社区-生产环境-取证确权接口测试报告（https）</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>社区-生产环境-取证确权接口测试报告（https）</h1>
+<p class='attribute'><strong>Start Time:</strong> 2019-09-24 17:24:10</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:13.401863</p>
+<p class='attribute'><strong>Status:</strong> Pass 72</p>
+
+<p class='description'>取证确权接口-测试用例-验证合法参数请求成功及非法参数请求失败</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='passClass'>
+    <td>upload_case.case_test_common.CaseRun</td>
+    <td>72</td>
+    <td>72</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',72)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_01</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_001]'
+'取证确权接口测试目的：请求成功'
+'取证确权接口用例描述：必传参数-全部正确传入(1)'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"success":true,"resultCode":"0204000","evidenceNo":"cce0da06b801498b91faf66726ad590f"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "53cedf58ce365f28147ef17246455cfeYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '请求成功', 'salt': "
+ "'4868218cbeb1d444d6a167dad54c42f5YLZ3XCEE4J21N0YHQNEW', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'cce0da06b801498b91faf66726ad590f'}")
+'取证确权接口响应耗时：0.252413272857666'
+{
+    "_shards": {
+        "failed": 0,
+        "skipped": 0,
+        "successful": 5,
+        "total": 5
+    },
+    "hits": {
+        "hits": [
+            {
+                "_id": "373923704696221696",
+                "_index": "evidence",
+                "_score": 0.0,
+                "_source": {
+                    "applyName": "李明001",
+                    "callbackFlag": true,
+                    "callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback",
+                    "createTime": 1569316823997,
+                    "downloadUrl": null,
+                    "eCode": "N0000",
+                    "eMessage": "确认成功",
+                    "eSerialNo": "cce0da06b801498b91faf66726ad590f",
+                    "eSign": "URkLJr22YQ5YP8R9MsvRWX9/HKrpMbqyU7+7M7RquWYy+vm/bv+JbnkSUiStKtpsfrXxfReyjtCGP2eYEhREZozHf5dPafONdaL55/37nGcJZFI5oHFFjxE1kuuSG3SBVgvr1ipnvnsjn9flHHJtqBPtAyt1iEsuf/EBSVfKs5k=",
+                    "id": 373923704696221696,
+                    "method": "confirm",
+                    "partnerID": "201907200200055052",
+                    "partnerKey": "YLZ3XCEE4J21N0YHQNEW",
+                    "salt": "53cedf58ce365f28147ef17246455cfeYLZ3XCEE4J21N0YHQNEW",
+                    "serialNo": "373565041842335744",
+                    "updateTime": 1569317050505,
+                    "url": "https://cmsuiv3.aheading.com/Article/ArticleRead/3410959"
+                },
+                "_type": "evidence"
+            }
+        ],
+        "max_score": 0.0,
+        "total": 1
+    },
+    "timed_out": false,
+    "took": 0
+}
+1
+'取证确权接口响应结果验证耗时：0.06375670433044434'
+数据库数据验证结果：数据库存储验证结果：一致（接口请求参数请求值与数据库存储值一致）
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_02</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        pass</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.2: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_002]'
+'取证确权接口测试目的：请求成功'
+'取证确权接口用例描述：必传参数-全部正确传入(2)'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"success":true,"resultCode":"0204000","evidenceNo":"918d887f5eacd2277b69ce4d8cefcfaf"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "evidenceNo": "918d887f5eacd2277b69ce4d8cefcfaf", '
+ '"salt": "957b1bbb5fa6e39becc7fb16eca6260eSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '请求成功', 'salt': "
+ "'dbfb67c2e3218eef2f66f290bac909e8SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '918d887f5eacd2277b69ce4d8cefcfaf'}")
+'取证确权接口响应耗时：0.18872880935668945'
+{
+    "_shards": {
+        "failed": 0,
+        "skipped": 0,
+        "successful": 5,
+        "total": 5
+    },
+    "hits": {
+        "hits": [
+            {
+                "_id": "373923705484750848",
+                "_index": "evidence",
+                "_score": 0.0,
+                "_source": {
+                    "applyName": "李明",
+                    "callbackFlag": true,
+                    "callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback",
+                    "createTime": 1569316824185,
+                    "downloadUrl": null,
+                    "eCode": "N0000",
+                    "eMessage": "确认成功",
+                    "eSerialNo": "918d887f5eacd2277b69ce4d8cefcfaf",
+                    "eSign": "URkLJr22YQ5YP8R9MsvRWX9/HKrpMbqyU7+7M7RquWYy+vm/bv+JbnkSUiStKtpsfrXxfReyjtCGP2eYEhREZozHf5dPafONdaL55/37nGcJZFI5oHFFjxE1kuuSG3SBVgvr1ipnvnsjn9flHHJtqBPtAyt1iEsuf/EBSVfKs5k=",
+                    "id": 373923705484750848,
+                    "method": "confirm",
+                    "partnerID": "201907200200058182",
+                    "partnerKey": "SJ2P5TW43R0ZLCR6V556",
+                    "salt": "957b1bbb5fa6e39becc7fb16eca6260eSJ2P5TW43R0ZLCR6V556",
+                    "serialNo": "373565078622187520",
+                    "updateTime": 1569317050795,
+                    "url": "https://cmsuiv3.aheading.com/Article/ArticleRead/3411402"
+                },
+                "_type": "evidence"
+            }
+        ],
+        "max_score": 0.0,
+        "total": 1
+    },
+    "timed_out": false,
+    "took": 0
+}
+1
+'取证确权接口响应结果验证耗时：0.06302928924560547'
+数据库数据验证结果：数据库存储验证结果：一致（接口请求参数请求值与数据库存储值一致）
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_03</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        pass</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.3: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_003]'
+'取证确权接口测试目的：请求失败，证据已确认'
+'取证确权接口用例描述：必传参数-全部正确传入且已确认成功'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"success":false,"resultCode":"0207001","msg":"请求失败，证据已确认。"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "53cedf58ce365f28147ef17246455cfeYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '请求失败，证据已确认。', 'salt': "
+ "'6d30c9b3c6ed19b48321f3c6ebd85fdfYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0207001'}")
+'取证确权接口响应耗时：0.1358039379119873'
+'取证确权接口响应结果验证耗时：0.00010991096496582031'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_04</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
+        pass</a>
+
+    <div id='div_pt1.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.4: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_004]'
+'取证确权接口测试目的：请求失败，证据已确认'
+'取证确权接口用例描述：必传参数-全部正确传入且已确认成功'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"success":false,"resultCode":"0207001","msg":"请求失败，证据已确认。"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "evidenceNo": "918d887f5eacd2277b69ce4d8cefcfaf", '
+ '"salt": "957b1bbb5fa6e39becc7fb16eca6260eSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '请求失败，证据已确认。', 'salt': "
+ "'6d30c9b3c6ed19b48321f3c6ebd85fdfSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0207001'}")
+'取证确权接口响应耗时：0.13350796699523926'
+'取证确权接口响应结果验证耗时：9.72747802734375e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_05</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        pass</a>
+
+    <div id='div_pt1.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.5: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_005]'
+'取证确权接口测试目的：请求成功'
+'取证确权接口用例描述：确认的取证地址无法打开'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"success":true,"resultCode":"0204000","evidenceNo":"a1ddaede03e1b028520550597b4ec1a9"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "evidenceNo": "a1ddaede03e1b028520550597b4ec1a9", '
+ '"salt": "0d822c7250cefa12e63e01561fe39f37SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '请求成功', 'salt': "
+ "'d164b0d1beb382ec5f3a236cf7451af6SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'a1ddaede03e1b028520550597b4ec1a9'}")
+'取证确权接口响应耗时：0.17516684532165527'
+{
+    "_shards": {
+        "failed": 0,
+        "skipped": 0,
+        "successful": 5,
+        "total": 5
+    },
+    "hits": {
+        "hits": [
+            {
+                "_id": "373923711772012544",
+                "_index": "evidence",
+                "_score": 0.0,
+                "_source": {
+                    "applyName": "李明",
+                    "callbackFlag": true,
+                    "callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback?id=12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf123",
+                    "createTime": 1569316825684,
+                    "downloadUrl": null,
+                    "eCode": "N0000",
+                    "eMessage": "确认成功",
+                    "eSerialNo": "a1ddaede03e1b028520550597b4ec1a9",
+                    "eSign": "URkLJr22YQ5YP8R9MsvRWX9/HKrpMbqyU7+7M7RquWYy+vm/bv+JbnkSUiStKtpsfrXxfReyjtCGP2eYEhREZozHf5dPafONdaL55/37nGcJZFI5oHFFjxE1kuuSG3SBVgvr1ipnvnsjn9flHHJtqBPtAyt1iEsuf/EBSVfKs5k=",
+                    "id": 373923711772012544,
+                    "method": "confirm",
+                    "partnerID": "201907200200058182",
+                    "partnerKey": "SJ2P5TW43R0ZLCR6V556",
+                    "salt": "0d822c7250cefa12e63e01561fe39f37SJ2P5TW43R0ZLCR6V556",
+                    "serialNo": "373565078622187520",
+                    "updateTime": 1569317051447,
+                    "url": "http://news.my398.com/yw/content/2019-01/02/content_2351358.htm"
+                },
+                "_type": "evidence"
+            }
+        ],
+        "max_score": 0.0,
+        "total": 1
+    },
+    "timed_out": false,
+    "took": 0
+}
+1
+'取证确权接口响应结果验证耗时：0.06250596046447754'
+数据库数据验证结果：数据库存储验证结果：一致（接口请求参数请求值与数据库存储值一致）
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_06</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.6')" >
+        pass</a>
+
+    <div id='div_pt1.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.6: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_006]'
+'取证确权接口测试目的：请求成功'
+'取证确权接口用例描述：确认的取证地址打开显示空白页不存在'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"success":true,"resultCode":"0204000","evidenceNo":"414805a76da2e7c852337262e7de1cea"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "414805a76da2e7c852337262e7de1cea", '
+ '"salt": "a3ab4dde79af886d45549fb467b61a86YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '请求成功', 'salt': "
+ "'a279b42fb3cbae3a633df13934a0418fYLZ3XCEE4J21N0YHQNEW', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '414805a76da2e7c852337262e7de1cea'}")
+'取证确权接口响应耗时：0.17395734786987305'
+{
+    "_shards": {
+        "failed": 0,
+        "skipped": 0,
+        "successful": 5,
+        "total": 5
+    },
+    "hits": {
+        "hits": [
+            {
+                "_id": "373923712686370816",
+                "_index": "evidence",
+                "_score": 0.0,
+                "_source": {
+                    "applyName": "李明",
+                    "callbackFlag": true,
+                    "callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback",
+                    "createTime": 1569316825902,
+                    "downloadUrl": null,
+                    "eCode": "N0000",
+                    "eMessage": "确认成功",
+                    "eSerialNo": "414805a76da2e7c852337262e7de1cea",
+                    "eSign": "URkLJr22YQ5YP8R9MsvRWX9/HKrpMbqyU7+7M7RquWYy+vm/bv+JbnkSUiStKtpsfrXxfReyjtCGP2eYEhREZozHf5dPafONdaL55/37nGcJZFI5oHFFjxE1kuuSG3SBVgvr1ipnvnsjn9flHHJtqBPtAyt1iEsuf/EBSVfKs5k=",
+                    "id": 373923712686370816,
+                    "method": "confirm",
+                    "partnerID": "201907200200055052",
+                    "partnerKey": "YLZ3XCEE4J21N0YHQNEW",
+                    "salt": "a3ab4dde79af886d45549fb467b61a86YLZ3XCEE4J21N0YHQNEW",
+                    "serialNo": "373565041842335744",
+                    "updateTime": 1569317051730,
+                    "url": "http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=1170968521054830257"
+                },
+                "_type": "evidence"
+            }
+        ],
+        "max_score": 0.0,
+        "total": 1
+    },
+    "timed_out": false,
+    "took": 0
+}
+1
+'取证确权接口响应结果验证耗时：0.05845952033996582'
+数据库数据验证结果：数据库存储验证结果：一致（接口请求参数请求值与数据库存储值一致）
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_07</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.7')" >
+        pass</a>
+
+    <div id='div_pt1.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.7: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_007]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：证据唯一编号为抓取失败的编号-其它信息正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"请求失败","success":false,"resultCode":"0207002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "evidenceNo": "75e68f2d3611291161aa09bfb18fcfd7", '
+ '"salt": "49d1cabfdea4e63197174491f9ece31fSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '请求失败', 'salt': "
+ "'08a6c85b8cabf64426269aca2a9caf6aSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0207002'}")
+'取证确权接口响应耗时：0.19138145446777344'
+'取证确权接口响应结果验证耗时：9.703636169433594e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_08</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.8')" >
+        pass</a>
+
+    <div id='div_pt1.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.8: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_008]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID和partnerKey正确，但不是同一账户(1)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "f58f11c2a75cc700608b96b713e76eb6SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.1333613395690918'
+'取证确权接口响应结果验证耗时：0.00010085105895996094'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_09</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.9')" >
+        pass</a>
+
+    <div id='div_pt1.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.9: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_009]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID和partnerKey正确，但不是同一账户(2)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "918d887f5eacd2277b69ce4d8cefcfaf", '
+ '"salt": "cc5cd2a61005ae438abc6a28e08bdf5bYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.1590406894683838'
+'取证确权接口响应结果验证耗时：0.00010061264038085938'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_10</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.10')" >
+        pass</a>
+
+    <div id='div_pt1.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.10: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_010]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey/evidenceN正确，但evidenceNo不是partnerID账户所有(1)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"没找到cce0da06b801498b91faf66726ad590f相关信息","success":false,"resultCode":"0206001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "44f4f65aa59959456e60c297804e6d34SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '没找到cce0da06b801498b91faf66726ad590f相关信息', 'salt': "
+ "'160aaac57665252467de7069efdb3d09SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0206001'}")
+'取证确权接口响应耗时：0.1377112865447998'
+'取证确权接口响应结果验证耗时：0.00011277198791503906'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_11</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.11')" >
+        pass</a>
+
+    <div id='div_pt1.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.11: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_011]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey/evidenceN正确，但evidenceNo不是partnerID账户所有(2)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"没找到918d887f5eacd2277b69ce4d8cefcfaf相关信息","success":false,"resultCode":"0206001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "918d887f5eacd2277b69ce4d8cefcfaf", '
+ '"salt": "bda50ff6f04416a84a40d78478d20993YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '没找到918d887f5eacd2277b69ce4d8cefcfaf相关信息', 'salt': "
+ "'12540048faa6ad6e5ee0b6de66620cddYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0206001'}")
+'取证确权接口响应耗时：0.12601947784423828'
+'取证确权接口响应结果验证耗时：2.765655517578125e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_12</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.12')" >
+        pass</a>
+
+    <div id='div_pt1.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.12: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_012]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey/evidenceN正确，三个参数不是同账户(3)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "f58f11c2a75cc700608b96b713e76eb6SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.15906190872192383'
+'取证确权接口响应结果验证耗时：0.00010824203491210938'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_13</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.13')" >
+        pass</a>
+
+    <div id='div_pt1.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.13: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_013]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID参数错误-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055051", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "3d540c586f6d3157cdf6ce3fe0eeff99YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.12799596786499023'
+'取证确权接口响应结果验证耗时：3.218650817871094e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_14</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.14')" >
+        pass</a>
+
+    <div id='div_pt1.14' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.14: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_014]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerKey参数错误-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNES", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "7a580338807936f952462607dc169b67YLZ3XCEE4J21N0YHQNES"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bYLZ3XCEE4J21N0YHQNES', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.13243603706359863'
+'取证确权接口响应结果验证耗时：2.8371810913085938e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_15</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.15')" >
+        pass</a>
+
+    <div id='div_pt1.15' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.15: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_016]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：evidenceNo参数错误（超长）-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"evidenceNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f3b4414660b44615449f1b4fcbca04f32", "salt": '
+ '"4732493dec0e59184bf4677782a4d702YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'evidenceNo参数不合法', 'salt': "
+ "'444b66997b8d8a27bd3f347c57161c25YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.13138103485107422'
+'取证确权接口响应结果验证耗时：3.4332275390625e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_16</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.16')" >
+        pass</a>
+
+    <div id='div_pt1.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.16: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_017]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：evidenceNo参数错误（32位错误）-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"evidenceNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590fcce0da06b801498b91faf66726ad590f", "salt": '
+ '"05163ba4cce8d3df2966c365dac4a6fbYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'evidenceNo参数不合法', 'salt': "
+ "'444b66997b8d8a27bd3f347c57161c25YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.13284659385681152'
+'取证确权接口响应结果验证耗时：3.1948089599609375e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_17</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.17')" >
+        pass</a>
+
+    <div id='div_pt1.17' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.17').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.17: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_018]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：evidenceNo参数错误（31位错误）-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"evidenceNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "evidenceNo": "e4d87f25d89394314680d70e0ee6852", '
+ '"salt": "c4779b5ebf64a87d704e7b446c93ae1bSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'evidenceNo参数不合法', 'salt': "
+ "'444b66997b8d8a27bd3f347c57161c25SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.12946224212646484'
+'取证确权接口响应结果验证耗时：2.7418136596679688e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_18</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.18')" >
+        pass</a>
+
+    <div id='div_pt1.18' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.18: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_019]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：salt参数错误（位数正确值错误）-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "evidenceNo": "e4d87f25d89394314680d70e0ee6852b", '
+ '"salt": "44b9110a984f9f9a98a0c2c561fe7cafSJ2P5TW43R0ZLCR6V551"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.12742066383361816'
+'取证确权接口响应结果验证耗时：2.7894973754882812e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.19' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_19</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.19')" >
+        pass</a>
+
+    <div id='div_pt1.19' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.19').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.19: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_020]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：salt参数错误（末尾加0）-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "evidenceNo": "e4d87f25d89394314680d70e0ee6852b", '
+ '"salt": "44b9110a984f9f9a98a0c2c561fe7cafSJ2P5TW43R0ZLCR6V5560"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.12390828132629395'
+'取证确权接口响应结果验证耗时：2.9325485229492188e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.20' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_20</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.20')" >
+        pass</a>
+
+    <div id='div_pt1.20' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.20: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_021]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID参数错误(首位加0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "0201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "4c5d14e51b8bb391adfa2b6c4c759bcaYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.13213586807250977'
+'取证确权接口响应结果验证耗时：6.341934204101562e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.21' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_21</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.21')" >
+        pass</a>
+
+    <div id='div_pt1.21' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.21').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.21: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_022]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerKey参数错误(首位加0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"0YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "af62de246890a9e308c835b9d5fb97e80YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001b0YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.1275181770324707'
+'取证确权接口响应结果验证耗时：0.00012350082397460938'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.22' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_22</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.22')" >
+        pass</a>
+
+    <div id='div_pt1.22' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.22').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.22: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_023]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：evidenceNo参数错误(首位加0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"evidenceNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "0cce0da06b801498b91faf66726ad590f", '
+ '"salt": "3cd152301d7543faa6e0cb2e05cc70efYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'evidenceNo参数不合法', 'salt': "
+ "'444b66997b8d8a27bd3f347c57161c25YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.1356210708618164'
+'取证确权接口响应结果验证耗时：2.9087066650390625e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.23' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_23</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.23')" >
+        pass</a>
+
+    <div id='div_pt1.23' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.23').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.23: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_024]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：salt参数错误（首位加0）-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "evidenceNo": "918d887f5eacd2277b69ce4d8cefcfaf", '
+ '"salt": "044b9110a984f9f9a98a0c2c561fe7cafSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.1369326114654541'
+'取证确权接口响应结果验证耗时：0.00010395050048828125'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.24' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_24</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.24')" >
+        pass</a>
+
+    <div id='div_pt1.24' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.24').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.24: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_025]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID参数错误(末位加0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "2019072002000550520", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "af62de246890a9e308c835b9d5fb97e8YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.1561129093170166'
+'取证确权接口响应结果验证耗时：9.799003601074219e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.25' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_25</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.25')" >
+        pass</a>
+
+    <div id='div_pt1.25' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.25').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.25: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_026]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerKey参数错误(末位加0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW0", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "3cd152301d7543faa6e0cb2e05cc70efYLZ3XCEE4J21N0YHQNEW0"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bYLZ3XCEE4J21N0YHQNEW0', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.1339418888092041'
+'取证确权接口响应结果验证耗时：0.0001087188720703125'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.26' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_26</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.26')" >
+        pass</a>
+
+    <div id='div_pt1.26' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.26').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.26: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_027]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：evidenceNo参数错误(末位加0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"evidenceNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f0", '
+ '"salt": "3389d3357ec75ab602aaadd0e7287289YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'evidenceNo参数不合法', 'salt': "
+ "'444b66997b8d8a27bd3f347c57161c25YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.13119983673095703'
+'取证确权接口响应结果验证耗时：9.989738464355469e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.27' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_27</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.27')" >
+        pass</a>
+
+    <div id='div_pt1.27' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.27').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.27: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_028]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：salt参数错误(末位加0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "44b9110a984f9f9a98a0c2c561fe7cafSJ2P5TW43R0ZLCR6V5560"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.13624143600463867'
+'取证确权接口响应结果验证耗时：9.846687316894531e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.28' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_28</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.28')" >
+        pass</a>
+
+    <div id='div_pt1.28' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.28').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.28: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_029]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID参数错误(32位0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "00000000000000000000000000000000", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "2dc349aa8d0c3d6108f0d2d511626849YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.12794852256774902'
+'取证确权接口响应结果验证耗时：9.894371032714844e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.29' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_29</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.29')" >
+        pass</a>
+
+    <div id='div_pt1.29' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.29').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.29: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_030]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerKey参数错误(20位0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"00000000000000000000", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "f147abd804b363fb5a7624c38198fda900000000000000000000"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001b00000000000000000000', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.12784981727600098'
+'取证确权接口响应结果验证耗时：0.0001010894775390625'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.30' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_30</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.30')" >
+        pass</a>
+
+    <div id='div_pt1.30' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.30').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.30: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_031]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：evidenceNo参数错误(32位0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"没找到00000000000000000000000000000000相关信息","success":false,"resultCode":"0206001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "00000000000000000000000000000000", '
+ '"salt": "871ebe7e905d5be24416a2c805737842YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '没找到00000000000000000000000000000000相关信息', 'salt': "
+ "'41a78dcfdaa804567a2560e0f835f75dYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0206001'}")
+'取证确权接口响应耗时：0.13752269744873047'
+'取证确权接口响应结果验证耗时：0.00010251998901367188'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.31' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_31</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.31')" >
+        pass</a>
+
+    <div id='div_pt1.31' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.31').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.31: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_032]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：salt参数错误（52位0）-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "evidenceNo": "e4d87f25d89394314680d70e0ee6852b", '
+ '"salt": "0000000000000000000000000000000000000000000000000000"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.133894681930542'
+'取证确权接口响应结果验证耗时：9.679794311523438e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.32' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_32</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.32')" >
+        pass</a>
+
+    <div id='div_pt1.32' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.32').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.32: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_033]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：所有必填参数均为0'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "00000000000000000000000000000000", "partnerKey": '
+ '"00000000000000000000", "evidenceNo": "00000000000000000000000000000000", '
+ '"salt": "0000000000000000000000000000000000000000000000000000"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001b00000000000000000000', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.15917682647705078'
+'取证确权接口响应结果验证耗时：0.00010371208190917969'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.33' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_33</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.33')" >
+        pass</a>
+
+    <div id='div_pt1.33' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.33').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.33: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_034]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID参数错误(1位0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "0", "partnerKey": "YLZ3XCEE4J21N0YHQNEW", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f", "salt": '
+ '"a02d946b001f6d2bc59a15bd61b6b71dYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.12799930572509766'
+'取证确权接口响应结果验证耗时：0.00011110305786132812'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.34' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_34</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.34')" >
+        pass</a>
+
+    <div id='div_pt1.34' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.34').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.34: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_035]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerKey参数错误(1位0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": "0", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f", "salt": '
+ '"9e237872fc0b816c789d7ac53284d5680"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': '09627fbb569d7ba3ee6a7d5a0514001b0', "
+ "'success': False, 'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.13581490516662598'
+'取证确权接口响应结果验证耗时：4.38690185546875e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.35' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_35</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.35')" >
+        pass</a>
+
+    <div id='div_pt1.35' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.35').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.35: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_036]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：evidenceNo参数错误(1位0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"evidenceNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "0", "salt": '
+ '"85616ec64707c03d32567a0d8b6346b0YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'evidenceNo参数不合法', 'salt': "
+ "'444b66997b8d8a27bd3f347c57161c25YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.12683343887329102'
+'取证确权接口响应结果验证耗时：0.00010275840759277344'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.36' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_36</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.36')" >
+        pass</a>
+
+    <div id='div_pt1.36' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.36').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.36: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_037]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：salt参数错误(1位0)-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "0"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.17847108840942383'
+'取证确权接口响应结果验证耗时：0.00010013580322265625'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.37' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_37</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.37')" >
+        pass</a>
+
+    <div id='div_pt1.37' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.37').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.37: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_038]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：所有必填参数均为0'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+'请求参数={"partnerID": "0", "partnerKey": "0", "evidenceNo": "0", "salt": "0"}'
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': '09627fbb569d7ba3ee6a7d5a0514001b0', "
+ "'success': False, 'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.13240671157836914'
+'取证确权接口响应结果验证耗时：9.918212890625e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.38' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_38</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.38')" >
+        pass</a>
+
+    <div id='div_pt1.38' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.38').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.38: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_039]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID参数不传-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerKey": "YLZ3XCEE4J21N0YHQNEW", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f", "salt": '
+ '"7fd64d89657927573c1432aa1ac2d59aYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证确权接口响应耗时：0.15875697135925293'
+'取证确权接口响应结果验证耗时：5.245208740234375e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.39' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_39</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.39')" >
+        pass</a>
+
+    <div id='div_pt1.39' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.39').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.39: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_040]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerKey参数不传-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerKey参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f", "salt": '
+ '"da5467f333515a59afa64397b11ee2a9"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerKey参数不完全', 'salt': "
+ "'02b68f8e522b0494cd8ccf3fb35697c8null', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证确权接口响应耗时：0.14388108253479004'
+'取证确权接口响应结果验证耗时：8.392333984375e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.40' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_40</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.40')" >
+        pass</a>
+
+    <div id='div_pt1.40' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.40').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.40: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_041]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：evidenceNo参数不传-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"evidenceNo参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "salt": '
+ '"53e741d239b3d0203d10c4a48758a56fYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'evidenceNo参数不完全', 'salt': "
+ "'d27a53e39fc19437237096c69c842623YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证确权接口响应耗时：0.13083815574645996'
+'取证确权接口响应结果验证耗时：5.2928924560546875e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.41' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_41</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.41')" >
+        pass</a>
+
+    <div id='div_pt1.41' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.41').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.41: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_042]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：salt参数不传-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"salt参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'salt参数不完全', 'salt': "
+ "'01b2e5b758a080fce9b8ee45c3a05ceeYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证确权接口响应耗时：0.16078662872314453'
+'取证确权接口响应结果验证耗时：0.00010061264038085938'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.42' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_42</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.42')" >
+        pass</a>
+
+    <div id='div_pt1.42' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.42').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.42: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_043]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey参数不传-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"evidenceNo": "cce0da06b801498b91faf66726ad590f", "salt": '
+ '"80580a04ee3bc69839c08d108d31cfce"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefnull', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证确权接口响应耗时：0.12851834297180176'
+'取证确权接口响应结果验证耗时：9.250640869140625e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.43' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_43</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.43')" >
+        pass</a>
+
+    <div id='div_pt1.43' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.43').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.43: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_044]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey/evidenceN参数不传-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+'请求参数={"salt": "d41d8cd98f00b204e9800998ecf8427e"}'
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefnull', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证确权接口响应耗时：0.15515494346618652'
+'取证确权接口响应结果验证耗时：9.703636169433594e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.44' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_44</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.44')" >
+        pass</a>
+
+    <div id='div_pt1.44' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.44').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.44: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_045]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey/evidenceN/salt参数不传-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+'请求参数={}'
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefnull', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证确权接口响应耗时：0.13605952262878418'
+'取证确权接口响应结果验证耗时：9.846687316894531e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.45' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_45</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.45')" >
+        pass</a>
+
+    <div id='div_pt1.45' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.45').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.45: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_046]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID参数为空-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerKey": "YLZ3XCEE4J21N0YHQNEW", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f", "salt": '
+ '"7fd64d89657927573c1432aa1ac2d59aYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证确权接口响应耗时：0.1289515495300293'
+'取证确权接口响应结果验证耗时：9.846687316894531e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.46' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_46</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.46')" >
+        pass</a>
+
+    <div id='div_pt1.46' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.46').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.46: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_047]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerKey参数为空-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerKey参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f", "salt": '
+ '"da5467f333515a59afa64397b11ee2a9"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerKey参数不完全', 'salt': "
+ "'02b68f8e522b0494cd8ccf3fb35697c8null', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证确权接口响应耗时：0.13141822814941406'
+'取证确权接口响应结果验证耗时：9.989738464355469e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.47' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_47</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.47')" >
+        pass</a>
+
+    <div id='div_pt1.47' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.47').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.47: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_048]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：evidenceNo参数为空-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"evidenceNo参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "salt": '
+ '"53e741d239b3d0203d10c4a48758a56fYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'evidenceNo参数不完全', 'salt': "
+ "'d27a53e39fc19437237096c69c842623YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证确权接口响应耗时：0.13417363166809082'
+'取证确权接口响应结果验证耗时：9.942054748535156e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.48' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_48</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.48')" >
+        pass</a>
+
+    <div id='div_pt1.48' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.48').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.48: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_049]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：salt参数为空-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"salt参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'salt参数不完全', 'salt': "
+ "'01b2e5b758a080fce9b8ee45c3a05ceeYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证确权接口响应耗时：0.13485264778137207'
+'取证确权接口响应结果验证耗时：0.00010204315185546875'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.49' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_49</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.49')" >
+        pass</a>
+
+    <div id='div_pt1.49' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.49').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.49: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_050]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey参数为空-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"evidenceNo": "cce0da06b801498b91faf66726ad590f", "salt": '
+ '"80580a04ee3bc69839c08d108d31cfce"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefnull', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证确权接口响应耗时：0.13262462615966797'
+'取证确权接口响应结果验证耗时：0.00010180473327636719'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.50' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_50</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.50')" >
+        pass</a>
+
+    <div id='div_pt1.50' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.50').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.50: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_051]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey/evidenceN参数为空-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+'请求参数={"salt": "d41d8cd98f00b204e9800998ecf8427e"}'
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefnull', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证确权接口响应耗时：0.13225078582763672'
+'取证确权接口响应结果验证耗时：9.870529174804688e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.51' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_51</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.51')" >
+        pass</a>
+
+    <div id='div_pt1.51' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.51').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.51: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_052]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey/evidenceN/salt参数为空-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+'请求参数={}'
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefnull', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证确权接口响应耗时：0.13162016868591309'
+'取证确权接口响应结果验证耗时：9.632110595703125e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.52' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_52</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.52')" >
+        pass</a>
+
+    <div id='div_pt1.52' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.52').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.52: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_053]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID参数为空格-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": " ", "partnerKey": "YLZ3XCEE4J21N0YHQNEW", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f", "salt": '
+ '"1e7a44ba032f646f438aeee1f3f3a09eYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证确权接口响应耗时：0.23888015747070312'
+'取证确权接口响应结果验证耗时：2.8371810913085938e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.53' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_53</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.53')" >
+        pass</a>
+
+    <div id='div_pt1.53' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.53').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.53: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_054]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerKey参数为空格-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerKey参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": " ", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f", "salt": '
+ '"00dd21620993bbe572000b4348bbf6b9 "}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerKey参数不完全', 'salt': "
+ "'02b68f8e522b0494cd8ccf3fb35697c8 ', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证确权接口响应耗时：0.13178467750549316'
+'取证确权接口响应结果验证耗时：0.00010800361633300781'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.54' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_54</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.54')" >
+        pass</a>
+
+    <div id='div_pt1.54' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.54').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.54: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_055]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：evidenceNo参数为空格-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"evidenceNo参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": " ", "salt": '
+ '"ff1d7aad431aa85e90bfa766db563d28YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'evidenceNo参数不完全', 'salt': "
+ "'d27a53e39fc19437237096c69c842623YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证确权接口响应耗时：0.1574556827545166'
+'取证确权接口响应结果验证耗时：0.00010657310485839844'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.55' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_55</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.55')" >
+        pass</a>
+
+    <div id='div_pt1.55' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.55').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.55: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_056]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：salt参数为空格-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"salt参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": " "}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'salt参数不完全', 'salt': "
+ "'01b2e5b758a080fce9b8ee45c3a05ceeYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证确权接口响应耗时：0.13263630867004395'
+'取证确权接口响应结果验证耗时：0.00010275840759277344'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.56' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_56</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.56')" >
+        pass</a>
+
+    <div id='div_pt1.56' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.56').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.56: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_057]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey参数为空格-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": " ", "partnerKey": " ", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f", "salt": '
+ '"523f50d95acf582244423d078502f0ac "}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aef ', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证确权接口响应耗时：0.14690756797790527'
+'取证确权接口响应结果验证耗时：0.00010132789611816406'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.57' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_57</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.57')" >
+        pass</a>
+
+    <div id='div_pt1.57' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.57').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.57: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_058]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey/evidenceN参数为空格-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": " ", "partnerKey": " ", "evidenceNo": " ", "salt": '
+ '"628631f07321b22d8c176c200c855e1b "}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aef ', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证确权接口响应耗时：0.1241614818572998'
+'取证确权接口响应结果验证耗时：9.870529174804688e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.58' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_58</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.58')" >
+        pass</a>
+
+    <div id='div_pt1.58' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.58').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.58: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_059]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey/evidenceN/salt参数为空格-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+'请求参数={"partnerID": " ", "partnerKey": " ", "evidenceNo": " ", "salt": " "}'
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aef ', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证确权接口响应耗时：0.13574481010437012'
+'取证确权接口响应结果验证耗时：0.00010156631469726562'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.59' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_59</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.59')" >
+        pass</a>
+
+    <div id='div_pt1.59' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.59').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.59: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_060]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID参数为null-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "null", "partnerKey": "YLZ3XCEE4J21N0YHQNEW", '
+ '"evidenceNo": "cce0da06b801498b91faf66726ad590f", "salt": '
+ '"3f6dbedc0e3cfe0e18fb6eb16e589ac5YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.1324007511138916'
+'取证确权接口响应结果验证耗时：0.00010561943054199219'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.60' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_60</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.60')" >
+        pass</a>
+
+    <div id='div_pt1.60' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.60').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.60: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_061]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerKey参数为null-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": "null", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f", "salt": '
+ '"d208f81a2c298328bb5640522de7aa57null"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bnull', 'success': False, 'resultCode': "
+ "'0203001'}")
+'取证确权接口响应耗时：0.13624954223632812'
+'取证确权接口响应结果验证耗时：9.751319885253906e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.61' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_61</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.61')" >
+        pass</a>
+
+    <div id='div_pt1.61' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.61').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.61: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_062]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：evidenceNo参数为null-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"evidenceNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "null", "salt": '
+ '"15316b2db4878d71e6031cded3749906YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'evidenceNo参数不合法', 'salt': "
+ "'444b66997b8d8a27bd3f347c57161c25YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.13234901428222656'
+'取证确权接口响应结果验证耗时：9.72747802734375e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.62' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_62</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.62')" >
+        pass</a>
+
+    <div id='div_pt1.62' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.62').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.62: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_063]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：salt参数为null-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "null"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.13876843452453613'
+'取证确权接口响应结果验证耗时：9.822845458984375e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.63' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_63</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.63')" >
+        pass</a>
+
+    <div id='div_pt1.63' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.63').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.63: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_064]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey参数为null-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": " null", "partnerKey": " null", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f", "salt": '
+ '"e9695e99b4ab496c2b2ba21e5170e392 null"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': '09627fbb569d7ba3ee6a7d5a0514001b "
+ "null', 'success': False, 'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.15968871116638184'
+'取证确权接口响应结果验证耗时：9.870529174804688e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.64' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_64</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.64')" >
+        pass</a>
+
+    <div id='div_pt1.64' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.64').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.64: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_065]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey/evidenceN参数为null-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "null", "partnerKey": "null", "evidenceNo": "null", '
+ '"salt": "946cafd578f628eba5b742ec27dd1e98null"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bnull', 'success': False, 'resultCode': "
+ "'0203001'}")
+'取证确权接口响应耗时：0.16264653205871582'
+'取证确权接口响应结果验证耗时：0.00013017654418945312'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.65' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_65</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.65')" >
+        pass</a>
+
+    <div id='div_pt1.65' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.65').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.65: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_066]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey/evidenceN/salt参数为null-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "null", "partnerKey": "null", "evidenceNo": "null", '
+ '"salt": "null"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bnull', 'success': False, 'resultCode': "
+ "'0203001'}")
+'取证确权接口响应耗时：0.135117769241333'
+'取证确权接口响应结果验证耗时：0.00012087821960449219'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.66' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_66</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.66')" >
+        pass</a>
+
+    <div id='div_pt1.66' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.66').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.66: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_067]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID参数true-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "true", "partnerKey": "YLZ3XCEE4J21N0YHQNEW", '
+ '"evidenceNo": "cce0da06b801498b91faf66726ad590f", "salt": '
+ '"818bd69c6bf9948172c76bb85b7a48bfYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.12948393821716309'
+'取证确权接口响应结果验证耗时：0.00010347366333007812'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.67' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_67</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.67')" >
+        pass</a>
+
+    <div id='div_pt1.67' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.67').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.67: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_068]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerKey参数true-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": "true", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f", "salt": '
+ '"fc82d126e010de83d79b2db1eb7bce5ftrue"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001btrue', 'success': False, 'resultCode': "
+ "'0203001'}")
+'取证确权接口响应耗时：0.13077449798583984'
+'取证确权接口响应结果验证耗时：0.00010514259338378906'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.68' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_68</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.68')" >
+        pass</a>
+
+    <div id='div_pt1.68' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.68').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.68: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_069]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：evidenceNo参数true-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"evidenceNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "true", "salt": '
+ '"352bf8ad7a2a4434189fb8e79530b4eeYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'evidenceNo参数不合法', 'salt': "
+ "'444b66997b8d8a27bd3f347c57161c25YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.12813234329223633'
+'取证确权接口响应结果验证耗时：0.00010776519775390625'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.69' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_69</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.69')" >
+        pass</a>
+
+    <div id='div_pt1.69' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.69').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.69: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_070]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：salt参数true-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "evidenceNo": "cce0da06b801498b91faf66726ad590f", '
+ '"salt": "true"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证确权接口响应耗时：0.1321697235107422'
+'取证确权接口响应结果验证耗时：0.00011014938354492188'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.70' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_70</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.70')" >
+        pass</a>
+
+    <div id='div_pt1.70' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.70').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.70: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_071]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey参数为true-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": " true", "partnerKey": " true", "evidenceNo": '
+ '"cce0da06b801498b91faf66726ad590f", "salt": '
+ '"697d884157c02100f6a3f695be090460 true"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': '09627fbb569d7ba3ee6a7d5a0514001b "
+ "true', 'success': False, 'resultCode': '0203001'}")
+'取证确权接口响应耗时：0.13282561302185059'
+'取证确权接口响应结果验证耗时：0.00010609626770019531'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.71' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_71</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.71')" >
+        pass</a>
+
+    <div id='div_pt1.71' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.71').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.71: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_072]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey/evidenceN参数为true-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "true", "partnerKey": "true", "evidenceNo": "true", '
+ '"salt": "dc406f4019fd86fe2e68b795d18451aetrue"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001btrue', 'success': False, 'resultCode': "
+ "'0203001'}")
+'取证确权接口响应耗时：0.13764333724975586'
+'取证确权接口响应结果验证耗时：0.00010204315185546875'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.72' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_community_72</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.72')" >
+        pass</a>
+
+    <div id='div_pt1.72' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.72').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.72: '取证确权接口用例执行详情如下：'
+'取证确权接口执行测试用例编号：[BQ_QZ_073]'
+'取证确权接口测试目的：请求失败'
+'取证确权接口用例描述：partnerID/partnerKey/evidenceN/salt参数为true-其它参数正确传入'
+'取证确权接口地址：https://ipps.tsa.cn/v2/api/evidence/evidenceConfirm'
+'取证确权接口预期返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证确权接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "true", "partnerKey": "true", "evidenceNo": "true", '
+ '"salt": "true"}')
+'******************************************************************************'
+'取证确权接口响应返回数据共&lt;0&gt;条'
+("取证确权接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001btrue', 'success': False, 'resultCode': "
+ "'0203001'}")
+'取证确权接口响应耗时：0.15783333778381348'
+'取证确权接口响应结果验证耗时：9.965896606445312e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>72</td>
+    <td>72</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>

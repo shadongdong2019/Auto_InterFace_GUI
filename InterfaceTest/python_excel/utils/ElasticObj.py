@@ -11,6 +11,7 @@ from os import walk
 # from python_excel.utils.operation_cfg import OperationCFG
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
+from jsonpath import jsonpath
 
 from InterfaceTest.python_excel.utils.operation_cfg import OperationCFG
 
@@ -72,7 +73,7 @@ class ElasticObj:
         return query_res
 
 
-    def get_data(self,query=None,index=None,query_con=None,query_filed=None):
+    def get_data(self,query=None,index=None,query_con=None,query_filed=None,expCF_value=None):
         '''
         根据查询条件获取返回结果
         :param query: 查询条件
@@ -99,6 +100,9 @@ class ElasticObj:
             index=self.index_name,
             body=query)
         res_json =json.dumps(res,sort_keys=True, indent=4, separators=(',', ': '), ensure_ascii=False) #返回json格式的查询结果
+        database = jsonpath(res, "$.._source")[0]
+        # if expCF_value:
+        #     database["callbackFlag"]=expCF_value
         print(json.dumps(res,sort_keys=True, indent=4, separators=(',', ': '), ensure_ascii=False))  # 请求总结果
         total = res['hits']['total'] #查询总条数
         print(total)
@@ -127,8 +131,8 @@ if __name__ == "__main__":
     option_dict = ope_cfg.get_config_dict()
     obj =ElasticObj(**option_dict)
     query_filed = {}
-    #query_filed = {"eSerialNo":"2ae30a94bd8a38c541177dd42703f529"}
-    query_filed = {"serialNo": "373565041842335744","is_result":"1"}
+    query_filed =  {'eSerialNo': 'f6abe7676954893cc0a152d103559c0c'}
+    #query_filed = {"serialNo": "373820832826535936","is_result":"1"}
     a,b = obj.get_data(query_filed=query_filed)
     # print(a)
     # print(b)

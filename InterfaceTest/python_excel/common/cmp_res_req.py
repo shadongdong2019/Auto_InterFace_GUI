@@ -139,13 +139,12 @@ class CmpReqRes:
                 if query_data_list:
                     for query_data in query_data_list:
                         if str(query_data[1]).lower() == 'req':
-                            database = jsonpath(req, )[0]
                             query_filed_dict[query_data[0]] = req.get(query_data[2])
                         else:
                             query_filed_dict[query_data[0]] = res.get(query_data[2])
 
 
-            database_json = self.conne.get_data(query_con=query_filed_dict)[0]
+            database_json = self.conne.get_data(query_con=query_filed_dict,expCF_value=expCF_value)[0]
             database = jsonpath(database_json, "$.._source")[0]
             callbackurl_flag = False
             if is_verify_database:
@@ -170,6 +169,7 @@ class CmpReqRes:
                     if expCF_value == database.get("callbackFlag"):
                         callbackurl_flag = True
                         database_str_hd = "数据库回调状态值与预期状态值一致：回调成功"
+
                     else:
                         callbackurl_flag = False
                         database_str_hd = "回调结果与预期不一致：回调失败,预期回调结果callbackFlag={}，实际数据库存储callbackFlag={}".format(

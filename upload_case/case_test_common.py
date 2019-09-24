@@ -69,7 +69,7 @@ class CaseRun(unittest.TestCase):
         pass
 
     @ddt.data(*data_http)
-    def test_apply_http(self,data_dict):
+    def test_apply_community(self,data_dict):
         '''
         测试数据={0}
         :param data_dict:
@@ -141,17 +141,20 @@ class CaseRun(unittest.TestCase):
             evidenceNo = res.get("evidenceNo")
         except:
             evidenceNo = ""
-        self.op_excel.writer_data(row_num, 15, evidenceNo)
+        #self.op_excel.writer_data(row_num, 15, evidenceNo)
         self.assertTrue(is_pass,"测试用例执行未通过")
 
 def main():
-
+    test_report_name = option_dict.get("test_report_name", '') #测试报告名称
     cr =CaseRun()
     run_file = sys.argv[0]
     run_file_name = os.path.basename(os.path.splitext(run_file)[0])
     rand_str = ''.join(random.sample((string.ascii_letters + string.digits), 5))
     data_str = datetime.datetime.now().strftime('%Y%m%d')
-    report_name = run_file_name+datetime.datetime.now().strftime('%Y%m%d%H%M%S')+'.html'
+    if test_report_name:
+        report_name = test_report_name+"_"+datetime.datetime.now().strftime('%Y%m%d%H%M%S')+'.html'
+    else:
+        report_name = run_file_name + datetime.datetime.now().strftime('%Y%m%d%H%M%S') + '.html'
     report_path = os.path.join("{}/{}/".format(reportpath,data_str),report_name)
     path = os.path.join("{}/{}/".format(reportpath,data_str))
     if not os.path.exists(path):
