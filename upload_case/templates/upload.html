@@ -1,22 +1,44 @@
-{% extends 'base.html' %}
+{#{% extends 'base.html' %}#}
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-{#    <script src="/static/script/jquery-1.10.2.js"></script>#}
-    <script href="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<meta charset="utf-8">
+	<title>可编辑可下拉</title>
+     <script src="/static/script/jquery-1.10.2.js"></script>
+<script src="/static/script/jquery.editable-select.js" ></script>
+<link  rel="stylesheet"  href="/static/css/jquery.editable-select.css"/>
+    <style></style>
     <script>
-
-    </script>
+        $(document).ready(function() {
+           // alert(123);
+            $("#pro_select").change(function(){
+                var checkText=$("#pro_select").find("option:selected").text();  //获取Select选择的Text
+                $("#pro_input").val(checkText);  //将select选择的值写入input框
+            });
+        });
+</script>
 </head>
 {% block content %}
 <body>
 <form action="" method="post" enctype="multipart/form-data">
-    <p>设置测试项目名称：<input type="text" name="pro_name" value="{{ pro_name }}"/><label style="color: gray">说明：填写项目名称后会自动创建项目目录</label></p>
+{#    <label><input name="ope_type" type="radio" value="1" />新增 </label>#}
+{#    <label><input name="ope_type" type="radio" value="2" />历史 </label>#}
+    <p>设置测试项目名称：
+            <input type="text" name="pro_name" id="pro_input" value="{{ pro_name }}" size="10"/>
+            <select name="pro_id" id="pro_select">
+             <option value="0">查看已有项目名称</option>
+                {% for p in pm %}
+                    <option value="{{ p.id }}">{{ p.name }}</option>
+                {% endfor %}
+            </select>
+
+        <label style="color: gray">说明：填写项目名称后会自动创建项目目录</label>
+    </p>
     <p>测试用例上传：<input type="file" name="case_file" value="{{ caseFile }}"/></p>
     <p>配置文件上传：<input type="file" name="config_file" value="{{ configFile }}"/></p>
+    <p>图片文件上传：<input type="file" name="image_file" value="{{ imageFile }}"/></p>
+    <p>需求文档上传：<input type="file" name="needs_file" value="{{ needsFile }}"/></p>
 
     <p><input type="submit" value="执行测试"/></p>
     <p>
@@ -31,13 +53,7 @@
         <input type="text" value="" id="date"/>
         <input type="hidden" value="{{ report_path }}" id="report_path"/>
         <input type="button" value="查询" onclick="q()"/>
-        <script type="text/javascript">
-            function q() {
-                var date = document.getElementById("date").value;
-                var report_path =  document.getElementById("report_path").value;
-                window.location.href = '/getallpath?date='+date+'&report_path='+report_path;
-            }
-        </script>
+
     </p>
     <p>
         {% if pro_rep_all_path %}

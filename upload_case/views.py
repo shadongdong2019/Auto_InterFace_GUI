@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
 import os
 from pathlib import Path
+from upload_case.models import ProjectsManage,InterfaceManage,InterfaceDetails
 
 
 
@@ -16,40 +17,64 @@ def index(request):
     pro_name = ""
     caseFile = ""
     configFile = ""
+    pm = ProjectsManage.objects.filter(status=200)#查询状态正常的项目
+    pm_new = ProjectsManage()  # 新增项目数据
     if request.method == "POST":
         pro_name = request.POST.get("pro_name","")
-        caseFile = request.FILES.get('case_file', '')  # 获取上传的文件，如果没有文件，则默认为''
-        configFile = request.FILES.get('config_file', '')  # 获取上传的文件，如果没有文件，则默认为''
+        caseFile = request.FILES.get('case_file', '')  # 获取上传的测试用例文件，如果没有文件，则默认为''
+        configFile = request.FILES.get('config_file', '')  # 获取上传的配置文件，如果没有文件，则默认为''
+        imageFile = request.FILES.get('image_file', '')  # 获取上传的图片文件，如果没有文件，则默认为''
+        needsFile = request.FILES.get('needs_file', '')  # 获取上传的需求文档，如果没有文件，则默认为''
+        pro_path = os.path.join(baseDir,"InterfaceTest/static/project_tree/{}/".format(pro_name))  #项目路径
         case_file_path = os.path.join(baseDir,"InterfaceTest/static/project_tree/{}/case_file/{}".format(pro_name,caseFile))
         config_file_path = os.path.join(baseDir,"InterfaceTest/static/project_tree/{}/config/{}".format(pro_name, configFile))
-        deal_file_path ={}
-        if not caseFile and not os.path.isfile(case_file_path): #get_dir_file
-            if get_dir_file(case_file_path):
-                case_file_path = case_file_path+get_dir_file(case_file_path)[0]
-                deal_file_path["caseFile"] = case_file_path
-            else:
+        if pm.filter(pro_name=pro_name).count() == 0:
+            deal_file_path = {}
+            if not caseFile or not configFile:
                 return HttpResponse("no files for upload!")
-        if not configFile and not os.path.isfile(config_file_path):
-            if get_dir_file(config_file_path):
-                config_file_path = config_file_path+get_dir_file(config_file_path)[0]
-                deal_file_path["configFile"] = config_file_path
             else:
-                return HttpResponse("no files for upload!")
-        deal_file_path["report_path"] = os.path.join(baseDir,"InterfaceTest/static/project_tree/{}/report".format(pro_name))
-        if caseFile or  configFile:
-            fileDict = {
-                "caseFile":caseFile,
-                "configFile":configFile,
-            }
-            deal_file_path = pro_dir_deal(pro_name,**fileDict)  #返回测试用例文件路径，配置文件路径
+                #新增项目
+                pm_new.p_name = pro_name
+                pm_new.p_path = pro_path
+                pm_new.adder = "majing"
+                pm_new.save()
+                #创建项目路径
+                deal_file_path["report_path"] = os.path.join(baseDir,
+                                                             "InterfaceTest/static/project_tree/{}/report".format(
+                                                                 pro_name))
+                if caseFile or configFile:
+                    fileDict = {
+                        "caseFile": caseFile,
+                        "configFile": configFile,
+                        "imageFile": imageFile,
+                        "needsFile": needsFile,
+                    }
+                    deal_file_path = pro_dir_deal(pro_name, **fileDict)  # 返回测试用例文件路径，配置文件路径
+                write_config_path = os.path.join(baseDir, "static/write_config/run.json")  # 写入配置文件
+                with open(write_config_path, "wb") as f:
+                    f.write(json.dumps(deal_file_path, ensure_ascii=False, indent=4).encode(
+                        "utf-8"))  # 字典转成json,字典转换成字符串 加上ensure_ascii=False以后，可以识别中文， indent=4是间隔4个空格显示
+                from upload_case import case_test_common
+                report_path = case_test_common.main()
+                show_path = report_path[report_path.index("/static"):]  # 显示单个测试报告路径
+                file_down = '/file_download?report_path={}'.format(report_path)
 
-        write_config_path = os.path.join(baseDir,"static/write_config/run.json") #写入配置文件
-        with open(write_config_path,"wb") as f:
-            f.write(json.dumps(deal_file_path,ensure_ascii=False,indent=4).encode("utf-8")) #字典转成json,字典转换成字符串 加上ensure_ascii=False以后，可以识别中文， indent=4是间隔4个空格显示
-        from upload_case import case_test_common
-        report_path = case_test_common.main()
-        show_path = report_path[report_path.index("/static"):] #显示单个测试报告路径
-        file_down = '/file_download?report_path={}'.format(report_path)
+        # deal_file_path ={}
+        # if not caseFile and not os.path.isfile(case_file_path): #get_dir_file
+        #     if get_dir_file(case_file_path):
+        #         case_file_path = case_file_path+get_dir_file(case_file_path)[0]
+        #         deal_file_path["caseFile"] = case_file_path
+        #     else:
+        #         return HttpResponse("no files for upload!")
+        # if not configFile and not os.path.isfile(config_file_path):
+        #     if get_dir_file(config_file_path):
+        #         config_file_path = config_file_path+get_dir_file(config_file_path)[0]
+        #         deal_file_path["configFile"] = config_file_path
+        #     else:
+        #         return HttpResponse("no files for upload!")
+
+
+
         #show_all_path = report_path[:report_path.index("/report")]  # 显示项目下所有测试报告路径
 
 
@@ -62,7 +87,8 @@ def index(request):
         'report_path':report_path,
         'pro_name':pro_name,
         'caseFile':caseFile,
-        'configFile':configFile
+        'configFile':configFile,
+        'pm':pm
 
 
     }
@@ -107,6 +133,9 @@ def pro_dir_deal(pro_name,**fileDict):
                 os.makedirs(os.path.join(pro_dir, "config"))
                 os.makedirs(os.path.join(pro_dir, "case_file"))
                 os.makedirs(os.path.join(pro_dir, "report"))
+                os.makedirs(os.path.join(pro_dir, "file_stream")) #用例中使用的图片或其它文件
+                os.makedirs(os.path.join(pro_dir, "needs")) #需求文档存储
+                os.makedirs(os.path.join(pro_dir, "download"))  # 存储下载文档
 
         filePath1 = os.path.join(baseDir, "static/case")
         filePathDict["filePath1"] = filePath1
@@ -118,6 +147,16 @@ def pro_dir_deal(pro_name,**fileDict):
                     filename = upload_file(fileDict.get(key), filePathDict)
                     deal_file_path["caseFile"] = filename
                 elif key == "configFile":
+                    filePath2 = os.path.join(pro_dir, "config")
+                    filePathDict["filePath2"] = filePath2
+                    filename = upload_file(fileDict.get(key), filePathDict)
+                    deal_file_path["configFile"] = filename
+                elif key == "imageFile":
+                    filePath2 = os.path.join(pro_dir, "config")
+                    filePathDict["filePath2"] = filePath2
+                    filename = upload_file(fileDict.get(key), filePathDict)
+                    deal_file_path["configFile"] = filename
+                elif key == "needsFile":
                     filePath2 = os.path.join(pro_dir, "config")
                     filePathDict["filePath2"] = filePath2
                     filename = upload_file(fileDict.get(key), filePathDict)
